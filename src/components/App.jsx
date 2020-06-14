@@ -14,7 +14,7 @@ function App() {
         <NavBar />
       </div>
       <Switch>
-        <Route eaxct path="/movies" component={Movies}></Route>
+        <Route exact path="/movies" component={Movies}></Route>
         <Route exact path="/shows" component={Shows}></Route>
         <Route exact path="/people" component={People}></Route>
         <Route exact path="/searchbar" component={SearchBar}></Route>
