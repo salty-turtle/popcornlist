@@ -9,14 +9,16 @@
 }
 
 .nav-items {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
   li {
     list-style: none;
     display: inline-block;
     padding: 0px 15px;
 
     a {
-      font-family: "Montserrat", sans-serif;
-      font-weight: 500;
+      font-family: $primary-font, sans-serif;
       font-size: 16px;
       color: $primary-font-color;
       text-decoration: none;
@@ -30,9 +32,44 @@
 }
 
 .nav-logo {
+  flex: 1;
   img {
     cursor: pointer;
     width: 40px;
     height: 40px;
+  }
+}
+
+.search-container {
+  border: 1px solid #dfe1e5;
+  box-shadow: none;
+  border-radius: 24px;
+  height: 34px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+}
+
+.search-box {
+  margin-left: 10px;
+  font-family: $secondary-font;
+  font-size: 15px;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  word-wrap: break-word;
+  outline: none;
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  border: none;
+
+  i {
+    color: $primary-color;
+    font-size: 18px;
   }
 }
