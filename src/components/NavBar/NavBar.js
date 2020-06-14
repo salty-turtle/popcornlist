@@ -9,6 +9,16 @@ class NavBar extends Component {
         <div className="nav-logo">
           <img src={logo} alt="logo" />
         </div>
+        <div className="search-container">
+          <input
+            type="text"
+            className="search-box"
+            placeholder="Search Movies, TV Shows..."
+          />
+          <div className="search-btn">
+            <i className="fas fa-search"></i>
+          </div>
+        </div>
         <nav className="nav-items">
           <ul>
             <li>
@@ -20,9 +30,7 @@ class NavBar extends Component {
             <li>
               <a href="#">People</a>
             </li>
-            <li>
-              <a href="#">SearchBar</a>
-            </li>
+            <li></li>
           </ul>
         </nav>
       </div>
