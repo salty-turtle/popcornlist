@@ -1,13 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Shows extends Component {
-  render() {
-    return (
-      <div>
-       Shows
-      </div>
-    );
-  }
+function Shows() {
+  return <div>Shows</div>;
 }
 
 export default Shows;
