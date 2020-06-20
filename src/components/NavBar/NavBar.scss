@@ -3,9 +3,9 @@
 .nav-container {
   display: flex;
   justify-content: space-between;
-  background-color: $primary-color;
   align-items: center;
-  padding: 8px 2%;
+  background-color: $primary-color;
+  padding: 8px;
 }
 
 .nav-items {
@@ -19,6 +19,7 @@
 
     a {
       font-family: $primary-font, sans-serif;
+      font-weight: 700;
       font-size: 16px;
       color: $primary-font-color;
       text-decoration: none;
@@ -47,7 +48,6 @@
   height: 34px;
   width: 400px;
   display: flex;
-  justify-content: space-between;
   background-color: #ffffff;
 }
 
