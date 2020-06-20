@@ -4,7 +4,7 @@ import Home from "./Home/Home.jsx";
 import Movies from "./Movies/Movies.jsx";
 import Shows from "./Shows/Shows.jsx";
 import People from "./People/People.jsx";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
