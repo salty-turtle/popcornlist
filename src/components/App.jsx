@@ -15,9 +15,10 @@ function App(props) {
 
   useEffect(() => {
     dispatch(requestConfig());
-  });
+  }, []);
 
-  store.subscribe(() => console.log(store.getState()));
+  // store.subscribe(() => console.log(store.getState()));
+
   return (
     <Router>
       <div>
