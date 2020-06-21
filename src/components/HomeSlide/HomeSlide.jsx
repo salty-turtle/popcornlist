@@ -42,11 +42,19 @@ function HomeSlide(props) {
     <div className="swiper-container">
       <div className="swiper-wrapper">
         {movies.popular.results.slice(0, 5).map((movie) => {
+          console.log(movie.backdrop_path);
           return (
-            <div className="swiper-slide">
-              <img src="" alt="" />
-              {/* {console.log(movie)} */}
-              {/* {console.log(config.base.images.secure_base_url)} */}
+            <div
+              className="swiper-slide"
+              style={{
+                backgroundImage: `url(${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path})`,
+              }}
+            >
+              {/* <img
+                src={`${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path}`}
+                alt=""
+                className="slide-image"
+              /> */}
             </div>
           );
         })}

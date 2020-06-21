@@ -3,12 +3,16 @@ import API from "../api/api";
 
 export const requestConfig = () => {
   return (dispatch) => {
-    return API.get("/configuration").then((res) =>
+    return API.get("/configuration").then((res) => {
       dispatch({
         type: types.REQUEST_CONFIG,
         payload: res.data,
-      })
-    );
+      });
+
+      dispatch({
+        type: types.REQUEST_CONFIG_COMPLETE,
+      });
+    });
   };
 };
 

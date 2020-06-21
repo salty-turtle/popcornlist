@@ -1,15 +1,17 @@
 /* SWIPER STYLING */
+.swiper-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
 .swiper-container {
   width: 100%;
   height: 100%;
-  /*this gives the dimension of slider container*/
-  /*these values will make the container as big as the parent div*/
-  overflow: hidden;
-  /*important parameter to not disrupt the container when slides increases in coverflow and other effect*/
+  // overflow: hidden;
 }
 
 .swiper-slide {
-  width: 300px;
+  width: 100%;
   height: 300px;
-  /*this one holds the dimension of each slides and can be changed according to the user wish*/
+  background-size: cover;
 }

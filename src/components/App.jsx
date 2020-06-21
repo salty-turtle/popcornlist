@@ -12,6 +12,7 @@ import store from "../store/index.jsx";
 function App(props) {
   // const config = useSelector(state => state.config);
   const dispatch = useDispatch();
+  const config = useSelector((state) => state.config);
 
   useEffect(() => {
     dispatch(requestConfig());
@@ -19,7 +20,9 @@ function App(props) {
 
   // store.subscribe(() => console.log(store.getState()));
 
-  return (
+  return config.loading ? (
+    <div>LOADING...</div>
+  ) : (
     <Router>
       <div>
         <NavBar />
