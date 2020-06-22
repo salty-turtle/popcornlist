@@ -1,7 +1,12 @@
 import React from "react";
+import HomeSlide from "../HomeSlide/HomeSlide";
 
 function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <HomeSlide />
+    </div>
+  );
 }
 
 export default Home;
