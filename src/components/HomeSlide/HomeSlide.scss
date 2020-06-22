@@ -1,17 +1,24 @@
+@import "../../styles/variables";
+
 /* SWIPER STYLING */
 .swiper-wrapper {
-  width: 100%;
-  height: 100%;
+  background-color: red;
 }
 
 .swiper-container {
   width: 100%;
-  height: 100%;
-  // overflow: hidden;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.swiper-slide {
-  width: 100%;
-  height: 300px;
-  background-size: cover;
+.swiper-pagination-bullet {
+  background: $tertiary-color;
 }
+
+.swiper-pagination-bullet-active {
+  background: $secondary-color;
+}
+
+// .swiper-slide {
+//   background-size: cover;
+// }
