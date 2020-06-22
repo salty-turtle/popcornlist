@@ -1,7 +1,7 @@
 import React from "react";
 import "./NavBar.scss";
 import logo from "../../images/popcorn.png";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (

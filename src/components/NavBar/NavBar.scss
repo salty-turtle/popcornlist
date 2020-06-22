@@ -6,6 +6,11 @@
   align-items: center;
   background-color: $primary-color;
   padding: 8px;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
 }
 
 .nav-items {
@@ -35,6 +40,7 @@
 .nav-logo {
   flex: 1;
   img {
+    padding: 0px 15px;
     cursor: pointer;
     width: 40px;
     height: 40px;
