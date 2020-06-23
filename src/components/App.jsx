@@ -18,7 +18,7 @@ function App(props) {
     dispatch(requestConfig());
   }, []);
 
-  // store.subscribe(() => console.log(store.getState()));
+  store.subscribe(() => console.log(store.getState()));
 
   return config.loading ? (
     <div>LOADING...</div>
