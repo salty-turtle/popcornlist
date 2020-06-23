@@ -24,6 +24,7 @@ function HomeSlide(props) {
       loop: true,
       spaceBetween: 0,
       observer: true,
+      autoHeight: true,
       autoplay: {
         delay: 10000,
       },
@@ -41,40 +42,22 @@ function HomeSlide(props) {
       <div className="swiper-wrapper">
         {movies.popular.results.slice(0, 5).map((movie) => {
           return (
-            <div
-              className="swiper-slide"
-              // style={{
-              //   background: `linear-gradient(rgb(13, 12, 15, 0.5), rgb(13, 12, 15, 0.5)), center center no-repeat, url(${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path})`,
-              //   backgroundPosition: "top right",
-              //   backgroundRepeat: "no-repeat",
-              // }}
-            >
+            <div className="swiper-slide">
               <div className="home-text-wrapper">
                 <div className="home-text-container">
-                  <div className="home-title">Sonic the Hedgehog</div>
-                  <div className="home-genre">Action, Adventure</div>
+                  <div className="home-title">{movie.original_title}</div>
+                  {/*NEED TO FIX GENRE */}
+                  <div className="home-genre">Action, Adventure</div>{" "}
                   <div className="home-rating">
-                    <i class="fas fa-star"></i> 7.1 Rating
+                    <i class="fas fa-star"></i> 7.1 {movie.vote_average}
                   </div>
                   <br />
-                  <div className="home-description">
-                    Based on the global blockbuster videogame franchise from
-                    Sega, Sonic the Hedgehog tells the story of the world’s
-                    speediest hedgehog as he embraces his new home on Earth. In
-                    this live-action adventure comedy, Sonic and his new best
-                    friend team up to defend the planet from the evil genius Dr.
-                    Robotnik and his plans for world domination.
-                  </div>
+                  <div className="home-description">{movie.overview}</div>
                 </div>
                 <div className="home-backdrop-border">
                   <div className="home-backdrop-gradient">
                     <img
                       className="home-backdrop-image"
-                      // style={{
-                      //   background: `linear-gradient(rgb(13, 12, 15, 0.5), rgb(13, 12, 15, 0.5)), url(${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path})`,
-                      //   backgroundRepeat: "no-repeat",
-                      //   backgroundSize: "cover",
-                      // }}
                       src={`${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path}`}
                       alt=""
                     />
