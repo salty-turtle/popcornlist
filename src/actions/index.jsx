@@ -18,14 +18,14 @@ export const requestConfig = () => {
 
 export const requestPopularMovies = () => {
   return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_POPULAR_MOVIES,
+    });
+
     return API.get("/movie/popular").then((res) => {
       dispatch({
-        type: types.REQUEST_POPULAR_MOVIES,
-        payload: res.data,
-      });
-
-      dispatch({
         type: types.REQUEST_POPULAR_MOVIES_COMPLETE,
+        payload: res.data,
       });
     });
   };

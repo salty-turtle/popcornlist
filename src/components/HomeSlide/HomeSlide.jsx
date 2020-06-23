@@ -49,7 +49,7 @@ function HomeSlide(props) {
                   {/*NEED TO FIX GENRE */}
                   <div className="home-genre">Action, Adventure</div>{" "}
                   <div className="home-rating">
-                    <i class="fas fa-star"></i> 7.1 {movie.vote_average}
+                    <i class="fas fa-star"></i> {movie.vote_average} Rating
                   </div>
                   <br />
                   <div className="home-description">{movie.overview}</div>

@@ -10,11 +10,12 @@ export default (state = initialState, action) => {
     case "REQUEST_POPULAR_MOVIES":
       return {
         ...state,
-        popular: action.payload,
+        loading: true,
       };
     case "REQUEST_POPULAR_MOVIES_COMPLETE":
       return {
         ...state,
+        popular: action.payload,
         loading: false,
       };
     default:
