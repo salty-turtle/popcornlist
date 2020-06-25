@@ -9,7 +9,7 @@
 }
 
 .movie-container {
-  margin: 62px 175px 62px 175px;
+  margin: 62px 0px 62px 0px;
   align-items: center;
   display: flex;
   justify-content: flex-start;
@@ -24,6 +24,7 @@
   // background-color: blue;
   margin: 0;
   height: 100%;
+  margin-left: 100px;
 }
 
 .movie-title {

@@ -31,7 +31,7 @@ function MovieDetails(props) {
               borderRadius: "20px",
               minWidth: "400px",
               minHeight: "625px",
-              marginRight: "100px",
+              // marginRight: "100px",
             }}
           ></div>
           <div className="movie-text-container">
