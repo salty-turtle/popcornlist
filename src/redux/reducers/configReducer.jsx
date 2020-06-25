@@ -2,7 +2,6 @@ import * as types from "../actions/types";
 
 const initialState = {
   loading: true,
-  base: {},
 };
 
 export default (state = initialState, action) => {
@@ -15,8 +14,8 @@ export default (state = initialState, action) => {
     case types.REQUEST_CONFIG_COMPLETE:
       return {
         ...state,
+        ...action.payload,
         loading: false,
-        base: action.payload,
       };
     default:
       return state;
