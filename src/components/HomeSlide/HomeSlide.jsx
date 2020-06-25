@@ -10,6 +10,7 @@ function HomeSlide(props) {
 
   const movies = useSelector((state) => state.movies);
   const config = useSelector((state) => state.config);
+  const genres = useSelector((state) => state.genres);
 
   useEffect(() => {
     dispatch(requestPopularMovies());
