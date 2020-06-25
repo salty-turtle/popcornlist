@@ -54,11 +54,13 @@ function HomeSlide(props) {
                 </div>
                 <div className="home-backdrop-border">
                   <div className="home-backdrop-gradient">
-                    <img
-                      className="home-backdrop-image"
-                      src={`${config.images.secure_base_url}${config.images.backdrop_sizes[2]}${movie.backdrop_path}`}
-                      alt=""
-                    />
+                    <Link to={`/movies/${movie.id}`}>
+                      <img
+                        className="home-backdrop-image"
+                        src={`${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path}`}
+                        alt=""
+                      />
+                    </Link>
                   </div>
                 </div>
               </div>

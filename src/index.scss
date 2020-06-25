@@ -1,5 +1,9 @@
+@import "./styles/_variables.scss";
+
 body {
-  margin: 0;
+  background-color: $primary-color;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
