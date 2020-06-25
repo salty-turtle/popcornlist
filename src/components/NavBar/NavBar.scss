@@ -1,5 +1,6 @@
 @import "../../styles/variables";
 
+/* Navbar Styling */
 .nav-container {
   display: flex;
   align-items: center;
@@ -52,6 +53,11 @@
   }
 }
 
+.nav-padding {
+  padding-top: 68px;
+}
+
+/* Search-bar Styling */
 .search-container {
   // border: 1px solid #dfe1e5;
   box-shadow: none;
