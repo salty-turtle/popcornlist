@@ -31,6 +31,7 @@ function MovieDetails(props) {
               borderRadius: "20px",
               minWidth: "400px",
               minHeight: "625px",
+              boxShadow: "6px 9px 19px 1px rgba(0,0,0,0.54)",
               // marginRight: "100px",
             }}
           ></div>
