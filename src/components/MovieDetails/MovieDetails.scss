@@ -1,0 +1,62 @@
+@import "../../styles/variables";
+
+.movie-wrapper {
+  font-family: $primary-font;
+  color: $primary-font-color;
+  display: flex;
+  height: 750px;
+  // background-color: yellow;
+}
+
+.movie-container {
+  margin: 62px 175px 62px 175px;
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  // background-color: red;
+  width: 100%;
+}
+
+.movie-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  // background-color: blue;
+  margin: 0;
+  height: 100%;
+}
+
+.movie-title {
+  font-size: 44px;
+  font-weight: 700;
+}
+
+.movie-tagline {
+  font-size: 23px;
+  font-style: italic;
+}
+
+.movie-info {
+  padding-top: 8px;
+  font-size: 18px;
+  i {
+    color: $secondary-color;
+    font-size: 16px;
+  }
+}
+
+.movie-extra-details {
+  padding-top: 20px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.movie-secondary-title {
+  padding: 18px 0px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.movie-synopsis {
+  font-size: 18px;
+}

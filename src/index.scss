@@ -1,4 +1,7 @@
+@import "./styles/_variables.scss";
+
 body {
+  background-color: $primary-color;
   margin: 0;
 }
 
