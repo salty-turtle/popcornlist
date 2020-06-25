@@ -12,7 +12,8 @@ function MovieCard(props) {
           src={`${props.config.images.secure_base_url}${props.config.images.poster_sizes[1]}${props.movie.poster_path}`}
         />
         <div className="card-details">
-          {props.movie.original_title}
+          {`${props.movie.original_title} `}
+          {props.movie.genre_ids.map(id => `${props.genreList.get(id)} `)}
         </div>
       </div>
     )
