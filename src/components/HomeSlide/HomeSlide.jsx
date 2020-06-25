@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { requestPopularMovies } from "../../redux/actions/index";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
@@ -53,11 +54,13 @@ function HomeSlide(props) {
                 </div>
                 <div className="home-backdrop-border">
                   <div className="home-backdrop-gradient">
-                    <img
-                      className="home-backdrop-image"
-                      src={`${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path}`}
-                      alt=""
-                    />
+                    <Link to={`/movies/${movie.id}`}>
+                      <img
+                        className="home-backdrop-image"
+                        src={`${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path}`}
+                        alt=""
+                      />
+                    </Link>
                   </div>
                 </div>
               </div>
