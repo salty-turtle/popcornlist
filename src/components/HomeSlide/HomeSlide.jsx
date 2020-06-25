@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { requestPopularMovies } from "../../redux/actions/index";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
@@ -11,6 +10,7 @@ function HomeSlide(props) {
 
   const movies = useSelector((state) => state.movies);
   const config = useSelector((state) => state.config);
+  const genres = useSelector((state) => state.genres);
 
   useEffect(() => {
     dispatch(requestPopularMovies());
