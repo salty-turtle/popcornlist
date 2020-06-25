@@ -1,5 +1,5 @@
 import * as types from "./types";
-import API from "../api/api";
+import API from "../../api/api";
 
 export const requestConfig = () => {
   return (dispatch) => {

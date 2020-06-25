@@ -5,9 +5,9 @@ import Home from "./Home/Home.jsx";
 import Movies from "./Movies/Movies.jsx";
 import Shows from "./Shows/Shows.jsx";
 import People from "./People/People.jsx";
-import { requestConfig } from "../actions/index";
+import { requestConfig } from "../redux/actions/index";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import store from "../store/index.jsx";
+import store from "../redux/store/index.jsx";
 
 function App(props) {
   // const config = useSelector(state => state.config);
