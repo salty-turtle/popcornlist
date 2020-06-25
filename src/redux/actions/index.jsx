@@ -16,6 +16,21 @@ export const requestConfig = () => {
   };
 };
 
+export const requestMovie = (id) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_MOVIE,
+    });
+
+    return API.get(`/movie/${id}`).then((res) => {
+      dispatch({
+        type: types.REQUEST_MOVIE_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
 export const requestPopularMovies = () => {
   return (dispatch) => {
     dispatch({
