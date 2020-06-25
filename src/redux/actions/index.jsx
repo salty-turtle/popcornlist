@@ -50,3 +50,18 @@ export const requestPopularMovies = () => {
     });
   };
 };
+
+export const requestGenres = () => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_GENRES,
+    });
+
+    return API.get("/genre/movie/list").then((res) => {
+      dispatch({
+        type: types.REQUEST_GENRES_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};

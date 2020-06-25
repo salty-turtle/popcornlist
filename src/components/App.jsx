@@ -6,7 +6,7 @@ import Movies from "./Movies/Movies.jsx";
 import Shows from "./Shows/Shows.jsx";
 import People from "./People/People.jsx";
 import MovieDetails from "./MovieDetails/MovieDetails.jsx";
-import { requestConfig } from "../redux/actions/index";
+import { requestConfig, requestGenres } from "../redux/actions/index";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import store from "../redux/store/index.jsx";
 
@@ -17,6 +17,7 @@ function App(props) {
 
   useEffect(() => {
     dispatch(requestConfig());
+    dispatch(requestGenres());
   }, []);
 
   store.subscribe(() => console.log(store.getState()));
