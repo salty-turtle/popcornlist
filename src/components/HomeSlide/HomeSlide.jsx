@@ -1,12 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { requestPopularMovies } from "../../actions/index";
+import { requestPopularMovies } from "../../redux/actions/index";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
-// import "swiper/swiper.scss";
 import "./HomeSlide.scss";
-import { EffectCoverflow } from "swiper/js/swiper.esm";
-import { findByLabelText } from "@testing-library/react";
 
 function HomeSlide(props) {
   const dispatch = useDispatch();
@@ -49,7 +46,7 @@ function HomeSlide(props) {
                   {/*NEED TO FIX GENRE */}
                   <div className="home-genre">Action, Adventure</div>{" "}
                   <div className="home-rating">
-                    <i class="fas fa-star"></i> {movie.vote_average} Rating
+                    <i className="fas fa-star"></i> {movie.vote_average} Rating
                   </div>
                   <br />
                   <div className="home-description">{movie.overview}</div>
@@ -64,10 +61,6 @@ function HomeSlide(props) {
                   </div>
                 </div>
               </div>
-              {/* <img
-                src={`${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path}`}
-                alt=""
-              /> */}
             </div>
           );
         })}
