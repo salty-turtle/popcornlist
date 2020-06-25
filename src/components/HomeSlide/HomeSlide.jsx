@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { requestPopularMovies } from "../../actions/index";
+import { requestPopularMovies } from "../../redux/actions/index";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 // import "swiper/swiper.scss";
@@ -58,16 +58,12 @@ function HomeSlide(props) {
                   <div className="home-backdrop-gradient">
                     <img
                       className="home-backdrop-image"
-                      src={`${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path}`}
+                      src={`${config.images.secure_base_url}${config.images.backdrop_sizes[2]}${movie.backdrop_path}`}
                       alt=""
                     />
                   </div>
                 </div>
               </div>
-              {/* <img
-                src={`${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path}`}
-                alt=""
-              /> */}
             </div>
           );
         })}

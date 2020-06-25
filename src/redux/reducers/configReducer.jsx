@@ -1,20 +1,20 @@
 import * as types from "../actions/types";
 
 const initialState = {
-  popular: {},
   loading: true,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "REQUEST_POPULAR_MOVIES":
+    case types.REQUEST_CONFIG:
       return {
         ...state,
-        popular: action.payload,
+        loading: true,
       };
-    case "REQUEST_POPULAR_MOVIES_COMPLETE":
+    case types.REQUEST_CONFIG_COMPLETE:
       return {
         ...state,
+        ...action.payload,
         loading: false,
       };
     default:
