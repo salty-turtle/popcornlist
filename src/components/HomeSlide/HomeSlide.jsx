@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { requestPopularMovies } from "../../redux/actions/index";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
@@ -57,7 +58,7 @@ function HomeSlide(props) {
                     <Link to={`/movies/${movie.id}`}>
                       <img
                         className="home-backdrop-image"
-                        src={`${config.base.images.secure_base_url}${config.base.images.backdrop_sizes[2]}${movie.backdrop_path}`}
+                        src={`${config.images.secure_base_url}${config.images.backdrop_sizes[2]}${movie.backdrop_path}`}
                         alt=""
                       />
                     </Link>
