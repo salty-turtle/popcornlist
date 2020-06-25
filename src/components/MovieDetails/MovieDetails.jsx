@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { requestMovie } from "../../redux/actions/index";
 import "./MovieDetails.scss";
-import { findByLabelText } from "@testing-library/react";
 
 function MovieDetails(props) {
   const { movieId } = useParams();
@@ -11,7 +10,6 @@ function MovieDetails(props) {
 
   const config = useSelector((state) => state.config);
   const movie = useSelector((state) => state.movie);
-  const moviePoster = `${config.base.images.secure_base_url}${config.base.images.poster_sizes[4]}${movie.poster_path}`;
 
   useEffect(() => {
     dispatch(requestMovie(movieId));
@@ -26,7 +24,7 @@ function MovieDetails(props) {
           <div
             className="movie-poster"
             style={{
-              background: `url(${config.base.images.secure_base_url}${config.base.images.poster_sizes[4]}${movie.poster_path}) no-repeat`,
+              background: `url(${config.images.secure_base_url}${config.images.poster_sizes[4]}${movie.poster_path}) no-repeat`,
               backgroundSize: "cover",
               borderRadius: "20px",
               minWidth: "400px",
