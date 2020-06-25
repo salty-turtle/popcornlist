@@ -19,7 +19,7 @@ function HomeSlide(props) {
   }, []);
 
   useEffect(() => {
-    const swiper = new Swiper(".swiper-container", {
+    var swiper1 = new Swiper(".swiper1", {
       slidesPerView: 1,
       loop: true,
       spaceBetween: 0,
@@ -29,7 +29,7 @@ function HomeSlide(props) {
         delay: 10000,
       },
       pagination: {
-        el: ".swiper-pagination",
+        el: ".swiper-pagination1",
         clickable: "true",
       },
     });
@@ -38,7 +38,7 @@ function HomeSlide(props) {
   return movies.loading ? (
     <div>LOADING...</div>
   ) : (
-    <div className="swiper-container">
+    <div className="swiper-container swiper1">
       <div className="swiper-wrapper">
         {movies.popular.results.slice(0, 5).map((movie) => {
           return (
@@ -73,7 +73,7 @@ function HomeSlide(props) {
         })}
       </div>
 
-      <div className="swiper-pagination"></div>
+      <div className="swiper-pagination swiper-pagination1"></div>
     </div>
   );
 }
