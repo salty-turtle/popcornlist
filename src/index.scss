@@ -1,24 +1,13 @@
 @import "./styles/_variables.scss";
 
+html {
+  height: 100%;
+}
 body {
   background-color: $primary-color;
   max-width: 90%;
   margin: 0 auto;
-}
-
-/* SWIPER STYLING */
-.swiper-pagination-bullet {
-  background: $primary-color;
-  opacity: 0.6;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: 1;
-  background: $secondary-color;
-}
-
-.swiper-container {
-  overflow: hidden;
+  height: 100%;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
