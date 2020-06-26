@@ -1,29 +1,46 @@
-.card-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  width: 50px;
+@import "../../styles/variables";
 
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
+.carousel-container {
+  font-family: $primary-font;
+  color: $primary-font-color;
+  margin: 25px 0px 25px 0px;
+}
+
+.carousel-title {
+  font-size: 1.7em;
+  font-weight: 700;
+}
+
+.carousel-wrapper {
+  position: relative;
+  margin: 15px 0px 15px 0px;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.card-slide {
   display: flex;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
   align-items: center;
+  img {
+    width: 100%;
+  }
+}
+
+.card-details-container {
+  width: 100%;
 }
 
 .card-img {
-  background-color: blue;
+  border-radius: 12px;
 }
 
-.card-details {
-  background-color: red;
+.card-details-title {
+  padding-top: 6px;
+  font-size: 1.1em;
+  font-weight: 700;
+}
+.card-details-genre {
+  font-size: 0.8em;
+  padding-top: 4px;
 }

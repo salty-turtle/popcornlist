@@ -14,8 +14,33 @@ function MovieCarousel(props) {
 
   useEffect(() => {
     var swiper2 = new Swiper(".swiper2", {
-      slidesPerView: 6,
-      spaceBetween: 100, // CHECK THIS
+      loop: true,
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        640: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 70,
+        },
+        1024: {
+          slidesPerView: 5,
+          spaceBetween: 90,
+        },
+        1600: {
+          slidesPerView: 6,
+          spaceBetween: 110,
+        },
+      },
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
@@ -26,14 +51,19 @@ function MovieCarousel(props) {
   return movies.loading ? (
     <div>LOADING...</div>
   ) : (
-    <div class="swiper-container swiper2">
-      <div class="swiper-wrapper">
-        {movies.popular.results.slice(0, 10).map((movie) => (
-          <MovieCard movie={movie} config={config} genreList={genreList} />
-        ))}
+    <div className="carousel-container">
+      <div className="carousel-title">Popular</div>
+      <div className="carousel-wrapper">
+        <div class="swiper-container swiper2">
+          <div class="swiper-wrapper">
+            {movies.popular.results.slice(0, 10).map((movie) => (
+              <MovieCard movie={movie} config={config} genreList={genreList} />
+            ))}
+          </div>
+        </div>
+        {/* <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div> */}
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
     </div>
   );
 }
