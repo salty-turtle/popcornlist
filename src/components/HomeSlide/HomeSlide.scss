@@ -62,18 +62,7 @@
 }
 
 /* SWIPER STYLING */
-.swiper-container {
+.swiper1 {
   background-color: black;
-  width: 100% !important;
   overflow: hidden;
-}
-
-.swiper-pagination-bullet {
-  background: $primary-color;
-  opacity: 0.6;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: 1;
-  background: $secondary-color;
 }
