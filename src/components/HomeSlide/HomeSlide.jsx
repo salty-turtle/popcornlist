@@ -12,13 +12,15 @@ function HomeSlide(props) {
   const movies = useSelector((state) => state.movies);
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
+  const genreList = new Map();
+  genres.genreList.map(genre => genreList.set(genre.id, genre.name))
 
   useEffect(() => {
     dispatch(requestPopularMovies());
   }, []);
 
   useEffect(() => {
-    const swiper = new Swiper(".swiper-container", {
+    var swiper1 = new Swiper(".swiper1", {
       slidesPerView: 1,
       loop: true,
       spaceBetween: 0,
@@ -28,7 +30,7 @@ function HomeSlide(props) {
         delay: 10000,
       },
       pagination: {
-        el: ".swiper-pagination",
+        el: ".swiper-pagination1",
         clickable: "true",
       },
     });
@@ -37,7 +39,7 @@ function HomeSlide(props) {
   return movies.loading ? (
     <div>LOADING...</div>
   ) : (
-    <div className="swiper-container">
+    <div className="swiper-container swiper1">
       <div className="swiper-wrapper">
         {movies.popular.results.slice(0, 5).map((movie) => {
           return (
@@ -45,8 +47,7 @@ function HomeSlide(props) {
               <div className="home-text-wrapper">
                 <div className="home-text-container">
                   <div className="home-title">{movie.original_title}</div>
-                  {/*NEED TO FIX GENRE */}
-                  <div className="home-genre">Action, Adventure</div>{" "}
+                  <div className="home-genre">{movie.genre_ids.map(id => `${genreList.get(id)} `)}</div>
                   <div className="home-rating">
                     <i className="fas fa-star"></i> {movie.vote_average} Rating
                   </div>
@@ -70,7 +71,7 @@ function HomeSlide(props) {
         })}
       </div>
 
-      <div className="swiper-pagination"></div>
+      <div className="swiper-pagination swiper-pagination1"></div>
     </div>
   );
 }
