@@ -1,0 +1,21 @@
+@import "./variables";
+
+/* SWIPER CAROUSEL STYLING */
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-pagination-bullet {
+  background: $primary-color;
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: $secondary-color;
+}
+
+.swiper-container {
+  overflow: hidden;
+}

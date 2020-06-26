@@ -10,10 +10,12 @@ function MovieCarousel(props) {
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
-  genres.genreList.map(genre => genreList.set(genre.id, genre.name))
+  genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
 
   useEffect(() => {
     var swiper2 = new Swiper(".swiper2", {
+      slidesPerView: 6,
+      spaceBetween: 100, // CHECK THIS
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
@@ -26,7 +28,7 @@ function MovieCarousel(props) {
   ) : (
     <div class="swiper-container swiper2">
       <div class="swiper-wrapper">
-        {movies.popular.results.slice(0, 5).map((movie) => (
+        {movies.popular.results.slice(0, 10).map((movie) => (
           <MovieCard movie={movie} config={config} genreList={genreList} />
         ))}
       </div>
