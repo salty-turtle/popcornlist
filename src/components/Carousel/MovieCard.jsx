@@ -5,7 +5,6 @@ import "./Carousel.scss";
 
 function MovieCard(props) {
   return (
-    console.log(props.movie, props.config),
     (
       <div className="swiper-slide card-slide">
         <img
