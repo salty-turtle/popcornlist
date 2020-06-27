@@ -1,6 +1,18 @@
 import * as types from "./types";
 import API from "../../api/api";
 
+const topRatedParams = {
+  params: {
+    language: "en-US",
+    region: "US",
+    sort_by: "vote_average.desc",
+    include_adult: false,
+    include_video: false,
+    page: 1,
+    "vote_count.gte": 4000,
+  },
+};
+
 export const requestConfig = () => {
   return (dispatch) => {
     dispatch({
@@ -57,7 +69,7 @@ export const requestTopRatedMovies = () => {
       type: types.REQUEST_TOP_RATED_MOVIES,
     });
 
-    return API.get("discover/movie?language=en-US&region=US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&vote_count.gte=4000").then((res) => {
+    return API.get("/discover/movie", topRatedParams).then((res) => {
       dispatch({
         type: types.REQUEST_TOP_RATED_MOVIES_COMPLETE,
         payload: res.data,

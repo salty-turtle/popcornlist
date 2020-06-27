@@ -27,9 +27,11 @@ function HomeSlide(props) {
   useEffect(() => {
     var swiper1 = new Swiper(".swiper1", {
       slidesPerView: 1,
+      init: true,
       loop: true,
       spaceBetween: 0,
       observer: true,
+      updateOnWindowResize: true,
       autoHeight: true,
       autoplay: {
         delay: 10000,
