@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { requestPopularMovies } from "../../redux/actions/index";
+import {
+  requestPopularMovies,
+  requestTopRatedMovies,
+} from "../../redux/actions/index";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import "./HomeSlide.scss";
@@ -18,14 +21,17 @@ function HomeSlide(props) {
 
   useEffect(() => {
     dispatch(requestPopularMovies());
+    dispatch(requestTopRatedMovies());
   }, []);
 
   useEffect(() => {
     var swiper1 = new Swiper(".swiper1", {
       slidesPerView: 1,
+      init: true,
       loop: true,
       spaceBetween: 0,
       observer: true,
+      updateOnWindowResize: true,
       autoHeight: true,
       autoplay: {
         delay: 10000,

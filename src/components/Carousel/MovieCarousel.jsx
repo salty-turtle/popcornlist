@@ -11,6 +11,7 @@ function MovieCarousel(props) {
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
   genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
+  console.log(movies, "here")
 
   useEffect(() => {
     var swiper2 = new Swiper(".swiper2", {
@@ -54,8 +55,8 @@ function MovieCarousel(props) {
     <div className="carousel-container">
       <div className="carousel-title">Popular</div>
       <div className="carousel-wrapper">
-        <div class="swiper-container swiper2">
-          <div class="swiper-wrapper">
+        <div className="swiper-container swiper2">
+          <div className="swiper-wrapper">
             {movies.popular.results.slice(0, 10).map((movie) => (
               <MovieCard movie={movie} config={config} genreList={genreList} />
             ))}
