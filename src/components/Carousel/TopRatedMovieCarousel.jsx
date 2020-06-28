@@ -49,7 +49,7 @@ function TopRatedMovieCarousel(props) {
     });
   });
 
-  return movies.loading ? (
+  return movies.topRatedLoading ? (
     <div>LOADING...</div>
   ) : (
     <div className="carousel-container">
@@ -57,7 +57,7 @@ function TopRatedMovieCarousel(props) {
       <div className="carousel-wrapper">
         <div className="swiper-container swiper2">
           <div className="swiper-wrapper">
-            {movies.popular.results.slice(0, 10).map((movie) => (
+            {movies.topRated.results.slice(0, 10).map((movie) => (
               <MovieCard movie={movie} config={config} genreList={genreList} />
             ))}
           </div>

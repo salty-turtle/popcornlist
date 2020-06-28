@@ -11,7 +11,6 @@ function UpcomingMovieCarousel(props) {
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
   genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
-  console.log(movies, "here")
 
   useEffect(() => {
     var swiper2 = new Swiper(".swiper2", {
@@ -49,7 +48,7 @@ function UpcomingMovieCarousel(props) {
     });
   });
 
-  return movies.loading ? (
+  return movies.upcomingLoading ? (
     <div>LOADING...</div>
   ) : (
     <div className="carousel-container">
