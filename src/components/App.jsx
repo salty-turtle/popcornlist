@@ -36,7 +36,7 @@ function App(props) {
         <CSSTransition
           key={location.key}
           classNames="fade"
-          timeout={{ enter: 400 }}
+          timeout={{ enter: 500 }}
         >
           <section className="transition-routes">
             <Switch location={location}>
