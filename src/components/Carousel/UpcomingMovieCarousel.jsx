@@ -13,7 +13,7 @@ function UpcomingMovieCarousel(props) {
   genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
 
   useEffect(() => {
-    var swiper2 = new Swiper(".swiper2", {
+    var upcomingSwiper = new Swiper(".upcoming-swiper", {
       loop: true,
       breakpoints: {
         320: {
@@ -54,9 +54,9 @@ function UpcomingMovieCarousel(props) {
     <div className="carousel-container">
       <div className="carousel-title">Upcoming</div>
       <div className="carousel-wrapper">
-        <div className="swiper-container swiper2">
+        <div className="swiper-container upcoming-swiper">
           <div className="swiper-wrapper">
-            {movies.popular.results.slice(0, 10).map((movie) => (
+            {movies.upcoming.results.slice(0, 10).map((movie) => (
               <MovieCard movie={movie} config={config} genreList={genreList} />
             ))}
           </div>

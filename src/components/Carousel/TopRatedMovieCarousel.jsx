@@ -14,7 +14,7 @@ function TopRatedMovieCarousel(props) {
   console.log(movies, "here")
 
   useEffect(() => {
-    var swiper2 = new Swiper(".swiper2", {
+    var topRatedSwiper = new Swiper(".top-rated-swiper", {
       loop: true,
       breakpoints: {
         320: {
@@ -55,7 +55,7 @@ function TopRatedMovieCarousel(props) {
     <div className="carousel-container">
       <div className="carousel-title">Top Rated</div>
       <div className="carousel-wrapper">
-        <div className="swiper-container swiper2">
+        <div className="swiper-container top-rated-swiper">
           <div className="swiper-wrapper">
             {movies.topRated.results.slice(0, 10).map((movie) => (
               <MovieCard movie={movie} config={config} genreList={genreList} />
