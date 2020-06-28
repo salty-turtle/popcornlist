@@ -4,6 +4,7 @@ import MovieCard from "./MovieCard.jsx";
 import "./Carousel.scss";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
+import Loader from "../Loader/Loader";
 
 function TopRatedMovieCarousel(props) {
   const movies = useSelector((state) => state.movies);
@@ -11,7 +12,7 @@ function TopRatedMovieCarousel(props) {
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
   genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
-  console.log(movies, "here")
+  console.log(movies, "here");
 
   useEffect(() => {
     var topRatedSwiper = new Swiper(".top-rated-swiper", {
@@ -49,8 +50,8 @@ function TopRatedMovieCarousel(props) {
     });
   });
 
-  return movies.topRatedLoading ? (
-    <div>LOADING...</div>
+  return movies.topRated.loading ? (
+    <div></div>
   ) : (
     <div className="carousel-container">
       <div className="carousel-title">Top Rated</div>
