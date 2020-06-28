@@ -32,13 +32,9 @@ function App(props) {
       <div>
         <NavBar />
       </div>
-      <div className="transition-style">
-        <TransitionGroup>
-          <CSSTransition
-            key={location.key}
-            classNames="fade"
-            timeout={{ enter: 600 }}
-          >
+      <TransitionGroup className="transition-container">
+        <CSSTransition key={location.key} classNames="fade" timeout={400}>
+          <section className="transition-routes">
             <Switch location={location}>
               <Route exact path="/movies" component={Movies}></Route>
               <Route
@@ -50,9 +46,9 @@ function App(props) {
               <Route exact path="/people" component={People}></Route>
               <Route exact path="/" component={Home}></Route>
             </Switch>
-          </CSSTransition>
-        </TransitionGroup>
-      </div>
+          </section>
+        </CSSTransition>
+      </TransitionGroup>
     </div>
   );
 }
