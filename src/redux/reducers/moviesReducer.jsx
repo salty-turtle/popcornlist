@@ -56,7 +56,7 @@ export default (state = initialState, action) => {
         upcoming: {
           ...state.upcoming,
           ...action.payload,
-          loading: true,
+          loading: false,
         },
       };
     default:
