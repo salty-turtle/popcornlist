@@ -48,6 +48,21 @@ export const requestMovie = (id) => {
   };
 };
 
+export const requestCredits = (id) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_CREDITS,
+    });
+
+    return API.get(`/movie/${id}/credits`).then((res) => {
+      dispatch({
+        type: types.REQUEST_CREDITS_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
 export const requestPopularMovies = () => {
   return (dispatch) => {
     dispatch({

@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { requestMovie } from "../../redux/actions/index";
+import { requestMovie, requestCredits } from "../../redux/actions/index";
+import Cast from "../Cast/Cast";
 import "./MovieDetails.scss";
+import creditsReducer from "../../redux/reducers/creditsReducer";
 
 function MovieDetails(props) {
   const { movieId } = useParams();
@@ -10,12 +12,15 @@ function MovieDetails(props) {
 
   const config = useSelector((state) => state.config);
   const movie = useSelector((state) => state.movie);
+  const credits = useSelector((state) => state.credits);
+  console.log(credits);
 
   useEffect(() => {
     dispatch(requestMovie(movieId));
+    dispatch(requestCredits(movieId));
   }, []);
 
-  return movie.loading ? (
+  return movie.loading || credits.loading ? (
     <div></div>
   ) : (
     <div>
@@ -45,7 +50,9 @@ function MovieDetails(props) {
             <div className="movie-secondary-title">Synopsis</div>
             <div className="movie-synopsis">{movie.overview}</div>
             <div className="movie-secondary-title">Cast</div>
-            <div className="movie-cast"></div>
+            <div className="movie-cast">
+              <Cast />
+            </div>
             <div classname="buttons-container"></div>
           </div>
         </div>

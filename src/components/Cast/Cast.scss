@@ -1,0 +1,17 @@
+// .cast-container {
+//   position: relative;
+//   display: flex;
+//   background-color: yellow;
+// }
+
+.cast-swiper-wrapper {
+  display: flex;
+  width: 0;
+}
+
+.cast-card-img {
+  display: flex;
+  border-radius: 22px;
+  height: 100%;
+  width: 100%;
+}
