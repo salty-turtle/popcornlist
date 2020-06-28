@@ -10,6 +10,7 @@ import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import "./HomeSlide.scss";
 import "../../styles/_carousel.scss";
+import Loader from "../Loader/Loader";
 
 function HomeSlide(props) {
   const dispatch = useDispatch();
@@ -41,8 +42,8 @@ function HomeSlide(props) {
     });
   });
 
-  return movies.popularLoading ? (
-    <div>LOADING...</div>
+  return movies.popular.loading ? (
+    <div></div>
   ) : (
     <div>
       <div className="swiper-container swiper1">

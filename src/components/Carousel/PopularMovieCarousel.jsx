@@ -4,6 +4,7 @@ import MovieCard from "./MovieCard.jsx";
 import "./Carousel.scss";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
+import Loader from "../Loader/Loader";
 
 function PopularMovieCarousel(props) {
   const movies = useSelector((state) => state.movies);
@@ -48,8 +49,8 @@ function PopularMovieCarousel(props) {
     });
   });
 
-  return movies.popularLoading ? (
-    <div>LOADING...</div>
+  return movies.popular.loading ? (
+    <div></div>
   ) : (
     <div className="carousel-container">
       <div className="carousel-title">Popular</div>

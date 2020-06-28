@@ -4,6 +4,7 @@ import MovieCard from "./MovieCard.jsx";
 import "./Carousel.scss";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
+import Loader from "../Loader/Loader";
 
 function UpcomingMovieCarousel(props) {
   const movies = useSelector((state) => state.movies);
@@ -48,8 +49,8 @@ function UpcomingMovieCarousel(props) {
     });
   });
 
-  return movies.upcomingLoading ? (
-    <div>LOADING...</div>
+  return movies.upcoming.loading ? (
+    <div></div>
   ) : (
     <div className="carousel-container">
       <div className="carousel-title">Upcoming</div>

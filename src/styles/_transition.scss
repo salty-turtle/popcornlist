@@ -1,0 +1,28 @@
+/* Aligns the pages for seamless transition */
+.transition-container {
+  position: relative;
+}
+
+.transition-routes {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Styling for fade */
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 400ms ease-in;
+}
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 400ms ease-in;
+}
