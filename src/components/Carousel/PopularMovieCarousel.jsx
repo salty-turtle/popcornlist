@@ -5,7 +5,7 @@ import "./Carousel.scss";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 
-function MovieCarousel(props) {
+function PopularMovieCarousel(props) {
   const movies = useSelector((state) => state.movies);
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
@@ -69,4 +69,4 @@ function MovieCarousel(props) {
   );
 }
 
-export default MovieCarousel;
+export default PopularMovieCarousel;
