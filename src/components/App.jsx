@@ -11,7 +11,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import store from "../redux/store/index.jsx";
 
 function App(props) {
-  // const config = useSelector(state => state.config);
   const dispatch = useDispatch();
   const config = useSelector((state) => state.config);
 
