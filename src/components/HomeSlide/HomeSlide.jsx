@@ -26,19 +26,15 @@ function HomeSlide(props) {
 
   useEffect(() => {
     var swiper1 = new Swiper(".swiper1", {
-      slidesPerView: 1,
-      init: true,
       loop: true,
-      spaceBetween: 0,
       observer: true,
-      updateOnWindowResize: true,
       autoHeight: true,
       autoplay: {
         delay: 10000,
       },
       pagination: {
         el: ".swiper-pagination1",
-        clickable: "true",
+        type: "progressbar",
       },
     });
   });
@@ -46,41 +42,44 @@ function HomeSlide(props) {
   return movies.loading ? (
     <div>LOADING...</div>
   ) : (
-    <div className="swiper-container swiper1">
-      <div className="swiper-wrapper">
-        {movies.popular.results.slice(0, 5).map((movie) => {
-          return (
-            <div className="swiper-slide">
-              <div className="home-text-wrapper">
-                <div className="home-text-container">
-                  <div className="home-title">{movie.original_title}</div>
-                  <div className="home-genre">
-                    {movie.genre_ids.map((id) => `${genreList.get(id)} `)}
+    <div>
+      <div className="swiper-container swiper1">
+        <div className="swiper-wrapper">
+          {movies.popular.results.slice(0, 5).map((movie) => {
+            return (
+              <div className="swiper-slide">
+                <div className="home-text-wrapper">
+                  <div className="home-text-container">
+                    <div className="home-title">{movie.original_title}</div>
+                    <div className="home-genre">
+                      {movie.genre_ids.map((id) => `${genreList.get(id)} `)}
+                    </div>
+                    <div className="home-rating">
+                      <i className="fas fa-star"></i> {movie.vote_average}{" "}
+                      Rating
+                    </div>
+                    <br />
+                    <div className="home-description">{movie.overview}</div>
                   </div>
-                  <div className="home-rating">
-                    <i className="fas fa-star"></i> {movie.vote_average} Rating
-                  </div>
-                  <br />
-                  <div className="home-description">{movie.overview}</div>
-                </div>
-                <div className="home-backdrop-border">
-                  <div className="home-backdrop-gradient">
-                    <Link to={`/movies/${movie.id}`}>
-                      <img
-                        className="home-backdrop-image"
-                        src={`${config.images.secure_base_url}${config.images.backdrop_sizes[2]}${movie.backdrop_path}`}
-                        alt=""
-                      />
-                    </Link>
+                  <div className="home-backdrop-border">
+                    <div className="home-backdrop-gradient">
+                      <Link to={`/movies/${movie.id}`}>
+                        <img
+                          className="home-backdrop-image"
+                          src={`${config.images.secure_base_url}${config.images.backdrop_sizes[2]}${movie.backdrop_path}`}
+                          alt=""
+                        />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
 
-      <div className="swiper-pagination swiper-pagination1"></div>
+        <div className="swiper-pagination swiper-pagination1"></div>
+      </div>
     </div>
   );
 
