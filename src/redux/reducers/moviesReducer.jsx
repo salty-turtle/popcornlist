@@ -3,7 +3,10 @@ import * as types from "../actions/types";
 const initialState = {
   popular: {},
   topRated: {},
-  loading: true,
+  upcoming: {},
+  popularLoading: true,
+  topRatedLoading: true,
+  upcomingLoading: true,
 };
 
 export default (state = initialState, action) => {
@@ -11,24 +14,35 @@ export default (state = initialState, action) => {
     case types.REQUEST_POPULAR_MOVIES:
       return {
         ...state,
-        loading: true,
+        popularLoading: true,
       };
     case types.REQUEST_POPULAR_MOVIES_COMPLETE:
       return {
         ...state,
         popular: action.payload,
-        loading: false,
+        popularLoading: false,
       };
-      case types.REQUEST_TOP_RATED_MOVIES:
+    case types.REQUEST_TOP_RATED_MOVIES:
       return {
         ...state,
-        loading: true,
+        topRatedLoading: true,
       };
     case types.REQUEST_TOP_RATED_MOVIES_COMPLETE:
       return {
         ...state,
         topRated: action.payload,
-        loading: false,
+        topRatedLoading: false,
+      };
+    case types.REQUEST_UPCOMING_MOVIES:
+      return {
+        ...state,
+        upcomingLoading: true,
+      };
+    case types.REQUEST_UPCOMING_MOVIES_COMPLETE:
+      return {
+        ...state,
+        upcoming: action.payload,
+        upcomingLoading: false,
       };
     default:
       return state;

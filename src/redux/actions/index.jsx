@@ -78,6 +78,21 @@ export const requestTopRatedMovies = () => {
   };
 };
 
+export const requestUpcomingMovies = () => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_UPCOMING_MOVIES,
+    });
+
+    return API.get("/movie/upcoming").then((res) => {
+      dispatch({
+        type: types.REQUEST_UPCOMING_MOVIES_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
 export const requestGenres = () => {
   return (dispatch) => {
     dispatch({

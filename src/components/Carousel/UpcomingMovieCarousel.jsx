@@ -5,16 +5,15 @@ import "./Carousel.scss";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 
-function MovieCarousel(props) {
+function UpcomingMovieCarousel(props) {
   const movies = useSelector((state) => state.movies);
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
   genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
-  console.log(movies, "here")
 
   useEffect(() => {
-    var swiper2 = new Swiper(".swiper2", {
+    var upcomingSwiper = new Swiper(".upcoming-swiper", {
       loop: true,
       breakpoints: {
         320: {
@@ -49,15 +48,15 @@ function MovieCarousel(props) {
     });
   });
 
-  return movies.loading ? (
+  return movies.upcomingLoading ? (
     <div>LOADING...</div>
   ) : (
     <div className="carousel-container">
-      <div className="carousel-title">Popular</div>
+      <div className="carousel-title">Upcoming</div>
       <div className="carousel-wrapper">
-        <div className="swiper-container swiper2">
+        <div className="swiper-container upcoming-swiper">
           <div className="swiper-wrapper">
-            {movies.popular.results.slice(0, 10).map((movie) => (
+            {movies.upcoming.results.slice(0, 10).map((movie) => (
               <MovieCard movie={movie} config={config} genreList={genreList} />
             ))}
           </div>
@@ -69,4 +68,4 @@ function MovieCarousel(props) {
   );
 }
 
-export default MovieCarousel;
+export default UpcomingMovieCarousel;

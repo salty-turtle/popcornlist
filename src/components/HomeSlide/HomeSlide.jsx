@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {
   requestPopularMovies,
   requestTopRatedMovies,
+  requestUpcomingMovies,
 } from "../../redux/actions/index";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
@@ -22,6 +23,7 @@ function HomeSlide(props) {
   useEffect(() => {
     dispatch(requestPopularMovies());
     dispatch(requestTopRatedMovies());
+    dispatch(requestUpcomingMovies());
   }, []);
 
   useEffect(() => {
@@ -39,7 +41,7 @@ function HomeSlide(props) {
     });
   });
 
-  return movies.loading ? (
+  return movies.popularLoading ? (
     <div>LOADING...</div>
   ) : (
     <div>
