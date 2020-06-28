@@ -16,7 +16,7 @@ function MovieDetails(props) {
   }, []);
 
   return movie.loading ? (
-    <div>LOADING...</div>
+    <div></div>
   ) : (
     <div>
       <div className="movie-wrapper">

@@ -7,10 +7,14 @@ import Shows from "./Shows/Shows.jsx";
 import People from "./People/People.jsx";
 import MovieDetails from "./MovieDetails/MovieDetails.jsx";
 import { requestConfig, requestGenres } from "../redux/actions/index";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import store from "../redux/store/index.jsx";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import "../styles/_transition.scss";
 
 function App(props) {
+  const location = useLocation();
+  console.log(location);
   const dispatch = useDispatch();
   const config = useSelector((state) => state.config);
 
@@ -19,23 +23,37 @@ function App(props) {
     dispatch(requestGenres());
   }, []);
 
-  store.subscribe(() => console.log(store.getState()));
+  // store.subscribe(() => console.log(store.getState()));
 
   return config.loading ? (
     <div>LOADING...</div>
   ) : (
-    <Router>
+    <div>
       <div>
         <NavBar />
       </div>
-      <Switch>
-        <Route exact path="/movies" component={Movies}></Route>
-        <Route exact path="/movies/:movieId" component={MovieDetails}></Route>
-        <Route exact path="/shows" component={Shows}></Route>
-        <Route exact path="/people" component={People}></Route>
-        <Route exact path="/" component={Home}></Route>
-      </Switch>
-    </Router>
+      <div className="transition-style">
+        <TransitionGroup>
+          <CSSTransition
+            key={location.key}
+            classNames="fade"
+            timeout={{ enter: 600 }}
+          >
+            <Switch location={location}>
+              <Route exact path="/movies" component={Movies}></Route>
+              <Route
+                exact
+                path="/movies/:movieId"
+                component={MovieDetails}
+              ></Route>
+              <Route exact path="/shows" component={Shows}></Route>
+              <Route exact path="/people" component={People}></Route>
+              <Route exact path="/" component={Home}></Route>
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
+      </div>
+    </div>
   );
 }
 
