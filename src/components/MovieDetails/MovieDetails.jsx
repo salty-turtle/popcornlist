@@ -26,18 +26,11 @@ function MovieDetails(props) {
     <div>
       <div className="movie-wrapper">
         <div className="movie-container">
-          <div
-            className="movie-poster"
-            style={{
-              background: `url(${config.images.secure_base_url}${config.images.poster_sizes[4]}${movie.poster_path}) no-repeat`,
-              backgroundSize: "cover",
-              borderRadius: "20px",
-              minWidth: "400px",
-              minHeight: "625px",
-              boxShadow: "6px 9px 19px 1px rgba(0,0,0,0.54)",
-              // marginRight: "100px",
-            }}
-          ></div>
+          <div className="movie-poster">
+            <img
+              src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${movie.poster_path}`}
+            ></img>
+          </div>
           <div className="movie-text-container">
             <div className="movie-title">{movie.original_title}</div>
             <div className="movie-tagline">{movie.tagline}</div>
@@ -51,7 +44,7 @@ function MovieDetails(props) {
               fullSymbol="fas fa-star"
               initialRating={movie.vote_average * 0.5}
               readonly
-            />
+            />{" "}
             <div className="movie-secondary-title">Synopsis</div>
             <div className="movie-synopsis">{movie.overview}</div>
             <div className="movie-secondary-title">Cast</div>
