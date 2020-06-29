@@ -12,7 +12,6 @@ function TopRatedMovieCarousel(props) {
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
   genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
-  console.log(movies, "here");
 
   useEffect(() => {
     var topRatedSwiper = new Swiper(".top-rated-swiper", {

@@ -14,7 +14,7 @@ function MovieCard(props) {
         />
       </Link>
       <div className="card-details-container">
-        <div className="card-details-title">{`${props.movie.title} `}</div>
+        <div className="card-details-title">{`${props.selection ? props.movie.title : props.movie.name} `}</div>
         <div className="card-details-genre">
           {props.movie.genre_ids.map((id) => `${props.genreList.get(id)} `)}
         </div>

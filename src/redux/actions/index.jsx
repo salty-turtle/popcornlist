@@ -159,7 +159,7 @@ export const requestUpcomingShows = () => {
       type: types.REQUEST_UPCOMING_SHOWS,
     });
 
-    return API.get("/tv/upcoming").then((res) => {
+    return API.get("/tv/on_the_air").then((res) => {
       dispatch({
         type: types.REQUEST_UPCOMING_SHOWS_COMPLETE,
         payload: res.data,
