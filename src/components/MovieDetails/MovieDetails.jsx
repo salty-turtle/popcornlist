@@ -13,12 +13,27 @@ function MovieDetails(props) {
   const config = useSelector((state) => state.config);
   const movie = useSelector((state) => state.movie);
   const credits = useSelector((state) => state.credits);
+
   console.log(movie);
 
   useEffect(() => {
     dispatch(requestMovie(movieId));
     dispatch(requestCredits(movieId));
   }, []);
+
+  function displayInfo(genres, language, time) {
+    const result = [];
+
+    result.push(genres.map((genre) => genre.name).join(", "));
+
+    if (language) {
+      result.push(language[0].name);
+    }
+
+    result.push(`${time} min.`);
+
+    return result.join(" | ");
+  }
 
   return movie.loading || credits.loading ? (
     <div></div>
@@ -32,11 +47,10 @@ function MovieDetails(props) {
             ></img>
           </div>
           <div className="movie-text-container">
-            <div className="movie-title">{movie.original_title}</div>
+            <div className="movie-title">{movie.title}</div>
             <div className="movie-tagline">{movie.tagline}</div>
             <div className="movie-info">
-              Science Fiction, Drama {/*CHANGE GENRE*/} | English{" "}
-              {/* CHANGE ORIGINAL LANGUAGE */} | {movie.runtime} min.
+              {displayInfo(movie.genres, movie.spoken_languages, movie.runtime)}
             </div>
             <Rating
               className="movie-rating"
