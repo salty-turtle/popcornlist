@@ -61,3 +61,42 @@
 .movie-synopsis {
   font-size: 16px;
 }
+
+.buttons-container {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.buttons-wrapper {
+}
+
+.button1,
+.button2,
+.button3 {
+  background: none;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid $secondary-color;
+  border-radius: 25px;
+  padding: 14px 25px 14px 25px;
+  margin-right: 2rem;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  color: $primary-font-color;
+  &:hover {
+    background: $secondary-color;
+    color: $secondary-font-color;
+    transition: 0.4s;
+    transform: translateY(-3px);
+  }
+  &:active {
+    transition: 0.2s;
+    transform: translateY(4px);
+  }
+  &:focus {
+    transition: 0.2s;
+  }
+}

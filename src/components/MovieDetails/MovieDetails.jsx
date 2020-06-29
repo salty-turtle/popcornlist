@@ -53,7 +53,19 @@ function MovieDetails(props) {
             <div className="movie-cast">
               <Cast />
             </div>
-            <div classname="buttons-container"></div>
+            <div className="buttons-container">
+              <div className="buttons-wrapper">
+                <button className="button1">
+                  <i className="fas fa-film"></i> Trailer
+                </button>
+                <button className="button2">
+                  <i className="fab fa-imdb"></i> IMDb
+                </button>
+                <button className="button3">
+                  <i className="fas fa-link"></i> Website
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
