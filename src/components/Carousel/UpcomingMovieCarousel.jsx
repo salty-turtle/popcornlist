@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "./MovieCard.jsx";
 import "./Carousel.scss";
@@ -6,7 +6,7 @@ import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import Loader from "../Loader/Loader";
 
-function UpcomingMovieCarousel(props) {
+function UpcomingCarousel(props) {
   const movies = useSelector((state) => state.movies);
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
@@ -76,7 +76,6 @@ function UpcomingMovieCarousel(props) {
           Shows
         </span>
       </button>
-
       <div className="carousel-wrapper">
         <div className="swiper-container upcoming-swiper">
           <div className="swiper-wrapper">
@@ -88,7 +87,6 @@ function UpcomingMovieCarousel(props) {
                   config={config}
                   genreList={genreList}
                   selection={selection}
-                  media={media}
                 />
               ))}
           </div>
@@ -100,4 +98,4 @@ function UpcomingMovieCarousel(props) {
   );
 }
 
-export default UpcomingMovieCarousel;
+export default UpcomingCarousel;
