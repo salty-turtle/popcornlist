@@ -12,12 +12,17 @@ function UpcomingMovieCarousel(props) {
   const genres = useSelector((state) => state.genres);
   const shows = useSelector((state) => state.shows);
   const [selection, toggleSelection] = useState(true);
-  const media = (() => {
-    return selection ? movies : shows
-  })
+  const media = () => {
+    return selection ? movies : shows;
+  };
   const genreList = new Map();
-  genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
-  console.log(shows,"shows")
+  selection
+    ? genres.movies.genreList.map((genre) =>
+        genreList.set(genre.id, genre.name)
+      )
+    : genres.shows.genreList.map((genre) =>
+        genreList.set(genre.id, genre.name)
+      );
 
   useEffect(() => {
     var upcomingSwiper = new Swiper(".upcoming-swiper", {
@@ -59,16 +64,33 @@ function UpcomingMovieCarousel(props) {
     <div></div>
   ) : (
     <div className="carousel-container">
-      <button onClick={() => toggleSelection(!selection)}>
-        {selection ? "Movies" : "TV Shows"}
+      <span className="carousel-title">Upcoming </span>
+      <button
+        className="toggle-media"
+        onClick={() => toggleSelection(!selection)}
+      >
+        <span style={selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
+          Movies
+        </span>{" "}
+        <span style={!selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
+          Shows
+        </span>
       </button>
-      <div className="carousel-title">Upcoming</div>
+
       <div className="carousel-wrapper">
         <div className="swiper-container upcoming-swiper">
           <div className="swiper-wrapper">
-            {media().upcoming.results.slice(0, 10).map((movie) => (
-              <MovieCard movie={movie} config={config} genreList={genreList} selection={selection} media={media}/>
-            ))}
+            {media()
+              .upcoming.results.slice(0, 10)
+              .map((movie) => (
+                <MovieCard
+                  movie={movie}
+                  config={config}
+                  genreList={genreList}
+                  selection={selection}
+                  media={media}
+                />
+              ))}
           </div>
         </div>
         {/* <div class="swiper-button-next"></div>

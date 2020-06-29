@@ -44,3 +44,13 @@
   font-size: 0.8em;
   padding-top: 4px;
 }
+
+.toggle-media {
+  background-color: $primary-color;
+  font-family: $primary-font;
+  color: $primary-font-color;
+  border-radius: 12px;
+  border-color: $secondary-color;
+  outline: none;
+
+}

@@ -11,7 +11,7 @@ function PopularMovieCarousel(props) {
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
-  genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
+  genres.movies.genreList.map((genre) => genreList.set(genre.id, genre.name));
 
   useEffect(() => {
     var popularSwiper = new Swiper(".popular-swiper", {
