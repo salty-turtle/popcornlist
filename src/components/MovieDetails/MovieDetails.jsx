@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestMovie, requestCredits } from "../../redux/actions/index";
 import Cast from "../Cast/Cast";
 import "./MovieDetails.scss";
-import creditsReducer from "../../redux/reducers/creditsReducer";
 
 function MovieDetails(props) {
   const { movieId } = useParams();
@@ -13,7 +12,7 @@ function MovieDetails(props) {
   const config = useSelector((state) => state.config);
   const movie = useSelector((state) => state.movie);
   const credits = useSelector((state) => state.credits);
-  console.log(credits);
+  console.log(movie);
 
   useEffect(() => {
     dispatch(requestMovie(movieId));
@@ -46,7 +45,7 @@ function MovieDetails(props) {
               Science Fiction, Drama {/*CHANGE GENRE*/} | English{" "}
               {/* CHANGE ORIGINAL LANGUAGE */} | {movie.runtime} min.
             </div>
-            <div className="movie-extra-details">[ MORE DETAILS HERE ]</div>
+            {/* <div className="movie-extra-details">[ MORE DETAILS HERE ]</div> */}
             <div className="movie-secondary-title">Synopsis</div>
             <div className="movie-synopsis">{movie.overview}</div>
             <div className="movie-secondary-title">Cast</div>
@@ -58,12 +57,19 @@ function MovieDetails(props) {
                 <button className="button1">
                   <i className="fas fa-film"></i> Trailer
                 </button>
-                <button className="button2">
-                  <i className="fab fa-imdb"></i> IMDb
-                </button>
-                <button className="button3">
-                  <i className="fas fa-link"></i> Website
-                </button>
+                <a
+                  href={`https://www.imdb.com/title/${movie.imdb_id}`}
+                  target="_blank"
+                >
+                  <button className="button2">
+                    <i className="fab fa-imdb"></i> IMDb
+                  </button>
+                </a>
+                <a href={movie.homepage} target="_blank">
+                  <button className="button3">
+                    <i className="fas fa-link"></i> Website
+                  </button>
+                </a>
               </div>
             </div>
           </div>
