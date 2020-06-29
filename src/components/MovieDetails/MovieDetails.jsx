@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestMovie, requestCredits } from "../../redux/actions/index";
 import Cast from "../Cast/Cast";
 import "./MovieDetails.scss";
+import Rating from "react-rating";
 
 function MovieDetails(props) {
   const { movieId } = useParams();
@@ -41,11 +42,16 @@ function MovieDetails(props) {
             <div className="movie-title">{movie.original_title}</div>
             <div className="movie-tagline">{movie.tagline}</div>
             <div className="movie-info">
-              <i className="fas fa-star"></i> {movie.vote_average} Rating |
               Science Fiction, Drama {/*CHANGE GENRE*/} | English{" "}
               {/* CHANGE ORIGINAL LANGUAGE */} | {movie.runtime} min.
             </div>
-            {/* <div className="movie-extra-details">[ MORE DETAILS HERE ]</div> */}
+            <Rating
+              className="movie-rating"
+              emptySymbol="far fa-star"
+              fullSymbol="fas fa-star"
+              initialRating={movie.vote_average * 0.5}
+              readonly
+            />
             <div className="movie-secondary-title">Synopsis</div>
             <div className="movie-synopsis">{movie.overview}</div>
             <div className="movie-secondary-title">Cast</div>
