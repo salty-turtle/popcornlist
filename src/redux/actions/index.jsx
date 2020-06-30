@@ -101,36 +101,6 @@ export const requestShow = (id) => {
   };
 };
 
-export const requestMovieCredits = (id) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.REQUEST_MOVIE_CREDITS,
-    });
-
-    return API.get(`/movie/${id}/credits`).then((res) => {
-      dispatch({
-        type: types.REQUEST_MOVIE_CREDITS_COMPLETE,
-        payload: res.data,
-      });
-    });
-  };
-};
-
-export const requestShowCredits = (id) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.REQUEST_SHOW_CREDITS,
-    });
-
-    return API.get(`/tv/${id}/credits`).then((res) => {
-      dispatch({
-        type: types.REQUEST_SHOW_CREDITS_COMPLETE,
-        payload: res.data,
-      });
-    });
-  };
-};
-
 export const requestPopularMovies = () => {
   return (dispatch) => {
     dispatch({
