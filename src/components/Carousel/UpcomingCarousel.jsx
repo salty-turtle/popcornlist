@@ -67,11 +67,21 @@ function UpcomingCarousel(props) {
           className="toggle-media"
           onClick={() => toggleSelection(!selection)}
         >
-          <span style={selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
+          <span
+            style={
+              selection
+                ? { color: "#db3636", transition: "0.3s" }
+                : { color: "#f1e7e3", transition: "0.3s" }
+            }
+          >
             Movies
           </span>{" "}
           <span
-            style={!selection ? { color: "#db3636" } : { color: "#f1e7e3" }}
+            style={
+              !selection
+                ? { color: "#db3636", transition: "0.3s" }
+                : { color: "#f1e7e3", transition: "0.3s" }
+            }
           >
             Shows
           </span>
