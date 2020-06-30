@@ -65,8 +65,8 @@ function HomeSlide(props) {
                         .join(", ")}
                     </div>
                     <div className="home-rating">
-                      <i className="fas fa-star"></i> {movie.vote_average}{" "}
-                      Rating
+                      <i className="fas fa-star"></i>
+                      {` ${movie.vote_average.toFixed(1)} Rating`}
                     </div>
                     <br />
                     <div className="home-description">{movie.overview}</div>
