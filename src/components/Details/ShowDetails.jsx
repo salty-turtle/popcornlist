@@ -18,8 +18,6 @@ function ShowDetails(props) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log(show);
-
   useEffect(() => {
     dispatch(requestShow(showId));
     dispatch(requestShowCredits(showId));

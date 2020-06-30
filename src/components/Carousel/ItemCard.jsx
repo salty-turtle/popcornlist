@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./Carousel.scss";
 
 function ItemCard(props) {
-  console.log(props);
   return (
     <div className="swiper-slide card-slide">
       <Link to={`${props.url}${props.item.id}`}>

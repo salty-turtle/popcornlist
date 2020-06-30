@@ -18,8 +18,6 @@ function MovieDetails(props) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log(movie);
-
   useEffect(() => {
     dispatch(requestMovie(movieId));
     dispatch(requestMovieCredits(movieId));

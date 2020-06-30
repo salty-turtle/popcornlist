@@ -19,8 +19,8 @@ import "../styles/_transition.scss";
 
 function App(props) {
   const location = useLocation();
-  console.log(location);
   const dispatch = useDispatch();
+
   const config = useSelector((state) => state.config);
 
   useEffect(() => {
