@@ -33,6 +33,36 @@ export const requestConfig = () => {
   };
 };
 
+export const requestMovieGenres = () => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_MOVIE_GENRES,
+    });
+
+    return API.get("/genre/movie/list").then((res) => {
+      dispatch({
+        type: types.REQUEST_MOVIE_GENRES_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
+export const requestShowGenres = () => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_SHOW_GENRES,
+    });
+
+    return API.get("/genre/tv/list").then((res) => {
+      dispatch({
+        type: types.REQUEST_SHOW_GENRES_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
 export const requestMovie = (id) => {
   return (dispatch) => {
     dispatch({
@@ -108,15 +138,45 @@ export const requestUpcomingMovies = () => {
   };
 };
 
-export const requestGenres = () => {
+export const requestPopularShows = () => {
   return (dispatch) => {
     dispatch({
-      type: types.REQUEST_GENRES,
+      type: types.REQUEST_POPULAR_SHOWS,
     });
 
-    return API.get("/genre/movie/list").then((res) => {
+    return API.get("/tv/popular").then((res) => {
       dispatch({
-        type: types.REQUEST_GENRES_COMPLETE,
+        type: types.REQUEST_POPULAR_SHOWS_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
+export const requestTopRatedShows = () => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_TOP_RATED_SHOWS,
+    });
+
+    return API.get("/discover/tv", topRatedParams).then((res) => {
+      dispatch({
+        type: types.REQUEST_TOP_RATED_SHOWS_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
+export const requestUpcomingShows = () => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_UPCOMING_SHOWS,
+    });
+
+    return API.get("/tv/on_the_air").then((res) => {
+      dispatch({
+        type: types.REQUEST_UPCOMING_SHOWS_COMPLETE,
         payload: res.data,
       });
     });

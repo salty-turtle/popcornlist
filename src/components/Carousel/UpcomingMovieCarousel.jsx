@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "./MovieCard.jsx";
 import "./Carousel.scss";
@@ -6,12 +6,24 @@ import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import Loader from "../Loader/Loader";
 
-function UpcomingMovieCarousel(props) {
+function UpcomingCarousel(props) {
   const movies = useSelector((state) => state.movies);
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
+  const shows = useSelector((state) => state.shows);
+  const [selection, toggleSelection] = useState(true);
+  const media = () => {
+    return selection ? movies : shows;
+  };
   const genreList = new Map();
-  genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
+
+  selection
+    ? genres.movies.genreList.map((genre) =>
+        genreList.set(genre.id, genre.name)
+      )
+    : genres.shows.genreList.map((genre) =>
+        genreList.set(genre.id, genre.name)
+      );
 
   useEffect(() => {
     var upcomingSwiper = new Swiper(".upcoming-swiper", {
@@ -49,17 +61,35 @@ function UpcomingMovieCarousel(props) {
     });
   });
 
-  return movies.upcoming.loading ? (
+  return media().upcoming.loading ? (
     <div></div>
   ) : (
     <div className="carousel-container">
-      <div className="carousel-title">Upcoming</div>
+      <span className="carousel-title">Upcoming </span>
+      <button
+        className="toggle-media"
+        onClick={() => toggleSelection(!selection)}
+      >
+        <span style={selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
+          Movies
+        </span>{" "}
+        <span style={!selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
+          Shows
+        </span>
+      </button>
       <div className="carousel-wrapper">
         <div className="swiper-container upcoming-swiper">
           <div className="swiper-wrapper">
-            {movies.upcoming.results.slice(0, 10).map((movie) => (
-              <MovieCard movie={movie} config={config} genreList={genreList} />
-            ))}
+            {media()
+              .upcoming.results.slice(0, 10)
+              .map((movie) => (
+                <MovieCard
+                  movie={movie}
+                  config={config}
+                  genreList={genreList}
+                  selection={selection}
+                />
+              ))}
           </div>
         </div>
         {/* <div class="swiper-button-next"></div>
@@ -69,4 +99,4 @@ function UpcomingMovieCarousel(props) {
   );
 }
 
-export default UpcomingMovieCarousel;
+export default UpcomingCarousel;

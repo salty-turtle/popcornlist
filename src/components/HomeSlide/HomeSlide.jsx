@@ -5,6 +5,9 @@ import {
   requestPopularMovies,
   requestTopRatedMovies,
   requestUpcomingMovies,
+  requestPopularShows,
+  requestTopRatedShows,
+  requestUpcomingShows,
 } from "../../redux/actions/index";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
@@ -19,12 +22,15 @@ function HomeSlide(props) {
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
-  genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
-
+  genres.movies.genreList.map((genre) => genreList.set(genre.id, genre.name));
+  console.log(genres,"genres")
   useEffect(() => {
     dispatch(requestPopularMovies());
     dispatch(requestTopRatedMovies());
     dispatch(requestUpcomingMovies());
+    dispatch(requestPopularShows());
+    dispatch(requestTopRatedShows());
+    dispatch(requestUpcomingShows());
   }, []);
 
   useEffect(() => {
