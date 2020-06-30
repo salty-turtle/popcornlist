@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { requestMovie, requestCredits } from "../../redux/actions/index";
+import { requestMovie, requestMovieCredits } from "../../redux/actions/index";
 import Cast from "../Cast/Cast";
 import Rating from "react-rating";
-import "./MovieDetails.scss";
+import "./Details.scss";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/scss/modal-video.scss";
 
@@ -22,7 +22,7 @@ function MovieDetails(props) {
 
   useEffect(() => {
     dispatch(requestMovie(movieId));
-    dispatch(requestCredits(movieId));
+    dispatch(requestMovieCredits(movieId));
   }, []);
 
   function displayInfo(genres, language, time) {
@@ -93,35 +93,35 @@ function MovieDetails(props) {
     <div></div>
   ) : (
     <div>
-      <div className="movie-wrapper">
-        <div className="movie-container">
-          <div className="movie-poster">
+      <div className="item-wrapper">
+        <div className="item-container">
+          <div className="item-poster">
             <img
               src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${movie.poster_path}`}
             ></img>
           </div>
-          <div className="movie-text-container">
-            <div className="movie-title">{movie.title}</div>
-            <div className="movie-tagline">{movie.tagline}</div>
-            <div className="movie-info">
+          <div className="item-text-container">
+            <div className="item-title">{movie.title}</div>
+            <div className="item-tagline">{movie.tagline}</div>
+            <div className="item-info">
               {displayInfo(movie.genres, movie.spoken_languages, movie.runtime)}
             </div>
-            <div className="movie-rating-container">
+            <div className="item-rating-container">
               <Rating
-                className="movie-rating-stars"
+                className="item-rating-stars"
                 emptySymbol="far fa-star"
                 fullSymbol="fas fa-star"
                 initialRating={movie.vote_average * 0.5}
                 readonly
               />
-              <div className="movie-rating-text">
+              <div className="item-rating-text">
                 {movie.vote_average.toFixed(1)}
               </div>
             </div>
-            <div className="movie-secondary-title">Synopsis</div>
-            <div className="movie-synopsis">{movie.overview}</div>
-            <div className="movie-secondary-title">Cast</div>
-            <div className="movie-cast">
+            <div className="item-secondary-title">Synopsis</div>
+            <div className="item-synopsis">{movie.overview}</div>
+            <div className="item-secondary-title">Cast</div>
+            <div className="item-cast">
               <Cast />
             </div>
             <div className="buttons-container">

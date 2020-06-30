@@ -82,15 +82,49 @@ export const requestMovie = (id) => {
   };
 };
 
-export const requestCredits = (id) => {
+export const requestShow = (id) => {
   return (dispatch) => {
     dispatch({
-      type: types.REQUEST_CREDITS,
+      type: types.REQUEST_SHOW,
+    });
+
+    return API.get(`/tv/${id}`, {
+      params: {
+        append_to_response: "videos",
+      },
+    }).then((res) => {
+      dispatch({
+        type: types.REQUEST_SHOW_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
+export const requestMovieCredits = (id) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_MOVIE_CREDITS,
     });
 
     return API.get(`/movie/${id}/credits`).then((res) => {
       dispatch({
-        type: types.REQUEST_CREDITS_COMPLETE,
+        type: types.REQUEST_MOVIE_CREDITS_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
+export const requestShowCredits = (id) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_SHOW_CREDITS,
+    });
+
+    return API.get(`/tv/${id}/credits`).then((res) => {
+      dispatch({
+        type: types.REQUEST_SHOW_CREDITS_COMPLETE,
         payload: res.data,
       });
     });

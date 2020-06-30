@@ -5,7 +5,8 @@ import Home from "./Home/Home.jsx";
 import Movies from "./Movies/Movies.jsx";
 import Shows from "./Shows/Shows.jsx";
 import People from "./People/People.jsx";
-import MovieDetails from "./MovieDetails/MovieDetails.jsx";
+import MovieDetails from "./Details/MovieDetails.jsx";
+import ShowDetails from "./Details/ShowDetails.jsx";
 import {
   requestConfig,
   requestMovieGenres,
@@ -52,6 +53,11 @@ function App(props) {
                 component={MovieDetails}
               ></Route>
               <Route exact path="/shows" component={Shows}></Route>
+              <Route
+                exact
+                path="/shows/:showId"
+                component={ShowDetails}
+              ></Route>
               <Route exact path="/people" component={People}></Route>
               <Route exact path="/" component={Home}></Route>
             </Switch>

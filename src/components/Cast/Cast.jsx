@@ -12,7 +12,6 @@ function Cast() {
 
   useEffect(() => {
     var castSwiper = new Swiper(".cast-swiper", {
-      loop: true,
       breakpoints: {
         320: {
           slidesPerView: 1,

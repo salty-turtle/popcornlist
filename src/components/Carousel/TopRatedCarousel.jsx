@@ -96,7 +96,7 @@ function TopRatedCarousel(props) {
                   config={config}
                   genreList={genreList}
                   selection={selection}
-                  url={selection ? "/movies/" : "/tv/"}
+                  url={selection ? "/movies/" : "/shows/"}
                 />
               ))}
           </div>

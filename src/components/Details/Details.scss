@@ -1,12 +1,12 @@
 @import "../../styles/variables";
 
-.movie-wrapper {
+.item-wrapper {
   font-family: $primary-font;
   color: $primary-font-color;
   display: flex;
   height: 750px;
 
-  .movie-container {
+  .item-container {
     margin: 62px 85px 62px 85px;
     display: flex;
     justify-content: center;
@@ -15,9 +15,10 @@
   }
 }
 
-.movie-poster {
+.item-poster {
   display: flex;
   height: 100%;
+
   img {
     max-width: 430px;
     border-radius: 20px;
@@ -25,7 +26,7 @@
   }
 }
 
-.movie-text-container {
+.item-text-container {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -33,46 +34,46 @@
   margin: 0;
   margin-left: 100px;
 
-  .movie-title {
+  .item-title {
     font-size: 2.6rem;
     font-weight: 700;
   }
 
-  .movie-tagline {
+  .item-tagline {
     font-size: 1.3rem;
     font-style: italic;
   }
 
-  .movie-info {
+  .item-info {
     margin-top: 0.5rem;
     font-size: 1.05rem;
   }
 
-  .movie-rating-container {
+  .item-rating-container {
     display: flex;
     align-items: center;
     margin-top: 0.5rem;
     margin-bottom: 2.1rem;
 
-    .movie-rating-stars {
+    .item-rating-stars {
       color: $secondary-color;
       font-size: 1.5rem;
     }
 
-    .movie-rating-text {
+    .item-rating-text {
       font-size: 1.2rem;
       padding-left: 7px;
       font-weight: 700;
     }
   }
 
-  .movie-secondary-title {
-    margin: 1.2rem 0;
+  .item-secondary-title {
+    margin: 1rem 0;
     font-size: 1.4rem;
     font-weight: 700;
   }
 
-  .movie-synopsis {
+  .item-synopsis {
     font-size: 1rem;
   }
 }
