@@ -32,19 +32,17 @@ function Search(props) {
       <div className="search-container">
         {search.movies.results.map((movie) => {
           return (
-            <div className="search-item">
-              <Link to={`/movies/${movie.id}`}>
+            <Link to={`/movies/${movie.id}`} className="search-item">
+              {movie.poster_path ? (
                 <img
-                  src={
-                    movie.poster_path
-                      ? `${config.images.secure_base_url}${config.images.poster_sizes[3]}${movie.poster_path}`
-                      : `${poster}`
-                  }
+                  src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${movie.poster_path}`}
                   className="search-img"
                 ></img>
-                <div className="search-title">{movie.title}</div>
-              </Link>
-            </div>
+              ) : (
+                <img src={poster} className="search-img-placeholder"></img>
+              )}
+              <div className="search-title">{movie.title}</div>
+            </Link>
           );
         })}
       </div>

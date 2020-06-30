@@ -18,6 +18,8 @@ function MovieDetails(props) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  console.log(movie);
+
   useEffect(() => {
     dispatch(requestMovie(movieId));
     dispatch(requestMovieCredits(movieId));
@@ -25,10 +27,17 @@ function MovieDetails(props) {
 
   function displayInfo(genres, language, time) {
     const result = [];
-    result.push(genres.map((genre) => genre.name).join(", "));
 
-    if (language) {
+    if (genres.length !== 0) {
+      result.push(genres.map((genre) => genre.name).join(", "));
+    } else {
+      result.push("N/A Genre");
+    }
+
+    if (language.length !== 0) {
       result.push(language[0].name);
+    } else {
+      result.push("N/A Language");
     }
 
     result.push(`${time} min.`);
@@ -37,6 +46,9 @@ function MovieDetails(props) {
   }
 
   function displayTrailer(videos, isModalOpen, setIsModalOpen) {
+    if (videos.results.length === 0) {
+      return;
+    }
     let result = videos.results.find(
       (video) => video.site === "YouTube" && video.type === "Trailer"
     );
@@ -60,17 +72,18 @@ function MovieDetails(props) {
   }
 
   function displayImdb(id) {
-    if (id) {
-      return (
-        <React.Fragment>
-          <a href={`https://www.imdb.com/title/${id}`} target="_blank">
-            <button className="button2">
-              <i className="fab fa-imdb"></i> IMDb
-            </button>
-          </a>
-        </React.Fragment>
-      );
+    if (!id) {
+      return;
     }
+    return (
+      <React.Fragment>
+        <a href={`https://www.imdb.com/title/${id}`} target="_blank">
+          <button className="button2">
+            <i className="fab fa-imdb"></i> IMDb
+          </button>
+        </a>
+      </React.Fragment>
+    );
   }
 
   function displayWebsite(homepage) {

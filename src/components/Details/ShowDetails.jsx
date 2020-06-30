@@ -37,28 +37,29 @@ function ShowDetails(props) {
   }
 
   function displayTrailer(videos, isModalOpen, setIsModalOpen) {
-    if (videos) {
-      let result = videos.results.find(
-        (video) => video.site === "YouTube" && video.type === "Trailer"
-      );
-
-      return (
-        <React.Fragment>
-          <ModalVideo
-            channel="youtube"
-            isOpen={isModalOpen}
-            videoId={result.key}
-            onClose={() => setIsModalOpen(!isModalOpen)}
-          />
-          <button
-            className="button1"
-            onClick={() => setIsModalOpen(!isModalOpen)}
-          >
-            <i className="fas fa-film"></i> Trailer
-          </button>
-        </React.Fragment>
-      );
+    if (videos.results.length === 0) {
+      return;
     }
+    let result = videos.results.find(
+      (video) => video.site === "YouTube" && video.type === "Trailer"
+    );
+
+    return (
+      <React.Fragment>
+        <ModalVideo
+          channel="youtube"
+          isOpen={isModalOpen}
+          videoId={result.key}
+          onClose={() => setIsModalOpen(!isModalOpen)}
+        />
+        <button
+          className="button1"
+          onClick={() => setIsModalOpen(!isModalOpen)}
+        >
+          <i className="fas fa-film"></i> Trailer
+        </button>
+      </React.Fragment>
+    );
   }
 
   function displayImdb(id) {
