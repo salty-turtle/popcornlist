@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { requestMovie, requestMovieCredits } from "../../redux/actions/index";
+import { requestMovie } from "../../redux/actions/index";
 import Cast from "../Cast/Cast";
 import Rating from "react-rating";
 import "./Details.scss";
@@ -14,15 +14,13 @@ function MovieDetails(props) {
 
   const config = useSelector((state) => state.config);
   const movie = useSelector((state) => state.movie);
-  const credits = useSelector((state) => state.credits);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log(movie);
+  console.log(movie,"movie details");
 
   useEffect(() => {
     dispatch(requestMovie(movieId));
-    dispatch(requestMovieCredits(movieId));
   }, []);
 
   function displayInfo(genres, language, time) {
@@ -100,7 +98,7 @@ function MovieDetails(props) {
     }
   }
 
-  return movie.loading || credits.loading ? (
+  return movie.loading ? (
     <div></div>
   ) : (
     <div>
@@ -133,7 +131,7 @@ function MovieDetails(props) {
             <div className="item-synopsis">{movie.overview}</div>
             <div className="item-secondary-title">Cast</div>
             <div className="item-cast">
-              <Cast />
+              <Cast credits={movie.credits}/>
             </div>
             <div className="buttons-container">
               <div className="buttons-wrapper">
