@@ -6,9 +6,8 @@ import { useSelector } from "react-redux";
 import "./Cast.scss";
 import placeholder from "../../images/placeholder.png";
 
-function Cast() {
+function Cast({credits}) {
   const config = useSelector((state) => state.config);
-  const credits = useSelector((state) => state.credits);
 
   useEffect(() => {
     var castSwiper = new Swiper(".cast-swiper", {

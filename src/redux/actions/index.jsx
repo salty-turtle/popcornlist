@@ -71,7 +71,7 @@ export const requestMovie = (id) => {
 
     return API.get(`/movie/${id}`, {
       params: {
-        append_to_response: "videos",
+        append_to_response: "videos,recommendations,similar,credits",
       },
     }).then((res) => {
       dispatch({
@@ -90,7 +90,7 @@ export const requestShow = (id) => {
 
     return API.get(`/tv/${id}`, {
       params: {
-        append_to_response: "videos",
+        append_to_response: "videos,recommendations,similar,credits",
       },
     }).then((res) => {
       dispatch({
