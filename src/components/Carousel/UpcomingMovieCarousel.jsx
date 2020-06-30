@@ -16,6 +16,7 @@ function UpcomingCarousel(props) {
     return selection ? movies : shows;
   };
   const genreList = new Map();
+
   selection
     ? genres.movies.genreList.map((genre) =>
         genreList.set(genre.id, genre.name)
