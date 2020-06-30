@@ -69,7 +69,11 @@ export const requestMovie = (id) => {
       type: types.REQUEST_MOVIE,
     });
 
-    return API.get(`/movie/${id}`).then((res) => {
+    return API.get(`/movie/${id}`, {
+      params: {
+        append_to_response: "videos",
+      },
+    }).then((res) => {
       dispatch({
         type: types.REQUEST_MOVIE_COMPLETE,
         payload: res.data,

@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { requestMovie, requestCredits } from "../../redux/actions/index";
 import Cast from "../Cast/Cast";
-import "./MovieDetails.scss";
 import Rating from "react-rating";
+import "./MovieDetails.scss";
+import ModalVideo from "react-modal-video";
+import "react-modal-video/scss/modal-video.scss";
 
 function MovieDetails(props) {
   const { movieId } = useParams();
@@ -13,6 +15,8 @@ function MovieDetails(props) {
   const config = useSelector((state) => state.config);
   const movie = useSelector((state) => state.movie);
   const credits = useSelector((state) => state.credits);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   console.log(movie);
 
@@ -23,7 +27,6 @@ function MovieDetails(props) {
 
   function displayInfo(genres, language, time) {
     const result = [];
-
     result.push(genres.map((genre) => genre.name).join(", "));
 
     if (language) {
@@ -33,6 +36,57 @@ function MovieDetails(props) {
     result.push(`${time} min.`);
 
     return result.join(" | ");
+  }
+
+  function displayTrailer(videos, isModalOpen, setIsModalOpen) {
+    let result = videos.results.find(
+      (video) => video.site === "YouTube" && video.type === "Trailer"
+    );
+
+    return (
+      <React.Fragment>
+        <ModalVideo
+          channel="youtube"
+          isOpen={isModalOpen}
+          videoId={result.key}
+          onClose={() => setIsModalOpen(!isModalOpen)}
+        />
+        <button
+          className="button1"
+          onClick={() => setIsModalOpen(!isModalOpen)}
+        >
+          <i className="fas fa-film"></i> Trailer
+        </button>
+      </React.Fragment>
+    );
+  }
+
+  function displayImdb(id) {
+    if (id) {
+      return (
+        <React.Fragment>
+          <a href={`https://www.imdb.com/title/${id}`} target="_blank">
+            <button className="button2">
+              <i className="fab fa-imdb"></i> IMDb
+            </button>
+          </a>
+        </React.Fragment>
+      );
+    }
+  }
+
+  function displayWebsite(homepage) {
+    if (homepage) {
+      return (
+        <React.Fragment>
+          <a href={homepage} target="_blank">
+            <button className="button3">
+              <i className="fas fa-link"></i> Website
+            </button>
+          </a>
+        </React.Fragment>
+      );
+    }
   }
 
   return movie.loading || credits.loading ? (
@@ -72,22 +126,9 @@ function MovieDetails(props) {
             </div>
             <div className="buttons-container">
               <div className="buttons-wrapper">
-                <button className="button1">
-                  <i className="fas fa-film"></i> Trailer
-                </button>
-                <a
-                  href={`https://www.imdb.com/title/${movie.imdb_id}`}
-                  target="_blank"
-                >
-                  <button className="button2">
-                    <i className="fab fa-imdb"></i> IMDb
-                  </button>
-                </a>
-                <a href={movie.homepage} target="_blank">
-                  <button className="button3">
-                    <i className="fas fa-link"></i> Website
-                  </button>
-                </a>
+                {displayTrailer(movie.videos, isModalOpen, setIsModalOpen)}
+                {displayImdb(movie.imdb_id)}
+                {displayWebsite(movie.homepage)}
               </div>
             </div>
           </div>
