@@ -48,11 +48,22 @@
     font-size: 1.05rem;
   }
 
-  .movie-rating {
-    color: $secondary-color;
+  .movie-rating-container {
+    display: flex;
+    align-items: center;
     margin-top: 0.5rem;
-    font-size: 1.5rem;
     margin-bottom: 2.1rem;
+
+    .movie-rating-stars {
+      color: $secondary-color;
+      font-size: 1.5rem;
+    }
+
+    .movie-rating-text {
+      font-size: 1.2rem;
+      padding-left: 7px;
+      font-weight: 700;
+    }
   }
 
   .movie-secondary-title {

@@ -52,13 +52,18 @@ function MovieDetails(props) {
             <div className="movie-info">
               {displayInfo(movie.genres, movie.spoken_languages, movie.runtime)}
             </div>
-            <Rating
-              className="movie-rating"
-              emptySymbol="far fa-star"
-              fullSymbol="fas fa-star"
-              initialRating={movie.vote_average * 0.5}
-              readonly
-            />{" "}
+            <div className="movie-rating-container">
+              <Rating
+                className="movie-rating-stars"
+                emptySymbol="far fa-star"
+                fullSymbol="fas fa-star"
+                initialRating={movie.vote_average * 0.5}
+                readonly
+              />
+              <div className="movie-rating-text">
+                {movie.vote_average.toFixed(1)}
+              </div>
+            </div>
             <div className="movie-secondary-title">Synopsis</div>
             <div className="movie-synopsis">{movie.overview}</div>
             <div className="movie-secondary-title">Cast</div>
