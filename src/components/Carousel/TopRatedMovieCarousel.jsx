@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "./MovieCard.jsx";
 import "./Carousel.scss";
@@ -6,14 +6,23 @@ import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import Loader from "../Loader/Loader";
 
-function TopRatedMovieCarousel(props) {
+function TopRatedCarousel(props) {
   const movies = useSelector((state) => state.movies);
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
+  const shows = useSelector((state) => state.shows);
+  const [selection, toggleSelection] = useState(true);
+  const media = () => {
+    return selection ? movies : shows;
+  };
   const genreList = new Map();
-  genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
-  console.log(movies, "here");
-
+  selection
+    ? genres.movies.genreList.map((genre) =>
+        genreList.set(genre.id, genre.name)
+      )
+    : genres.shows.genreList.map((genre) =>
+        genreList.set(genre.id, genre.name)
+      );
   useEffect(() => {
     var topRatedSwiper = new Swiper(".top-rated-swiper", {
       loop: true,
@@ -50,17 +59,35 @@ function TopRatedMovieCarousel(props) {
     });
   });
 
-  return movies.topRated.loading ? (
+  return media().topRated.loading ? (
     <div></div>
   ) : (
     <div className="carousel-container">
-      <div className="carousel-title">Top Rated</div>
+      <span className="carousel-title">Top Rated </span>
+      <button
+        className="toggle-media"
+        onClick={() => toggleSelection(!selection)}
+      >
+        <span style={selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
+          Movies
+        </span>{" "}
+        <span style={!selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
+          Shows
+        </span>
+      </button>
       <div className="carousel-wrapper">
         <div className="swiper-container top-rated-swiper">
           <div className="swiper-wrapper">
-            {movies.topRated.results.slice(0, 10).map((movie) => (
-              <MovieCard movie={movie} config={config} genreList={genreList} />
-            ))}
+            {media()
+              .topRated.results.slice(0, 10)
+              .map((movie) => (
+                <MovieCard
+                  movie={movie}
+                  config={config}
+                  genreList={genreList}
+                  selection={selection}
+                />
+              ))}
           </div>
         </div>
         {/* <div class="swiper-button-next"></div>
@@ -70,4 +97,4 @@ function TopRatedMovieCarousel(props) {
   );
 }
 
-export default TopRatedMovieCarousel;
+export default TopRatedCarousel;

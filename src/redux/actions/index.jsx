@@ -33,15 +33,30 @@ export const requestConfig = () => {
   };
 };
 
-export const requestGenres = () => {
+export const requestMovieGenres = () => {
   return (dispatch) => {
     dispatch({
-      type: types.REQUEST_GENRES,
+      type: types.REQUEST_MOVIE_GENRES,
     });
 
     return API.get("/genre/movie/list").then((res) => {
       dispatch({
-        type: types.REQUEST_GENRES_COMPLETE,
+        type: types.REQUEST_MOVIE_GENRES_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
+export const requestShowGenres = () => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_SHOW_GENRES,
+    });
+
+    return API.get("/genre/tv/list").then((res) => {
+      dispatch({
+        type: types.REQUEST_SHOW_GENRES_COMPLETE,
         payload: res.data,
       });
     });
@@ -159,7 +174,7 @@ export const requestUpcomingShows = () => {
       type: types.REQUEST_UPCOMING_SHOWS,
     });
 
-    return API.get("/tv/upcoming").then((res) => {
+    return API.get("/tv/on_the_air").then((res) => {
       dispatch({
         type: types.REQUEST_UPCOMING_SHOWS_COMPLETE,
         payload: res.data,

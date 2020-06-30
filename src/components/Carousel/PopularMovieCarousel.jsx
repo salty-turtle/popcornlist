@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "./MovieCard.jsx";
 import "./Carousel.scss";
@@ -6,13 +6,23 @@ import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import Loader from "../Loader/Loader";
 
-function PopularMovieCarousel(props) {
+function PopularCarousel(props) {
   const movies = useSelector((state) => state.movies);
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
+  const shows = useSelector((state) => state.shows);
+  const [selection, toggleSelection] = useState(true);
+  const media = () => {
+    return selection ? movies : shows;
+  };
   const genreList = new Map();
-  genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
-
+  selection
+    ? genres.movies.genreList.map((genre) =>
+        genreList.set(genre.id, genre.name)
+      )
+    : genres.shows.genreList.map((genre) =>
+        genreList.set(genre.id, genre.name)
+      );
   useEffect(() => {
     var popularSwiper = new Swiper(".popular-swiper", {
       loop: true,
@@ -49,17 +59,35 @@ function PopularMovieCarousel(props) {
     });
   });
 
-  return movies.popular.loading ? (
+  return media().popular.loading ? (
     <div></div>
   ) : (
     <div className="carousel-container">
-      <div className="carousel-title">Popular</div>
+      <span className="carousel-title">Popular </span>
+      <button
+        className="toggle-media"
+        onClick={() => toggleSelection(!selection)}
+      >
+        <span style={selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
+          Movies
+        </span>{" "}
+        <span style={!selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
+          Shows
+        </span>
+      </button>
       <div className="carousel-wrapper">
         <div className="swiper-container popular-swiper">
           <div className="swiper-wrapper">
-            {movies.popular.results.slice(0, 10).map((movie) => (
-              <MovieCard movie={movie} config={config} genreList={genreList} />
-            ))}
+            {media()
+              .popular.results.slice(0, 10)
+              .map((movie) => (
+                <MovieCard
+                  movie={movie}
+                  config={config}
+                  genreList={genreList}
+                  selection={selection}
+                />
+              ))}
           </div>
         </div>
         {/* <div class="swiper-button-next"></div>
@@ -69,4 +97,4 @@ function PopularMovieCarousel(props) {
   );
 }
 
-export default PopularMovieCarousel;
+export default PopularCarousel;
