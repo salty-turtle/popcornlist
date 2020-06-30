@@ -25,7 +25,6 @@ function TopRatedCarousel(props) {
       );
   useEffect(() => {
     var topRatedSwiper = new Swiper(".top-rated-swiper", {
-      loop: true,
       breakpoints: {
         320: {
           slidesPerView: 1,
@@ -51,6 +50,10 @@ function TopRatedCarousel(props) {
           slidesPerView: 6,
           spaceBetween: 110,
         },
+      },
+      scrollbar: {
+        el: ".scrollbar-2",
+        draggable: true,
       },
     });
   });
@@ -89,7 +92,7 @@ function TopRatedCarousel(props) {
         <div className="swiper-container top-rated-swiper">
           <div className="swiper-wrapper">
             {media()
-              .topRated.results.slice(0, 10)
+              .topRated.results.slice(0, 20)
               .map((item) => (
                 <ItemCard
                   item={item}
@@ -100,6 +103,7 @@ function TopRatedCarousel(props) {
                 />
               ))}
           </div>
+          <div class="swiper-scrollbar scrollbar-2"></div>
         </div>
       </div>
     </div>

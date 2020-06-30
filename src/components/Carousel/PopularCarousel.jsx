@@ -26,7 +26,6 @@ function PopularCarousel(props) {
 
   useEffect(() => {
     var popularSwiper = new Swiper(".popular-swiper", {
-      loop: true,
       breakpoints: {
         320: {
           slidesPerView: 1,
@@ -52,6 +51,10 @@ function PopularCarousel(props) {
           slidesPerView: 6,
           spaceBetween: 110,
         },
+      },
+      scrollbar: {
+        el: ".scrollbar-1",
+        draggable: true,
       },
     });
   });
@@ -90,7 +93,7 @@ function PopularCarousel(props) {
         <div className="swiper-container popular-swiper">
           <div className="swiper-wrapper">
             {media()
-              .popular.results.slice(0, 10)
+              .popular.results.slice(0, 20)
               .map((item) => (
                 <ItemCard
                   item={item}
@@ -101,6 +104,7 @@ function PopularCarousel(props) {
                 />
               ))}
           </div>
+          <div class="swiper-scrollbar scrollbar-1"></div>
         </div>
       </div>
     </div>
