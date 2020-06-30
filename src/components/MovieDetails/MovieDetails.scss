@@ -5,59 +5,103 @@
   color: $primary-font-color;
   display: flex;
   height: 750px;
-  // background-color: yellow;
+
+  .movie-container {
+    margin: 62px 85px 62px 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 }
 
-.movie-container {
-  margin: 62px 85px 62px 85px;
-  align-items: center;
+.movie-poster {
   display: flex;
-  justify-content: flex-start;
-  // background-color: red;
-  width: 100%;
+  height: 100%;
+  img {
+    max-width: 430px;
+    border-radius: 20px;
+    box-shadow: 6px 9px 19px 1px rgba(0, 0, 0, 0.54);
+  }
 }
 
 .movie-text-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   // background-color: blue;
   margin: 0;
-  height: 100%;
   margin-left: 100px;
-}
 
-.movie-title {
-  font-size: 42px;
-  font-weight: 700;
-}
+  .movie-title {
+    font-size: 2.6rem;
+    font-weight: 700;
+  }
 
-.movie-tagline {
-  font-size: 21px;
-  font-style: italic;
-}
+  .movie-tagline {
+    font-size: 1.3rem;
+    font-style: italic;
+  }
 
-.movie-info {
-  padding-top: 8px;
-  font-size: 17px;
-  i {
+  .movie-info {
+    margin-top: 0.5rem;
+    font-size: 1.05rem;
+  }
+
+  .movie-rating {
     color: $secondary-color;
-    font-size: 15px;
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 2.1rem;
+  }
+
+  .movie-secondary-title {
+    margin: 1.2rem 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .movie-synopsis {
+    font-size: 1rem;
   }
 }
 
-.movie-extra-details {
-  padding-top: 20px;
-  font-size: 24px;
-  font-weight: 700;
+.buttons-container {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-bottom: 0.75rem;
 }
 
-.movie-secondary-title {
-  padding: 18px 0px;
-  font-size: 22px;
+.button1,
+.button2,
+.button3 {
+  background: none;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid $secondary-color;
+  border-radius: 25px;
+  padding: 14px 25px 14px 25px;
+  margin-right: 2rem;
+  font-size: 1.13rem;
   font-weight: 700;
-}
-
-.movie-synopsis {
-  font-size: 16px;
+  text-decoration: none;
+  color: $primary-font-color;
+  i {
+    padding-right: 3px;
+  }
+  &:hover {
+    background: $secondary-color;
+    color: $secondary-font-color;
+    transition: 0.4s;
+    transform: translateY(-3px);
+  }
+  &:active {
+    transition: 0.2s;
+    transform: translateY(4px);
+  }
+  &:focus {
+    transition: 0.2s;
+  }
 }

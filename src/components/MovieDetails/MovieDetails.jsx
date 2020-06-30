@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestMovie, requestCredits } from "../../redux/actions/index";
 import Cast from "../Cast/Cast";
 import "./MovieDetails.scss";
-import creditsReducer from "../../redux/reducers/creditsReducer";
+import Rating from "react-rating";
 
 function MovieDetails(props) {
   const { movieId } = useParams();
@@ -13,12 +13,27 @@ function MovieDetails(props) {
   const config = useSelector((state) => state.config);
   const movie = useSelector((state) => state.movie);
   const credits = useSelector((state) => state.credits);
-  console.log(credits);
+
+  console.log(movie);
 
   useEffect(() => {
     dispatch(requestMovie(movieId));
     dispatch(requestCredits(movieId));
   }, []);
+
+  function displayInfo(genres, language, time) {
+    const result = [];
+
+    result.push(genres.map((genre) => genre.name).join(", "));
+
+    if (language) {
+      result.push(language[0].name);
+    }
+
+    result.push(`${time} min.`);
+
+    return result.join(" | ");
+  }
 
   return movie.loading || credits.loading ? (
     <div></div>
@@ -26,34 +41,50 @@ function MovieDetails(props) {
     <div>
       <div className="movie-wrapper">
         <div className="movie-container">
-          <div
-            className="movie-poster"
-            style={{
-              background: `url(${config.images.secure_base_url}${config.images.poster_sizes[4]}${movie.poster_path}) no-repeat`,
-              backgroundSize: "cover",
-              borderRadius: "20px",
-              minWidth: "400px",
-              minHeight: "625px",
-              boxShadow: "6px 9px 19px 1px rgba(0,0,0,0.54)",
-              // marginRight: "100px",
-            }}
-          ></div>
+          <div className="movie-poster">
+            <img
+              src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${movie.poster_path}`}
+            ></img>
+          </div>
           <div className="movie-text-container">
-            <div className="movie-title">{movie.original_title}</div>
+            <div className="movie-title">{movie.title}</div>
             <div className="movie-tagline">{movie.tagline}</div>
             <div className="movie-info">
-              <i className="fas fa-star"></i> {movie.vote_average} Rating |
-              Science Fiction, Drama {/*CHANGE GENRE*/} | English{" "}
-              {/* CHANGE ORIGINAL LANGUAGE */} | {movie.runtime} min.
+              {displayInfo(movie.genres, movie.spoken_languages, movie.runtime)}
             </div>
-            <div className="movie-extra-details">[ MORE DETAILS HERE ]</div>
+            <Rating
+              className="movie-rating"
+              emptySymbol="far fa-star"
+              fullSymbol="fas fa-star"
+              initialRating={movie.vote_average * 0.5}
+              readonly
+            />{" "}
             <div className="movie-secondary-title">Synopsis</div>
             <div className="movie-synopsis">{movie.overview}</div>
             <div className="movie-secondary-title">Cast</div>
             <div className="movie-cast">
               <Cast />
             </div>
-            <div classname="buttons-container"></div>
+            <div className="buttons-container">
+              <div className="buttons-wrapper">
+                <button className="button1">
+                  <i className="fas fa-film"></i> Trailer
+                </button>
+                <a
+                  href={`https://www.imdb.com/title/${movie.imdb_id}`}
+                  target="_blank"
+                >
+                  <button className="button2">
+                    <i className="fab fa-imdb"></i> IMDb
+                  </button>
+                </a>
+                <a href={movie.homepage} target="_blank">
+                  <button className="button3">
+                    <i className="fas fa-link"></i> Website
+                  </button>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
