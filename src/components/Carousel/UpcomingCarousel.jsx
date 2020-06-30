@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MovieCard from "./MovieCard.jsx";
+import ItemCard from "./ItemCard.jsx";
 import "./Carousel.scss";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import Loader from "../Loader/Loader";
 
-function PopularCarousel(props) {
+function UpcomingCarousel(props) {
   const movies = useSelector((state) => state.movies);
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
@@ -16,6 +16,7 @@ function PopularCarousel(props) {
     return selection ? movies : shows;
   };
   const genreList = new Map();
+
   selection
     ? genres.movies.genreList.map((genre) =>
         genreList.set(genre.id, genre.name)
@@ -23,8 +24,9 @@ function PopularCarousel(props) {
     : genres.shows.genreList.map((genre) =>
         genreList.set(genre.id, genre.name)
       );
+
   useEffect(() => {
-    var popularSwiper = new Swiper(".popular-swiper", {
+    var upcomingSwiper = new Swiper(".upcoming-swiper", {
       loop: true,
       breakpoints: {
         320: {
@@ -52,49 +54,48 @@ function PopularCarousel(props) {
           spaceBetween: 110,
         },
       },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
     });
   });
 
-  return media().popular.loading ? (
+  return media().upcoming.loading ? (
     <div></div>
   ) : (
     <div className="carousel-container">
-      <span className="carousel-title">Popular </span>
-      <button
-        className="toggle-media"
-        onClick={() => toggleSelection(!selection)}
-      >
-        <span style={selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
-          Movies
-        </span>{" "}
-        <span style={!selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
-          Shows
-        </span>
-      </button>
+      <div className="carousel-header">
+        <span className="carousel-title">Upcoming</span>
+        <button
+          className="toggle-media"
+          onClick={() => toggleSelection(!selection)}
+        >
+          <span style={selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
+            Movies
+          </span>{" "}
+          <span
+            style={!selection ? { color: "#db3636" } : { color: "#f1e7e3" }}
+          >
+            Shows
+          </span>
+        </button>
+      </div>
       <div className="carousel-wrapper">
-        <div className="swiper-container popular-swiper">
+        <div className="swiper-container upcoming-swiper">
           <div className="swiper-wrapper">
             {media()
-              .popular.results.slice(0, 10)
-              .map((movie) => (
-                <MovieCard
-                  movie={movie}
+              .upcoming.results.slice(0, 10)
+              .map((item) => (
+                <ItemCard
+                  item={item}
                   config={config}
                   genreList={genreList}
                   selection={selection}
+                  url={selection ? "/movies/" : "/tv/"}
                 />
               ))}
           </div>
         </div>
-        {/* <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div> */}
       </div>
     </div>
   );
 }
 
-export default PopularCarousel;
+export default UpcomingCarousel;

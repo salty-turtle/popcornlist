@@ -1,16 +1,16 @@
 import React from "react";
 import HomeSlide from "../HomeSlide/HomeSlide";
-import PopularMovieCarousel from "../Carousel/PopularMovieCarousel";
-import TopRatedMovieCarousel from "../Carousel/TopRatedMovieCarousel";
-import UpcomingMovieCarousel from "../Carousel/UpcomingMovieCarousel";
+import PopularCarousel from "../Carousel/PopularCarousel";
+import TopRatedCarousel from "../Carousel/TopRatedCarousel";
+import UpcomingCarousel from "../Carousel/UpcomingCarousel";
 
 function Home() {
   return (
     <div>
       <HomeSlide />
-      <UpcomingMovieCarousel />
-      <PopularMovieCarousel />
-      <TopRatedMovieCarousel />
+      <UpcomingCarousel />
+      <PopularCarousel />
+      <TopRatedCarousel />
     </div>
   );
 }
