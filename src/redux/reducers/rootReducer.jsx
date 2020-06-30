@@ -4,6 +4,7 @@ import moviesReducer from "./moviesReducer";
 import movieReducer from "./movieReducer";
 import genresReducer from "./genresReducer";
 import creditsReducer from "./creditsReducer";
+import showsReducer from "./showsReducer";
 
 const rootReducer = combineReducers({
   config: configReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   movie: movieReducer,
   genres: genresReducer,
   credits: creditsReducer,
+  shows: showsReducer,
 });
 
 export default rootReducer;

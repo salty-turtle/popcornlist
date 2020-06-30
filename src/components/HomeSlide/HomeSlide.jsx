@@ -5,6 +5,9 @@ import {
   requestPopularMovies,
   requestTopRatedMovies,
   requestUpcomingMovies,
+  requestPopularShows,
+  requestTopRatedShows,
+  requestUpcomingShows,
 } from "../../redux/actions/index";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
@@ -25,6 +28,9 @@ function HomeSlide(props) {
     dispatch(requestPopularMovies());
     dispatch(requestTopRatedMovies());
     dispatch(requestUpcomingMovies());
+    dispatch(requestPopularShows());
+    dispatch(requestTopRatedShows());
+    dispatch(requestUpcomingShows());
   }, []);
 
   useEffect(() => {
