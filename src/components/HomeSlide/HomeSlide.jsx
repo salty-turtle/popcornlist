@@ -23,7 +23,7 @@ function HomeSlide(props) {
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
   genres.movies.genreList.map((genre) => genreList.set(genre.id, genre.name));
-  console.log(genres,"genres")
+  console.log(genres, "genres");
   useEffect(() => {
     dispatch(requestPopularMovies());
     dispatch(requestTopRatedMovies());
@@ -58,13 +58,15 @@ function HomeSlide(props) {
               <div className="swiper-slide">
                 <div className="home-text-wrapper">
                   <div className="home-text-container">
-                    <div className="home-title">{movie.original_title}</div>
+                    <div className="home-title">{movie.title}</div>
                     <div className="home-genre">
-                      {movie.genre_ids.map((id) => `${genreList.get(id)} `)}
+                      {movie.genre_ids
+                        .map((id) => `${genreList.get(id)}`)
+                        .join(", ")}
                     </div>
                     <div className="home-rating">
-                      <i className="fas fa-star"></i> {movie.vote_average}{" "}
-                      Rating
+                      <i className="fas fa-star"></i>
+                      {` ${movie.vote_average.toFixed(1)} Rating`}
                     </div>
                     <br />
                     <div className="home-description">{movie.overview}</div>
