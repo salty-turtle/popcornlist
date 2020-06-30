@@ -6,23 +6,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.REQUEST_MOVIE_CREDITS:
+    case types.REQUEST_SHOW:
       return {
         ...state,
         loading: true,
       };
-    case types.REQUEST_MOVIE_CREDITS_COMPLETE:
-      return {
-        ...state,
-        ...action.payload,
-        loading: false,
-      };
-    case types.REQUEST_SHOW_CREDITS:
-      return {
-        ...state,
-        loading: true,
-      };
-    case types.REQUEST_SHOW_CREDITS_COMPLETE:
+    case types.REQUEST_SHOW_COMPLETE:
       return {
         ...state,
         ...action.payload,

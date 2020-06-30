@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { requestMovie, requestCredits } from "../../redux/actions/index";
+import { requestMovie, requestMovieCredits } from "../../redux/actions/index";
 import Cast from "../Cast/Cast";
 import Rating from "react-rating";
 import "./MovieDetails.scss";
@@ -22,7 +22,7 @@ function MovieDetails(props) {
 
   useEffect(() => {
     dispatch(requestMovie(movieId));
-    dispatch(requestCredits(movieId));
+    dispatch(requestMovieCredits(movieId));
   }, []);
 
   function displayInfo(genres, language, time) {
