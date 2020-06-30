@@ -5,13 +5,60 @@
   margin: 0rem 4rem 0rem 4rem;
 }
 
+.search-title {
+  display: flex;
+  font-family: $primary-font;
+  color: $primary-font-color;
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 2rem 0rem 1.3rem 0rem;
+  justify-content: center;
+}
+
+/* Styling for buttons */
 .search-buttons-container {
   display: flex;
-  margin: 4rem 0rem 4rem 0rem;
   justify-content: center;
+  margin-bottom: 2.4rem;
 
-  button {
-    margin: 2rem;
+  .search-button-1,
+  .search-button-2,
+  .search-button-3 {
+    font-family: $primary-font;
+    font-weight: 700;
+    font-size: 1.2rem;
+    outline: none;
+    cursor: pointer;
+    color: $primary-font-color;
+    background-color: transparent;
+    border: 1px solid $secondary-color;
+    border-radius: 4px;
+    padding: 0.3rem 1.2rem 0.3rem 1.2rem;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $secondary-color;
+      color: $secondary-font-color;
+    }
+  }
+}
+
+.search-button-2 {
+  margin-left: 1.3rem;
+  margin-right: 1.3rem;
+}
+
+.search-hr-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+
+  .search-hr {
+    flex: 1;
+    border: 0;
+    height: 0;
+    border-top: 1px solid $tertiary-color;
+    opacity: 0.1;
   }
 }
 
@@ -36,7 +83,7 @@
     transform: scale(1.025);
   }
 
-  .search-title {
+  .search-item-title {
     font-family: $primary-font;
     color: $primary-font-color;
     font-size: 0.95rem;
@@ -64,4 +111,29 @@
   width: 100%;
   box-sizing: border-box;
   padding: 1.3rem;
+}
+
+.search-button-next-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+
+  .search-button-next {
+    font-family: $primary-font;
+    font-weight: 700;
+    font-size: 1.2rem;
+    outline: none;
+    cursor: pointer;
+    color: $secondary-font-color;
+    background-color: $secondary-color;
+    border: 1px solid $secondary-color;
+    border-radius: 4px;
+    padding: 0.4rem 1.2rem 0.4rem 1.2rem;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $primary-font-color;
+    }
+  }
 }

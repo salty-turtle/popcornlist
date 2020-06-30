@@ -24,10 +24,17 @@ function Search(props) {
     <div></div>
   ) : (
     <div className="search-wrapper">
+      <div className="search-title">Search by Category</div>
       <div className="search-buttons-container">
-        <button>Movies</button>
-        <button>TV Shows</button>
-        <button>People</button>
+        <div className="search-hr-container">
+          <hr className="search-hr" />
+        </div>
+        <button className="search-button-1">Movies</button>
+        <button className="search-button-2">TV Shows</button>
+        <button className="search-button-3">People</button>
+        <div className="search-hr-container">
+          <hr className="search-hr" />
+        </div>
       </div>
       <div className="search-container">
         {search.movies.results.map((movie) => {
@@ -41,10 +48,13 @@ function Search(props) {
               ) : (
                 <img src={poster} className="search-img-placeholder"></img>
               )}
-              <div className="search-title">{movie.title}</div>
+              <div className="search-item-title">{movie.title}</div>
             </Link>
           );
         })}
+      </div>
+      <div className="search-button-next-container">
+        <button className="search-button-next">Next Page</button>
       </div>
     </div>
   );
