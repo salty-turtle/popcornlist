@@ -14,6 +14,7 @@ function NavBar() {
   }
 
   function handleSubmit(e) {
+    e.preventDefault();
     history.push(`/search/${searchStr}`);
   }
 

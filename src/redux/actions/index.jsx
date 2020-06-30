@@ -221,7 +221,7 @@ export const requestUpcomingShows = () => {
   };
 };
 
-export const requestSearchMovies = (str, pageNumber) => {
+export const requestSearchMovies = (query, page) => {
   return (dispatch) => {
     dispatch({
       type: types.REQUEST_SEARCH_MOVIES,
@@ -229,8 +229,8 @@ export const requestSearchMovies = (str, pageNumber) => {
 
     return API.get(`/search/movie`, {
       params: {
-        query: str,
-        page: pageNumber,
+        query,
+        page,
       },
     }).then((res) => {
       dispatch({

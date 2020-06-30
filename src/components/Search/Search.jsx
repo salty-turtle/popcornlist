@@ -5,7 +5,7 @@ import { requestSearchMovies } from "../../redux/actions/index";
 import "./Search.scss";
 import poster from "../../images/poster.svg";
 
-function Search(props) {
+function Search() {
   const { searchQuery } = useParams();
   const dispatch = useDispatch();
 
@@ -14,11 +14,13 @@ function Search(props) {
 
   const [pageNumber, setPageNumber] = useState(1);
 
-  console.log(search);
-
   useEffect(() => {
     dispatch(requestSearchMovies(searchQuery, pageNumber));
   }, []);
+
+  function handleClick() {
+    setPageNumber(pageNumber + 1);
+  }
 
   return search.movies.loading ? (
     <div></div>
@@ -54,7 +56,9 @@ function Search(props) {
         })}
       </div>
       <div className="search-button-next-container">
-        <button className="search-button-next">Next Page</button>
+        <button className="search-button-next" onClick={() => handleClick()}>
+          Next Page
+        </button>
       </div>
     </div>
   );
