@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MovieCard from "./MovieCard.jsx";
+import ItemCard from "./ItemCard.jsx";
 import "./Carousel.scss";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import Loader from "../Loader/Loader";
 
-function TopRatedCarousel(props) {
+function PopularCarousel(props) {
   const movies = useSelector((state) => state.movies);
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
@@ -23,8 +23,9 @@ function TopRatedCarousel(props) {
     : genres.shows.genreList.map((genre) =>
         genreList.set(genre.id, genre.name)
       );
+
   useEffect(() => {
-    var topRatedSwiper = new Swiper(".top-rated-swiper", {
+    var popularSwiper = new Swiper(".popular-swiper", {
       loop: true,
       breakpoints: {
         320: {
@@ -52,49 +53,58 @@ function TopRatedCarousel(props) {
           spaceBetween: 110,
         },
       },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
     });
   });
 
-  return media().topRated.loading ? (
+  return media().popular.loading ? (
     <div></div>
   ) : (
     <div className="carousel-container">
-      <span className="carousel-title">Top Rated </span>
-      <button
-        className="toggle-media"
-        onClick={() => toggleSelection(!selection)}
-      >
-        <span style={selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
-          Movies
-        </span>{" "}
-        <span style={!selection ? { color: "#db3636" } : { color: "#f1e7e3" }}>
-          Shows
-        </span>
-      </button>
+      <div className="carousel-header">
+        <span className="carousel-title">Popular</span>
+        <button
+          className="toggle-media"
+          onClick={() => toggleSelection(!selection)}
+        >
+          <span
+            style={
+              selection
+                ? { color: "#db3636", transition: "0.3s" }
+                : { color: "#f1e7e3", transition: "0.3s" }
+            }
+          >
+            Movies
+          </span>{" "}
+          <span
+            style={
+              !selection
+                ? { color: "#db3636", transition: "0.3s" }
+                : { color: "#f1e7e3", transition: "0.3s" }
+            }
+          >
+            Shows
+          </span>
+        </button>
+      </div>
       <div className="carousel-wrapper">
-        <div className="swiper-container top-rated-swiper">
+        <div className="swiper-container popular-swiper">
           <div className="swiper-wrapper">
             {media()
-              .topRated.results.slice(0, 10)
-              .map((movie) => (
-                <MovieCard
-                  movie={movie}
+              .popular.results.slice(0, 10)
+              .map((item) => (
+                <ItemCard
+                  item={item}
                   config={config}
                   genreList={genreList}
                   selection={selection}
+                  url={selection ? "/movies/" : "/tv/"}
                 />
               ))}
           </div>
         </div>
-        {/* <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div> */}
       </div>
     </div>
   );
 }
 
-export default TopRatedCarousel;
+export default PopularCarousel;
