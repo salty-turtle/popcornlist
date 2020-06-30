@@ -42,7 +42,7 @@ function MovieDetails(props) {
     let result = videos.results.find(
       (video) => video.site === "YouTube" && video.type === "Trailer"
     );
-    console.log(result);
+
     return (
       <React.Fragment>
         <ModalVideo
@@ -59,6 +59,34 @@ function MovieDetails(props) {
         </button>
       </React.Fragment>
     );
+  }
+
+  function displayImdb(id) {
+    if (id) {
+      return (
+        <React.Fragment>
+          <a href={`https://www.imdb.com/title/${id}`} target="_blank">
+            <button className="button2">
+              <i className="fab fa-imdb"></i> IMDb
+            </button>
+          </a>
+        </React.Fragment>
+      );
+    }
+  }
+
+  function displayWebsite(homepage) {
+    if (homepage) {
+      return (
+        <React.Fragment>
+          <a href={homepage} target="_blank">
+            <button className="button3">
+              <i className="fas fa-link"></i> Website
+            </button>
+          </a>
+        </React.Fragment>
+      );
+    }
   }
 
   return movie.loading || credits.loading ? (
@@ -99,19 +127,8 @@ function MovieDetails(props) {
             <div className="buttons-container">
               <div className="buttons-wrapper">
                 {displayTrailer(movie.videos, isModalOpen, setIsModalOpen)}
-                <a
-                  href={`https://www.imdb.com/title/${movie.imdb_id}`}
-                  target="_blank"
-                >
-                  <button className="button2">
-                    <i className="fab fa-imdb"></i> IMDb
-                  </button>
-                </a>
-                <a href={movie.homepage} target="_blank">
-                  <button className="button3">
-                    <i className="fas fa-link"></i> Website
-                  </button>
-                </a>
+                {displayImdb(movie.imdb_id)}
+                {displayWebsite(movie.homepage)}
               </div>
             </div>
           </div>
