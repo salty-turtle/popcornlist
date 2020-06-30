@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NavBar.scss";
 import logo from "../../images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function NavBar() {
+  let history = useHistory();
+
+  const [searchStr, setSearchStr] = useState("");
+
+  function handleChange(e) {
+    setSearchStr(e.target.value);
+    console.log(searchStr);
+  }
+
+  function handleSubmit(e) {
+    history.push(`/search/${searchStr}`);
+  }
+
   return (
     <div>
       <div className="nav-container">
@@ -30,15 +43,18 @@ function NavBar() {
             </li>
           </ul>
         </nav>
-        <div className="search-container">
-          <input
-            type="text"
-            className="search-box"
-            placeholder="Search Movies, TV Shows..."
-          />
-          <div className="search-btn">
-            <i className="fas fa-search"></i>
-          </div>
+        <div className="nav-search-container">
+          <form className="nav-search-form" onSubmit={(e) => handleSubmit(e)}>
+            <input
+              type="text"
+              className="nav-search-box"
+              placeholder="Search Movies, TV Shows..."
+              onChange={(e) => handleChange(e)}
+            />
+            <button type="submit" className="nav-search-btn">
+              <i className="fas fa-search"></i>
+            </button>
+          </form>
         </div>
       </div>
       <div className="nav-padding"></div>
