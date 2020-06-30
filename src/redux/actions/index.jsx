@@ -220,3 +220,23 @@ export const requestUpcomingShows = () => {
     });
   };
 };
+
+export const requestSearchMovies = (str, pageNumber) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_SEARCH_MOVIES,
+    });
+
+    return API.get(`/search/movie`, {
+      params: {
+        query: str,
+        page: pageNumber,
+      },
+    }).then((res) => {
+      dispatch({
+        type: types.REQUEST_SEARCH_MOVIES_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};

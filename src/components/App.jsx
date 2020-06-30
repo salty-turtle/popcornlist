@@ -7,6 +7,7 @@ import Shows from "./Shows/Shows.jsx";
 import People from "./People/People.jsx";
 import MovieDetails from "./Details/MovieDetails.jsx";
 import ShowDetails from "./Details/ShowDetails.jsx";
+import Search from "./Search/Search.jsx";
 import {
   requestConfig,
   requestMovieGenres,
@@ -19,8 +20,8 @@ import "../styles/_transition.scss";
 
 function App(props) {
   const location = useLocation();
-  console.log(location);
   const dispatch = useDispatch();
+
   const config = useSelector((state) => state.config);
 
   useEffect(() => {
@@ -59,6 +60,11 @@ function App(props) {
                 component={ShowDetails}
               ></Route>
               <Route exact path="/people" component={People}></Route>
+              <Route
+                exact
+                path="/search/:searchQuery"
+                component={Search}
+              ></Route>
               <Route exact path="/" component={Home}></Route>
             </Switch>
           </section>

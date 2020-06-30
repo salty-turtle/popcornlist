@@ -23,7 +23,7 @@ function HomeSlide(props) {
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
   genres.movies.genreList.map((genre) => genreList.set(genre.id, genre.name));
-  console.log(genres, "genres");
+
   useEffect(() => {
     dispatch(requestPopularMovies());
     dispatch(requestTopRatedMovies());
