@@ -27,7 +27,6 @@ function UpcomingCarousel(props) {
 
   useEffect(() => {
     var upcomingSwiper = new Swiper(".upcoming-swiper", {
-      loop: true,
       breakpoints: {
         320: {
           slidesPerView: 1,
@@ -53,6 +52,10 @@ function UpcomingCarousel(props) {
           slidesPerView: 6,
           spaceBetween: 110,
         },
+      },
+      scrollbar: {
+        el: ".scrollbar-3",
+        draggable: true,
       },
     });
   });
@@ -91,7 +94,7 @@ function UpcomingCarousel(props) {
         <div className="swiper-container upcoming-swiper">
           <div className="swiper-wrapper">
             {media()
-              .upcoming.results.slice(0, 10)
+              .upcoming.results.slice(0, 20)
               .map((item) => (
                 <ItemCard
                   item={item}
@@ -102,6 +105,7 @@ function UpcomingCarousel(props) {
                 />
               ))}
           </div>
+          <div class="swiper-scrollbar scrollbar-3"></div>
         </div>
       </div>
     </div>
