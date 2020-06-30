@@ -5,8 +5,8 @@ import Home from "./Home/Home.jsx";
 import Movies from "./Movies/Movies.jsx";
 import Shows from "./Shows/Shows.jsx";
 import People from "./People/People.jsx";
-import MovieDetails from "./MovieDetails/MovieDetails.jsx";
-import ShowDetails from "./ShowDetails/ShowDetails.jsx";
+import MovieDetails from "./Details/MovieDetails.jsx";
+import ShowDetails from "./Details/ShowDetails.jsx";
 import {
   requestConfig,
   requestMovieGenres,

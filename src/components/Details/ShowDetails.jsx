@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestShow, requestShowCredits } from "../../redux/actions/index";
 import Cast from "../Cast/Cast";
 import Rating from "react-rating";
-import "./ShowDetails.scss";
+import "./Details.scss";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/scss/modal-video.scss";
 
@@ -95,39 +95,39 @@ function ShowDetails(props) {
     <div></div>
   ) : (
     <div>
-      <div className="show-wrapper">
-        <div className="show-container">
-          <div className="show-poster">
+      <div className="item-wrapper">
+        <div className="item-container">
+          <div className="item-poster">
             <img
               src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${show.poster_path}`}
             ></img>
           </div>
-          <div className="show-text-container">
-            <div className="show-title">{show.name}</div>
-            <div className="show-tagline">{show.tagline}</div>
-            <div className="show-info">
+          <div className="item-text-container">
+            <div className="item-title">{show.name}</div>
+            <div className="item-tagline">{show.tagline}</div>
+            <div className="item-info">
               {displayInfo(
                 show.genres,
                 show.spoken_languages,
                 show.episode_run_time
               )}
             </div>
-            <div className="show-rating-container">
+            <div className="item-rating-container">
               <Rating
-                className="show-rating-stars"
+                className="item-rating-stars"
                 emptySymbol="far fa-star"
                 fullSymbol="fas fa-star"
                 initialRating={show.vote_average * 0.5}
                 readonly
               />
-              <div className="show-rating-text">
+              <div className="item-rating-text">
                 {show.vote_average.toFixed(1)}
               </div>
             </div>
-            <div className="show-secondary-title">Synopsis</div>
-            <div className="show-synopsis">{show.overview}</div>
-            <div className="show-secondary-title">Cast</div>
-            <div className="show-cast">
+            <div className="item-secondary-title">Synopsis</div>
+            <div className="item-synopsis">{show.overview}</div>
+            <div className="item-secondary-title">Cast</div>
+            <div className="item-cast">
               <Cast />
             </div>
             <div className="buttons-container">

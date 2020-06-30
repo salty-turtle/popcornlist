@@ -88,7 +88,11 @@ export const requestShow = (id) => {
       type: types.REQUEST_SHOW,
     });
 
-    return API.get(`/tv/${id}`).then((res) => {
+    return API.get(`/tv/${id}`, {
+      params: {
+        append_to_response: "videos",
+      },
+    }).then((res) => {
       dispatch({
         type: types.REQUEST_SHOW_COMPLETE,
         payload: res.data,
