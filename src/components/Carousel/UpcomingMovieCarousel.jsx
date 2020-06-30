@@ -12,7 +12,6 @@ function UpcomingMovieCarousel(props) {
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
   genres.genreList.map((genre) => genreList.set(genre.id, genre.name));
-  
 
   useEffect(() => {
     var upcomingSwiper = new Swiper(".upcoming-swiper", {
