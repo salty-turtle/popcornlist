@@ -14,13 +14,11 @@ function ShowDetails(props) {
 
   const config = useSelector((state) => state.config);
   const show = useSelector((state) => state.show);
-  const credits = useSelector((state) => state.credits);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     dispatch(requestShow(showId));
-    dispatch(requestShowCredits(showId));
   }, []);
 
   function displayInfo(genres, language, time) {
@@ -90,7 +88,7 @@ function ShowDetails(props) {
     }
   }
 
-  return show.loading || credits.loading ? (
+  return show.loading ? (
     <div></div>
   ) : (
     <div>
@@ -127,7 +125,7 @@ function ShowDetails(props) {
             <div className="item-synopsis">{show.overview}</div>
             <div className="item-secondary-title">Cast</div>
             <div className="item-cast">
-              <Cast />
+              <Cast credits={show.credits}/>
             </div>
             <div className="buttons-container">
               <div className="buttons-wrapper">

@@ -71,7 +71,7 @@ export const requestMovie = (id) => {
 
     return API.get(`/movie/${id}`, {
       params: {
-        append_to_response: "videos",
+        append_to_response: "videos,recommendations,similar,credits",
       },
     }).then((res) => {
       dispatch({
@@ -90,41 +90,11 @@ export const requestShow = (id) => {
 
     return API.get(`/tv/${id}`, {
       params: {
-        append_to_response: "videos",
+        append_to_response: "videos,recommendations,similar,credits",
       },
     }).then((res) => {
       dispatch({
         type: types.REQUEST_SHOW_COMPLETE,
-        payload: res.data,
-      });
-    });
-  };
-};
-
-export const requestMovieCredits = (id) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.REQUEST_MOVIE_CREDITS,
-    });
-
-    return API.get(`/movie/${id}/credits`).then((res) => {
-      dispatch({
-        type: types.REQUEST_MOVIE_CREDITS_COMPLETE,
-        payload: res.data,
-      });
-    });
-  };
-};
-
-export const requestShowCredits = (id) => {
-  return (dispatch) => {
-    dispatch({
-      type: types.REQUEST_SHOW_CREDITS,
-    });
-
-    return API.get(`/tv/${id}/credits`).then((res) => {
-      dispatch({
-        type: types.REQUEST_SHOW_CREDITS_COMPLETE,
         payload: res.data,
       });
     });

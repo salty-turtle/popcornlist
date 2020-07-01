@@ -9,9 +9,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0px 90px;
+  padding: 0rem 5.625rem; /* 0px 90px */
   flex: 1;
-  min-width: 400px;
+  min-width: 25rem; /* 400px */
 }
 
 .home-backdrop-border {
@@ -36,12 +36,12 @@
 .home-title {
   font-family: $primary-font;
   font-weight: 700;
-  font-size: 33px;
+  font-size: 2.0625rem; /* 33px */
   color: $tertiary-color;
 }
 
 .home-genre {
-  font-size: 19px;
+  font-size: 1.1875rem; /* 19px */
   display: flex;
   align-content: center;
   color: $tertiary-color;
@@ -49,16 +49,16 @@
 
 .home-rating {
   color: $tertiary-color;
-  font-size: 18px;
+  font-size: 1.125rem; /* 18px */
   padding-top: 0.25rem;
   i {
     color: $secondary-color;
-    font-size: 17px;
+    font-size: 1.0625rem; /* 17px */
   }
 }
 
 .home-description {
-  font-size: 19px;
+  font-size: 1.1875rem; /* 19px */
   color: $tertiary-color;
 }
 
