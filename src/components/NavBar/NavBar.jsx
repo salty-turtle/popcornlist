@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./NavBar.scss";
-import logo from "../../images/logo.png";
+import logo from "../../images/logo.svg";
 import { Link, useHistory } from "react-router-dom";
 
 function NavBar() {
@@ -10,7 +10,6 @@ function NavBar() {
 
   function handleChange(e) {
     setSearchStr(e.target.value);
-    console.log(searchStr);
   }
 
   function handleSubmit(e) {
