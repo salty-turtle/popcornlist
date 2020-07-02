@@ -68,7 +68,7 @@
   column-gap: 3rem;
   row-gap: 5rem;
   grid-template-columns: repeat(auto-fit, minmax(8rem, 13rem));
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .search-item {
@@ -116,7 +116,7 @@
 .search-button-next-container {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   .search-button-next {
     font-family: $primary-font;
