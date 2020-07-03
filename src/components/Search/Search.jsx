@@ -5,6 +5,7 @@ import { requestSearchMovies } from "../../redux/actions/index";
 import "./Search.scss";
 import poster from "../../images/poster.svg";
 import queryString from "query-string";
+import Pagination from "../Pagination/Pagination";
 
 function Search() {
   const { searchQuery } = useParams();
@@ -55,15 +56,7 @@ function Search() {
           );
         })}
       </div>
-      {search.movies.page >= search.movies.total_pages ? (
-        <div></div>
-      ) : (
-        <div className="search-button-next-container">
-          <Link to={`/search/${searchQuery}?page=${search.movies.page + 1}`}>
-            <button className="search-button-next">Next Page</button>
-          </Link>
-        </div>
-      )}
+      <Pagination movies={search.movies} />
     </div>
   );
 }
