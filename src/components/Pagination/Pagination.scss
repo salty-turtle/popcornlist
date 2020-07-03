@@ -1,0 +1,42 @@
+@import "../../styles/variables";
+
+.pagination-button-container {
+  display: flex;
+  margin-bottom: 3rem;
+
+  .pagination-button {
+    font-family: $primary-font;
+    font-weight: 700;
+    font-size: 1.2rem;
+    outline: none;
+    cursor: pointer;
+    color: $secondary-font-color;
+    background-color: $secondary-color;
+    border: 0.0625rem /* 1px */ solid $secondary-color;
+    border-radius: 0.25rem; /* 4px */
+    padding: 0.4rem 1.2rem 0.4rem 1.2rem;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $primary-font-color;
+    }
+  }
+}
+
+.next {
+  font-size: 1.15rem;
+  padding-left: 0.425rem;
+}
+
+.prev {
+  font-size: 1.15rem;
+  padding-right: 0.425rem;
+}
+.one-button {
+  justify-content: flex-end;
+}
+
+.both-buttons {
+  justify-content: space-between;
+}
