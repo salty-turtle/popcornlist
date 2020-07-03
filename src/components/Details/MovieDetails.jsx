@@ -7,6 +7,9 @@ import Rating from "react-rating";
 import "./Details.scss";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/scss/modal-video.scss";
+import ItemCard from "../Carousel/ItemCard";
+import Swiper from "swiper";
+import "swiper/css/swiper.min.css";
 
 function MovieDetails(props) {
   const { movieId } = useParams();
@@ -14,14 +17,52 @@ function MovieDetails(props) {
 
   const config = useSelector((state) => state.config);
   const movie = useSelector((state) => state.movie);
+  const genres = useSelector((state) => state.genres);
+  const genreList = new Map();
+  genres.movies.genreList.map((genre) => genreList.set(genre.id, genre.name));
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log(movie,"movie details");
+  console.log(movie, "movie details");
 
   useEffect(() => {
     dispatch(requestMovie(movieId));
   }, []);
+
+  useEffect(() => {
+    var recommendedMovieSwiper = new Swiper(".recommended-movie-swiper", {
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        640: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 70,
+        },
+        1024: {
+          slidesPerView: 5,
+          spaceBetween: 90,
+        },
+        1600: {
+          slidesPerView: 6,
+          spaceBetween: 110,
+        },
+      },
+      scrollbar: {
+        el: ".scrollbar-1",
+        draggable: true,
+      },
+    });
+  });
 
   function displayInfo(genres, language, time) {
     const result = [];
@@ -44,14 +85,11 @@ function MovieDetails(props) {
   }
 
   function displayTrailer(videos, isModalOpen, setIsModalOpen) {
-    if (videos.results.length === 0) {
-      return;
-    }
     let result = videos.results.find(
       (video) => video.site === "YouTube" && video.type === "Trailer"
     );
 
-    return (
+    return result ? (
       <React.Fragment>
         <ModalVideo
           channel="youtube"
@@ -66,7 +104,7 @@ function MovieDetails(props) {
           <i className="fas fa-film"></i> Trailer
         </button>
       </React.Fragment>
-    );
+    ) : null;
   }
 
   function displayImdb(id) {
@@ -131,7 +169,7 @@ function MovieDetails(props) {
             <div className="item-synopsis">{movie.overview}</div>
             <div className="item-secondary-title">Cast</div>
             <div className="item-cast">
-              <Cast credits={movie.credits}/>
+              <Cast credits={movie.credits} />
             </div>
             <div className="buttons-container">
               <div className="buttons-wrapper">
@@ -143,6 +181,28 @@ function MovieDetails(props) {
           </div>
         </div>
       </div>
+      <div className="carousel-container">
+      <div className="carousel-header">
+        <span className="carousel-title">Recommended</span>
+      </div>
+      <div className="carousel-wrapper">
+        <div className="swiper-container recommended-movie-swiper">
+          <div className="swiper-wrapper">
+            {movie
+              .recommendations.results.map((item) => (
+                <ItemCard
+                  item={item}
+                  config={config}
+                  genreList={genreList}
+                  selection={true}
+                  url={"/movies/"}
+                />
+              ))}
+          </div>
+          <div class="swiper-scrollbar scrollbar-1"></div>
+        </div>
+      </div>
+    </div>
     </div>
   );
 }
