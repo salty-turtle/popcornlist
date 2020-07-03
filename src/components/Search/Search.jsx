@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { requestSearchMovies } from "../../redux/actions/index";
 import "./Search.scss";
 import poster from "../../images/poster.svg";
+import queryString from "query-string";
 
-function Search(props) {
+function Search() {
   const { searchQuery } = useParams();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const search = useSelector((state) => state.search);
   const config = useSelector((state) => state.config);
 
-  const [pageNumber, setPageNumber] = useState(1);
-
-  console.log(search);
+  const query = queryString.parse(location.search);
 
   useEffect(() => {
-    dispatch(requestSearchMovies(searchQuery, pageNumber));
+    !query.page
+      ? dispatch(requestSearchMovies(searchQuery, 1))
+      : dispatch(requestSearchMovies(searchQuery, query.page));
   }, []);
 
   return search.movies.loading ? (
@@ -53,9 +55,15 @@ function Search(props) {
           );
         })}
       </div>
-      <div className="search-button-next-container">
-        <button className="search-button-next">Next Page</button>
-      </div>
+      {search.movies.page >= search.movies.total_pages ? (
+        <div></div>
+      ) : (
+        <div className="search-button-next-container">
+          <Link to={`/search/${searchQuery}?page=${search.movies.page + 1}`}>
+            <button className="search-button-next">Next Page</button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
