@@ -210,3 +210,43 @@ export const requestSearchMovies = (query, page) => {
     });
   };
 };
+
+export const requestSearchShows = (query, page) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_SEARCH_SHOWS,
+    });
+
+    return API.get(`/search/tv`, {
+      params: {
+        query,
+        page,
+      },
+    }).then((res) => {
+      dispatch({
+        type: types.REQUEST_SEARCH_SHOWS_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
+export const requestSearchPeople = (query, page) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_SEARCH_PEOPLE,
+    });
+
+    return API.get(`/search/person`, {
+      params: {
+        query,
+        page,
+      },
+    }).then((res) => {
+      dispatch({
+        type: types.REQUEST_SEARCH_PEOPLE_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useLocation } from "react-router-dom";
-import { requestSearchMovies } from "../../redux/actions/index";
+import {
+  requestSearchMovies,
+  requestSearchShows,
+  requestSearchPeople,
+} from "../../redux/actions/index";
 import "./Search.scss";
 import poster from "../../images/poster.svg";
 import queryString from "query-string";
@@ -15,15 +19,25 @@ function Search() {
   const search = useSelector((state) => state.search);
   const config = useSelector((state) => state.config);
 
+  console.log(search);
+
   const query = queryString.parse(location.search);
 
   useEffect(() => {
-    !query.page
-      ? dispatch(requestSearchMovies(searchQuery, 1))
-      : dispatch(requestSearchMovies(searchQuery, query.page));
+    if (!query.page) {
+      dispatch(requestSearchMovies(searchQuery, 1));
+      dispatch(requestSearchShows(searchQuery, 1));
+      dispatch(requestSearchPeople(searchQuery, 1));
+    } else {
+      dispatch(requestSearchMovies(searchQuery, query.page));
+      dispatch(requestSearchShows(searchQuery, query.page));
+      dispatch(requestSearchPeople(searchQuery, query.page));
+    }
   }, []);
 
-  return search.movies.loading ? (
+  return search.movies.loading ||
+    search.shows.loading ||
+    search.people.loading ? (
     <div></div>
   ) : (
     <div className="search-wrapper">
@@ -32,9 +46,15 @@ function Search() {
         <div className="search-hr-container">
           <hr className="search-hr" />
         </div>
-        <button className="search-button-1">Movies</button>
-        <button className="search-button-2">TV Shows</button>
-        <button className="search-button-3">People</button>
+        <button className="search-button-1">
+          Movies<span className="total">{search.movies.total_results}</span>
+        </button>
+        <button className="search-button-2">
+          TV Shows<span className="total">{search.shows.total_results}</span>
+        </button>
+        <button className="search-button-3">
+          People<span className="total">{search.people.total_results}</span>
+        </button>
         <div className="search-hr-container">
           <hr className="search-hr" />
         </div>

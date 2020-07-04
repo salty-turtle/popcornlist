@@ -21,9 +21,8 @@ function MovieDetails(props) {
   const genreList = new Map();
   genres.movies.genreList.map((genre) => genreList.set(genre.id, genre.name));
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   console.log(movie, "movie details");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     dispatch(requestMovie(movieId));
@@ -182,14 +181,13 @@ function MovieDetails(props) {
         </div>
       </div>
       <div className="carousel-container">
-      <div className="carousel-header">
-        <span className="carousel-title">Recommended</span>
-      </div>
-      <div className="carousel-wrapper">
-        <div className="swiper-container recommended-movie-swiper">
-          <div className="swiper-wrapper">
-            {movie
-              .recommendations.results.map((item) => (
+        <div className="carousel-header">
+          <span className="carousel-title">Recommended</span>
+        </div>
+        <div className="carousel-wrapper">
+          <div className="swiper-container recommended-movie-swiper">
+            <div className="swiper-wrapper">
+              {movie.recommendations.results.map((item) => (
                 <ItemCard
                   item={item}
                   config={config}
@@ -198,11 +196,11 @@ function MovieDetails(props) {
                   url={"/movies/"}
                 />
               ))}
+            </div>
+            <div class="swiper-scrollbar scrollbar-1"></div>
           </div>
-          <div class="swiper-scrollbar scrollbar-1"></div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
