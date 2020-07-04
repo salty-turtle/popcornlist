@@ -26,8 +26,6 @@ function Search() {
     dispatch(requestSearchShows(searchQuery, 1));
     dispatch(requestSearchPeople(searchQuery, 1));
   }, []);
-  console.log(config);
-  console.log(search);
 
   function displaySearch() {
     switch (display) {
