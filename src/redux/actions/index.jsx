@@ -101,6 +101,21 @@ export const requestShow = (id) => {
   };
 };
 
+export const requestPerson = (id) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_PERSON,
+    });
+
+    return API.get(`/person/${id}`).then((res) => {
+      dispatch({
+        type: types.REQUEST_PERSON_COMPLETE,
+        payload: res.data,
+      });
+    });
+  };
+};
+
 export const requestPopularMovies = () => {
   return (dispatch) => {
     dispatch({

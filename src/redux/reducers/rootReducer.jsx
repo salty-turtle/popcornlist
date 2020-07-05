@@ -5,6 +5,7 @@ import movieReducer from "./movieReducer";
 import genresReducer from "./genresReducer";
 import showsReducer from "./showsReducer";
 import showReducer from "./showReducer";
+import personReducer from "./personReducer";
 import searchReducer from "./searchReducer";
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   genres: genresReducer,
   shows: showsReducer,
   show: showReducer,
+  person: personReducer,
   search: searchReducer,
 });
 

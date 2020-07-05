@@ -7,6 +7,7 @@ import Shows from "./Shows/Shows.jsx";
 import People from "./People/People.jsx";
 import MovieDetails from "./Details/MovieDetails.jsx";
 import ShowDetails from "./Details/ShowDetails.jsx";
+import PersonDetails from "./Details/PersonDetails.jsx";
 import Search from "./Search/Search.jsx";
 import {
   requestConfig,
@@ -60,6 +61,11 @@ function App(props) {
                 component={ShowDetails}
               ></Route>
               <Route exact path="/people" component={People}></Route>
+              <Route
+                exact
+                path="/people/:personId"
+                component={PersonDetails}
+              ></Route>
               <Route
                 exact
                 path="/search/:searchQuery"
