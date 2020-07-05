@@ -19,9 +19,8 @@ function MovieDetails(props) {
   const movie = useSelector((state) => state.movie);
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
-  genres.movies.genreList.map((genre) => genreList.set(genre.id, genre.name));
+  genres.genreList.forEach(item => item.map((genre) => genreList.set(genre.id, genre.name)));
 
-  console.log(movie, "movie details");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -200,7 +199,7 @@ function MovieDetails(props) {
                     />
                   ))}
                 </div>
-                <div class="swiper-scrollbar scrollbar-1"></div>
+                <div className="swiper-scrollbar scrollbar-1"></div>
               </div>
             </div>
           </div>

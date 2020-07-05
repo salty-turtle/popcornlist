@@ -16,13 +16,8 @@ function TopRatedCarousel(props) {
     return selection ? movies : shows;
   };
   const genreList = new Map();
-  selection
-    ? genres.movies.genreList.map((genre) =>
-        genreList.set(genre.id, genre.name)
-      )
-    : genres.shows.genreList.map((genre) =>
-        genreList.set(genre.id, genre.name)
-      );
+  genres.genreList.forEach(item => item.map((genre) => genreList.set(genre.id, genre.name)));
+
   useEffect(() => {
     var topRatedSwiper = new Swiper(".top-rated-swiper", {
       breakpoints: {
