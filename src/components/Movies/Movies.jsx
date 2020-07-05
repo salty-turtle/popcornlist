@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Movies.scss";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function Movies() {
+    const [startDate, setStartDate] = useState(new Date());
+
   return (
     <div className="discover-container">
       <div className="discover-title-container">
@@ -19,9 +23,10 @@ function Movies() {
         <div className="discover-date-container">
           <div className="discover-secondary-title">Date</div>
           <div className="discover-date-menu">
-            <div>[YYYY]</div>
-            <div>[MM]</div>
-            <div>[DD]</div>
+            <DatePicker
+        selected={startDate}
+        onChange={date => setStartDate(date)}
+      />
           </div>
         </div>
       </div>
