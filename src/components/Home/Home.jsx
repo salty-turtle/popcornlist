@@ -8,9 +8,9 @@ function Home() {
   return (
     <div>
       <HomeSlide />
-      <UpcomingCarousel />
       <PopularCarousel />
       <TopRatedCarousel />
+      <UpcomingCarousel />
     </div>
   );
 }
