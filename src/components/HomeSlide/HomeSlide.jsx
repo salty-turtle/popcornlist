@@ -65,7 +65,7 @@ function HomeSlide(props) {
                         .map((id) => `${genreList.get(id)}`)
                         .join(", ")}
                     </div>
-                    <div className="home-rating">
+                    <div className="home-rating-container">
                       <Rating
                         className="item-rating-stars"
                         emptySymbol="far fa-star"
