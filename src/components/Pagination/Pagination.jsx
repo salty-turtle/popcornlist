@@ -8,27 +8,29 @@ function Pagination(props) {
   const location = useLocation();
 
   function displayPreviousButton() {
-    if (props.movies.page > 1) {
+    if (props.items.page > 1) {
       return (
-        <Link to={`/search/${searchQuery}?page=${props.movies.page - 1}`}>
-          <button className="pagination-button">
-            <i class="fas fa-arrow-left prev"></i>
-            {`Page ${props.movies.page - 1}`}
-          </button>
-        </Link>
+        <button
+          className="pagination-button"
+          onClick={() => props.paginate(props.items.page - 1)}
+        >
+          <i class="fas fa-arrow-left prev"></i>
+          {`Page ${props.items.page - 1}`}
+        </button>
       );
     }
   }
 
   function displayNextButton() {
-    if (props.movies.page < props.movies.total_pages) {
+    if (props.items.page < props.items.total_pages) {
       return (
-        <Link to={`/search/${searchQuery}?page=${props.movies.page + 1}`}>
-          <button className="pagination-button">
-            {`Page ${props.movies.page + 1}`}
-            <i class="fas fa-arrow-right next"></i>
-          </button>
-        </Link>
+        <button
+          className="pagination-button"
+          onClick={() => props.paginate(props.items.page + 1)}
+        >
+          {`Page ${props.items.page + 1}`}
+          <i class="fas fa-arrow-right next"></i>
+        </button>
       );
     }
   }
@@ -36,7 +38,7 @@ function Pagination(props) {
   return (
     <div
       className={`pagination-button-container ${
-        props.movies.page === 1 ? "one-button" : "both-buttons"
+        props.items.page === 1 ? "one-button" : "both-buttons"
       }`}
     >
       {displayPreviousButton()}

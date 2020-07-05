@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams, useLocation } from "react-router-dom";
-import { requestSearchMovies } from "../../redux/actions/index";
+import { useParams, useLocation } from "react-router-dom";
+import {
+  requestSearchMovies,
+  requestSearchShows,
+  requestSearchPeople,
+} from "../../redux/actions/index";
 import "./Search.scss";
-import poster from "../../images/poster.svg";
-import queryString from "query-string";
-import Pagination from "../Pagination/Pagination";
+import SearchMovies from "./SearchMovies";
+import SearchShows from "./SearchShows";
+import SearchPeople from "./SearchPeople";
 
 function Search() {
   const { searchQuery } = useParams();
@@ -15,48 +19,54 @@ function Search() {
   const search = useSelector((state) => state.search);
   const config = useSelector((state) => state.config);
 
-  const query = queryString.parse(location.search);
+  const [display, setDisplay] = useState("movies");
 
   useEffect(() => {
-    !query.page
-      ? dispatch(requestSearchMovies(searchQuery, 1))
-      : dispatch(requestSearchMovies(searchQuery, query.page));
+    dispatch(requestSearchMovies(searchQuery, 1));
+    dispatch(requestSearchShows(searchQuery, 1));
+    dispatch(requestSearchPeople(searchQuery, 1));
   }, []);
 
-  return search.movies.loading ? (
-    <div></div>
-  ) : (
+  function displaySearch() {
+    switch (display) {
+      case "movies":
+        return <SearchMovies movies={search.movies} />;
+      case "shows":
+        return <SearchShows shows={search.shows} />;
+      case "people":
+        return <SearchPeople people={search.people} />;
+      default:
+        return null;
+    }
+  }
+
+  return (
     <div className="search-wrapper">
       <div className="search-title">Search by Category</div>
       <div className="search-buttons-container">
         <div className="search-hr-container">
           <hr className="search-hr" />
         </div>
-        <button className="search-button-1">Movies</button>
-        <button className="search-button-2">TV Shows</button>
-        <button className="search-button-3">People</button>
+        <button
+          className="search-button-1"
+          onClick={() => setDisplay("movies")}
+        >
+          Movies<span className="total">{search.movies.total_results}</span>
+        </button>
+        <button className="search-button-2" onClick={() => setDisplay("shows")}>
+          TV Shows<span className="total">{search.shows.total_results}</span>
+        </button>
+        <button
+          className="search-button-3"
+          onClick={() => setDisplay("people")}
+        >
+          People<span className="total">{search.people.total_results}</span>
+        </button>
         <div className="search-hr-container">
           <hr className="search-hr" />
         </div>
       </div>
-      <div className="search-container">
-        {search.movies.results.map((movie) => {
-          return (
-            <Link to={`/movies/${movie.id}`} className="search-item">
-              {movie.poster_path ? (
-                <img
-                  src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${movie.poster_path}`}
-                  className="search-img"
-                ></img>
-              ) : (
-                <img src={poster} className="search-img-placeholder"></img>
-              )}
-              <div className="search-item-title">{movie.title}</div>
-            </Link>
-          );
-        })}
-      </div>
-      <Pagination movies={search.movies} />
+      {displaySearch()}
     </div>
   );
 }
