@@ -47,12 +47,14 @@
   color: $tertiary-color;
 }
 
-.home-rating {
-  color: $tertiary-color;
+.home-rating-container {
+  display: flex;
+  color: $secondary-color;
   font-size: 1.125rem; /* 18px */
   padding-top: 0.25rem;
-  i {
-    color: $secondary-color;
+  .home-rating-text {
+    padding-left: 0.3rem;
+    color: $primary-font-color;
     font-size: 1.0625rem; /* 17px */
   }
 }

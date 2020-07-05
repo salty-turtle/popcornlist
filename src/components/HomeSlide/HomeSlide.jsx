@@ -14,6 +14,7 @@ import "swiper/css/swiper.min.css";
 import "./HomeSlide.scss";
 import "../../styles/_carousel.scss";
 import Loader from "../Loader/Loader";
+import Rating from "react-rating";
 
 function HomeSlide(props) {
   const dispatch = useDispatch();
@@ -64,9 +65,17 @@ function HomeSlide(props) {
                         .map((id) => `${genreList.get(id)}`)
                         .join(", ")}
                     </div>
-                    <div className="home-rating">
-                      <i className="fas fa-star"></i>
-                      {` ${movie.vote_average.toFixed(1)} Rating`}
+                    <div className="home-rating-container">
+                      <Rating
+                        className="item-rating-stars"
+                        emptySymbol="far fa-star"
+                        fullSymbol="fas fa-star"
+                        initialRating={movie.vote_average * 0.5}
+                        readonly
+                      />
+                      <span className="home-rating-text">
+                        {movie.vote_average.toFixed(1)}
+                      </span>
                     </div>
                     <br />
                     <div className="home-description">{movie.overview}</div>
@@ -87,7 +96,6 @@ function HomeSlide(props) {
             );
           })}
         </div>
-
         <div className="swiper-pagination swiper-pagination1"></div>
       </div>
     </div>
