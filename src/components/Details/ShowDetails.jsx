@@ -175,28 +175,32 @@ function ShowDetails(props) {
           </div>
         </div>
       </div>
-      <hr className="hr-recommended"/>
-      <div className="carousel-container">
-        <div className="carousel-header">
-          <span className="carousel-title">Recommended</span>
-        </div>
-        <div className="carousel-wrapper">
-          <div className="swiper-container recommended-show-swiper">
-            <div className="swiper-wrapper">
-              {show.recommendations.results.map((item) => (
-                <ItemCard
-                  item={item}
-                  config={config}
-                  genreList={genreList}
-                  selection={false}
-                  url={"/shows/"}
-                />
-              ))}
+      {show.recommendations.results.length > 0 ? (
+        <>
+          <hr className="hr-recommended" />
+          <div className="carousel-container">
+            <div className="carousel-header">
+              <span className="carousel-title">Recommended</span>
             </div>
-            <div class="swiper-scrollbar scrollbar-1"></div>
+            <div className="carousel-wrapper">
+              <div className="swiper-container recommended-show-swiper">
+                <div className="swiper-wrapper">
+                  {show.recommendations.results.map((item) => (
+                    <ItemCard
+                      item={item}
+                      config={config}
+                      genreList={genreList}
+                      selection={false}
+                      url={"/shows/"}
+                    />
+                  ))}
+                </div>
+                <div class="swiper-scrollbar scrollbar-1"></div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : null}
     </div>
   );
 }
