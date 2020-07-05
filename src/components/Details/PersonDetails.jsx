@@ -106,7 +106,7 @@ function PersonDetails(props) {
         <div className="item-container">
           <div className="item-poster">
             <img
-              src={`${config.images.secure_base_url}${config.images.profile_sizes[3]}${person.profile_path}`}
+              src={`${config.images.secure_base_url}${config.images.profile_sizes[2]}${person.profile_path}`}
             ></img>
           </div>
           <div className="item-text-container">
