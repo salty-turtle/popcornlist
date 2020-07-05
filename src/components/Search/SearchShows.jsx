@@ -26,7 +26,7 @@ function SearchShows(props) {
   return props.shows.loading ? (
     <div></div>
   ) : (
-    <React.Fragment>
+    <>
       <div className="search-container">
         {props.shows.results.map((show) => {
           return (
@@ -45,7 +45,7 @@ function SearchShows(props) {
         })}
       </div>
       <Pagination items={props.shows} paginate={paginate} />
-    </React.Fragment>
+    </>
   );
 }
 

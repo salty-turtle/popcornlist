@@ -26,7 +26,7 @@ function SearchMovies(props) {
   return props.movies.loading ? (
     <div></div>
   ) : (
-    <React.Fragment>
+    <>
       <div className="search-container">
         {props.movies.results.map((movie) => {
           return (
@@ -45,7 +45,7 @@ function SearchMovies(props) {
         })}
       </div>
       <Pagination items={props.movies} paginate={paginate} />
-    </React.Fragment>
+    </>
   );
 }
 

@@ -89,7 +89,7 @@ function MovieDetails(props) {
     );
 
     return result ? (
-      <React.Fragment>
+      <>
         <ModalVideo
           channel="youtube"
           isOpen={isModalOpen}
@@ -102,7 +102,7 @@ function MovieDetails(props) {
         >
           <i className="fas fa-film"></i> Trailer
         </button>
-      </React.Fragment>
+      </>
     ) : null;
   }
 
@@ -111,26 +111,26 @@ function MovieDetails(props) {
       return;
     }
     return (
-      <React.Fragment>
+      <>
         <a href={`https://www.imdb.com/title/${id}`} target="_blank">
           <button className="button2">
             <i className="fab fa-imdb"></i> IMDb
           </button>
         </a>
-      </React.Fragment>
+      </>
     );
   }
 
   function displayWebsite(homepage) {
     if (homepage) {
       return (
-        <React.Fragment>
+        <>
           <a href={homepage} target="_blank">
             <button className="button3">
               <i className="fas fa-link"></i> Website
             </button>
           </a>
-        </React.Fragment>
+        </>
       );
     }
   }

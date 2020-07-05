@@ -26,7 +26,7 @@ function SearchPeople(props) {
   return props.people.loading ? (
     <div></div>
   ) : (
-    <React.Fragment>
+    <>
       <div className="search-container">
         {props.people.results.map((person) => {
           return (
@@ -45,7 +45,7 @@ function SearchPeople(props) {
         })}
       </div>
       <Pagination items={props.people} paginate={paginate} />
-    </React.Fragment>
+    </>
   );
 }
 
