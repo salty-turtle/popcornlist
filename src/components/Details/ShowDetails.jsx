@@ -175,6 +175,7 @@ function ShowDetails(props) {
           </div>
         </div>
       </div>
+      <hr className="hr-recommended"/>
       <div className="carousel-container">
         <div className="carousel-header">
           <span className="carousel-title">Recommended</span>
