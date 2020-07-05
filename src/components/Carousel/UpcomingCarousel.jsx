@@ -16,14 +16,8 @@ function UpcomingCarousel(props) {
     return selection ? movies : shows;
   };
   const genreList = new Map();
+  genres.genreList.forEach(item => item.map((genre) => genreList.set(genre.id, genre.name)));
 
-  selection
-    ? genres.movies.genreList.map((genre) =>
-        genreList.set(genre.id, genre.name)
-      )
-    : genres.shows.genreList.map((genre) =>
-        genreList.set(genre.id, genre.name)
-      );
 
   useEffect(() => {
     var upcomingSwiper = new Swiper(".upcoming-swiper", {

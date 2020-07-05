@@ -19,7 +19,7 @@ function ShowDetails(props) {
   const show = useSelector((state) => state.show);
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
-  genres.shows.genreList.map((genre) => genreList.set(genre.id, genre.name));
+  genres.genreList.forEach(item => item.map((genre) => genreList.set(genre.id, genre.name)));
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -177,7 +177,7 @@ function ShowDetails(props) {
       </div>
       {show.recommendations.results.length > 0 ? (
         <>
-          <hr className="hr-recommended" />
+          <hr className="hr-recommended"/>
           <div className="carousel-container">
             <div className="carousel-header">
               <span className="carousel-title">Recommended</span>
@@ -195,7 +195,7 @@ function ShowDetails(props) {
                     />
                   ))}
                 </div>
-                <div class="swiper-scrollbar scrollbar-1"></div>
+                <div className="swiper-scrollbar scrollbar-1"></div>
               </div>
             </div>
           </div>
