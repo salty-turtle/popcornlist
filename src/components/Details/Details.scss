@@ -119,3 +119,14 @@
     transition: 0.2s;
   }
 }
+
+.hr-recommended {
+  border-radius: 50%;
+  margin: 0 20rem;
+  opacity: 50%;
+}
+
+.recommended-movie-swiper,
+.recommended-show-swiper {
+  padding-bottom: 1.875rem;
+}

@@ -23,7 +23,7 @@ function HomeSlide(props) {
   const config = useSelector((state) => state.config);
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
-  genres.movies.genreList.map((genre) => genreList.set(genre.id, genre.name));
+  genres.genreList.forEach(item => item.map((genre) => genreList.set(genre.id, genre.name)));
 
   useEffect(() => {
     dispatch(requestPopularMovies());

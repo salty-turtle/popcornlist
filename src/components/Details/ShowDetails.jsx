@@ -19,7 +19,7 @@ function ShowDetails(props) {
   const show = useSelector((state) => state.show);
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
-  genres.shows.genreList.map((genre) => genreList.set(genre.id, genre.name));
+  genres.genreList.forEach(item => item.map((genre) => genreList.set(genre.id, genre.name)));
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -81,7 +81,7 @@ function ShowDetails(props) {
     );
 
     return result ? (
-      <React.Fragment>
+      <>
         <ModalVideo
           channel="youtube"
           isOpen={isModalOpen}
@@ -94,20 +94,20 @@ function ShowDetails(props) {
         >
           <i className="fas fa-film"></i> Trailer
         </button>
-      </React.Fragment>
+      </>
     ) : null;
   }
 
   function displayImdb(id) {
     if (id) {
       return (
-        <React.Fragment>
+        <>
           <a href={`https://www.imdb.com/title/${id}`} target="_blank">
             <button className="button2">
               <i className="fab fa-imdb"></i> IMDb
             </button>
           </a>
-        </React.Fragment>
+        </>
       );
     }
   }
@@ -115,13 +115,13 @@ function ShowDetails(props) {
   function displayWebsite(homepage) {
     if (homepage) {
       return (
-        <React.Fragment>
+        <>
           <a href={homepage} target="_blank">
             <button className="button3">
               <i className="fas fa-link"></i> Website
             </button>
           </a>
-        </React.Fragment>
+        </>
       );
     }
   }
@@ -175,27 +175,32 @@ function ShowDetails(props) {
           </div>
         </div>
       </div>
-      <div className="carousel-container">
-        <div className="carousel-header">
-          <span className="carousel-title">Recommended</span>
-        </div>
-        <div className="carousel-wrapper">
-          <div className="swiper-container recommended-show-swiper">
-            <div className="swiper-wrapper">
-              {show.recommendations.results.map((item) => (
-                <ItemCard
-                  item={item}
-                  config={config}
-                  genreList={genreList}
-                  selection={false}
-                  url={"/shows/"}
-                />
-              ))}
+      {show.recommendations.results.length > 0 ? (
+        <>
+          <hr className="hr-recommended"/>
+          <div className="carousel-container">
+            <div className="carousel-header">
+              <span className="carousel-title">Recommended</span>
             </div>
-            <div class="swiper-scrollbar scrollbar-1"></div>
+            <div className="carousel-wrapper">
+              <div className="swiper-container recommended-show-swiper">
+                <div className="swiper-wrapper">
+                  {show.recommendations.results.map((item) => (
+                    <ItemCard
+                      item={item}
+                      config={config}
+                      genreList={genreList}
+                      selection={false}
+                      url={"/shows/"}
+                    />
+                  ))}
+                </div>
+                <div className="swiper-scrollbar scrollbar-1"></div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : null}
     </div>
   );
 }

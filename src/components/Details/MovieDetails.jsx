@@ -19,9 +19,8 @@ function MovieDetails(props) {
   const movie = useSelector((state) => state.movie);
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
-  genres.movies.genreList.map((genre) => genreList.set(genre.id, genre.name));
+  genres.genreList.forEach(item => item.map((genre) => genreList.set(genre.id, genre.name)));
 
-  console.log(movie, "movie details");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -89,7 +88,7 @@ function MovieDetails(props) {
     );
 
     return result ? (
-      <React.Fragment>
+      <>
         <ModalVideo
           channel="youtube"
           isOpen={isModalOpen}
@@ -102,7 +101,7 @@ function MovieDetails(props) {
         >
           <i className="fas fa-film"></i> Trailer
         </button>
-      </React.Fragment>
+      </>
     ) : null;
   }
 
@@ -111,26 +110,26 @@ function MovieDetails(props) {
       return;
     }
     return (
-      <React.Fragment>
+      <>
         <a href={`https://www.imdb.com/title/${id}`} target="_blank">
           <button className="button2">
             <i className="fab fa-imdb"></i> IMDb
           </button>
         </a>
-      </React.Fragment>
+      </>
     );
   }
 
   function displayWebsite(homepage) {
     if (homepage) {
       return (
-        <React.Fragment>
+        <>
           <a href={homepage} target="_blank">
             <button className="button3">
               <i className="fas fa-link"></i> Website
             </button>
           </a>
-        </React.Fragment>
+        </>
       );
     }
   }
@@ -180,27 +179,32 @@ function MovieDetails(props) {
           </div>
         </div>
       </div>
-      <div className="carousel-container">
-        <div className="carousel-header">
-          <span className="carousel-title">Recommended</span>
-        </div>
-        <div className="carousel-wrapper">
-          <div className="swiper-container recommended-movie-swiper">
-            <div className="swiper-wrapper">
-              {movie.recommendations.results.map((item) => (
-                <ItemCard
-                  item={item}
-                  config={config}
-                  genreList={genreList}
-                  selection={true}
-                  url={"/movies/"}
-                />
-              ))}
+      {movie.recommendations.results.length > 0 ? (
+        <>
+          <hr className="hr-recommended" />
+          <div className="carousel-container">
+            <div className="carousel-header">
+              <span className="carousel-title">Recommended</span>
             </div>
-            <div class="swiper-scrollbar scrollbar-1"></div>
+            <div className="carousel-wrapper">
+              <div className="swiper-container recommended-movie-swiper">
+                <div className="swiper-wrapper">
+                  {movie.recommendations.results.map((item) => (
+                    <ItemCard
+                      item={item}
+                      config={config}
+                      genreList={genreList}
+                      selection={true}
+                      url={"/movies/"}
+                    />
+                  ))}
+                </div>
+                <div className="swiper-scrollbar scrollbar-1"></div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : null}
     </div>
   );
 }

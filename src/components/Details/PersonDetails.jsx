@@ -146,7 +146,7 @@ function PersonDetails(props) {
                 />
               ))}
             </div>
-            <div class="swiper-scrollbar scrollbar-1"></div>
+            <div className="swiper-scrollbar scrollbar-1"></div>
           </div>
         </div>
       </div> */}
