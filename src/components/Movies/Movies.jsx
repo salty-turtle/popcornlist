@@ -19,6 +19,48 @@ function Movies() {
     );
   }
   const [selectedGenre, setSelectedGenre] = React.useState([]);
+
+  const sortOptions = [
+    { value: "popularity.desc", label: "Popularity Descending" },
+    { value: "popularity.asc", label: "Popularity Ascending" },
+    { value: "vote_average.desc", label: "Rating Descending" },
+    { value: "vote_average.asc", label: "Rating Ascending" },
+    { value: "primary_release_date.desc", label: "Release Date Descending" },
+    { value: "primary_release_date.asc", label: "Release Date Ascending" },
+  ];
+
+  const selectStyle = {
+    menu: (provided, state) => ({
+      ...provided,
+      border: "0px",
+      color: "#f1e7e3",
+      backgroundColor: "#303030",
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      color: state.isSelected ? "#1b181d" : "#f1e7e3",
+      backgroundColor: state.isSelected ? "#db3636" : "#303030",
+      "&:hover": {
+        color: "#1b181d",
+        backgroundColor: "#db3636",
+      },
+    }),
+    control: (provided, state) => ({
+      ...provided,
+      backgroundColor: "#303030",
+      border: state.isFocused ? 0 : 0,
+      boxShadow: state.isFocused ? 0 : 0,
+    }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      color: "#f1e7e3",
+    }),
+    menuList: (provided, state) => ({
+      ...provided,
+      color: "#f1e7e3",
+      backgroundColor: "#303030",
+    }),
+
   const colourStyles = {
     control: styles => ({ ...styles, backgroundColor: 'white' }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -76,7 +118,7 @@ function Movies() {
       <div className="discover-filter-container">
         <div className="discover-sort-container">
           <div className="discover-secondary-title">Sort By</div>
-          <div>[DROPDOWN]</div>
+          <Select styles={selectStyle} options={sortOptions} />
         </div>
         <div className="discover-genre-container">
           <div className="discover-secondary-title">Genre</div>

@@ -24,13 +24,19 @@
 .discover-secondary-title {
   font-size: 1.4rem;
   font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
 .discover-filter-container {
   display: flex;
   justify-content: space-evenly;
-}
 
+  .discover-sort-container,
+  .discover-genre-container,
+  .discover-date-container {
+    flex: 0.2;
+  }
+}
 .discover-date-menu {
   display: flex;
 }
