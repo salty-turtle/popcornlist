@@ -41,6 +41,10 @@
   display: flex;
 }
 
+.discover-genre-container {
+  width: 30%;
+}
+
 .results-container {
   display: grid;
   justify-content: space-evenly;
@@ -56,4 +60,8 @@
   align-items: center;
   flex-direction: column;
   height: 100%;
+}
+
+.genres-dropdown {
+  color:$primary-font-color
 }

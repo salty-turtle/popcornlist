@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Movies.scss";
 import Select from "react-select";
+import makeAnimated from "react-select/animated";
+import { useSelector } from "react-redux";
+import chroma from 'chroma-js';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 function Movies() {
+  const [startDate, setStartDate] = useState(new Date());
+  const animatedComponents = makeAnimated();
+  const options = [];
+  const genres = useSelector((state) => state.genres.genreList);
+  if (genres.length > 1) {
+    genres[0].map((genre) =>
+      options.push({ value: genre.id, label: genre.name })
+    );
+  }
+  const [selectedGenre, setSelectedGenre] = React.useState([]);
+
   const sortOptions = [
     { value: "popularity.desc", label: "Popularity Descending" },
     { value: "popularity.asc", label: "Popularity Ascending" },
@@ -11,8 +28,6 @@ function Movies() {
     { value: "primary_release_date.desc", label: "Release Date Descending" },
     { value: "primary_release_date.asc", label: "Release Date Ascending" },
   ];
-
-  const genreOptions = [{ value: "genre1", label: "genre1" }];
 
   const selectStyle = {
     menu: (provided, state) => ({
@@ -45,6 +60,54 @@ function Movies() {
       color: "#f1e7e3",
       backgroundColor: "#303030",
     }),
+
+  const colourStyles = {
+    control: styles => ({ ...styles, backgroundColor: 'white' }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      const color = chroma("black");
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? null
+          : isSelected
+          ? "black"
+          : isFocused
+          ? color.alpha(0.1).css()
+          : null,
+        color: isDisabled
+          ? '#ccc'
+          : isSelected
+          ? chroma.contrast(color, 'white') > 2
+            ? 'white'
+            : '"black"'
+          : "black",
+        cursor: isDisabled ? 'not-allowed' : 'default',
+  
+        ':active': {
+          ...styles[':active'],
+          backgroundColor: !isDisabled && (isSelected ? "black" : color.alpha(0.3).css()),
+        },
+      };
+    },
+    multiValue: (styles, { data }) => {
+      const color = chroma("black");
+      return {
+        ...styles,
+        backgroundColor: color.alpha(0.1).css(),
+      };
+    },
+    multiValueLabel: (styles, { data }) => ({
+      ...styles,
+      color: "black",
+    }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      color: "black",
+      ':hover': {
+        backgroundColor: "black",
+        color: 'white',
+      },
+    }),
   };
 
   return (
@@ -59,14 +122,27 @@ function Movies() {
         </div>
         <div className="discover-genre-container">
           <div className="discover-secondary-title">Genre</div>
-          <Select styles={selectStyle} options={genreOptions} isMulti />
+          <Select
+            className="genres-dropdown"
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            isMulti
+            value={selectedGenre}
+            options={options}
+            onChange={(selectedOptions) => {
+              setSelectedGenre(selectedOptions);
+              console.log(selectedOptions,"Selected genre options");
+            }}
+            styles={colourStyles}
+          />
         </div>
         <div className="discover-date-container">
           <div className="discover-secondary-title">Date</div>
           <div className="discover-date-menu">
-            <div>[YYYY]</div>
-            <div>[MM]</div>
-            <div>[DD]</div>
+            <DatePicker
+        selected={startDate}
+        onChange={date => setStartDate(date)}
+      />
           </div>
         </div>
       </div>
