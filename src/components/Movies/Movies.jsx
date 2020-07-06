@@ -3,10 +3,9 @@ import "./Movies.scss";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { useSelector } from "react-redux";
-import chroma from 'chroma-js';
+import chroma from "chroma-js";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 
 function Movies() {
   const [startDate, setStartDate] = useState(new Date());
@@ -60,9 +59,10 @@ function Movies() {
       color: "#f1e7e3",
       backgroundColor: "#303030",
     }),
+  };
 
   const colourStyles = {
-    control: styles => ({ ...styles, backgroundColor: 'white' }),
+    control: (styles) => ({ ...styles, backgroundColor: "white" }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       const color = chroma("black");
       return {
@@ -75,20 +75,22 @@ function Movies() {
           ? color.alpha(0.1).css()
           : null,
         color: isDisabled
-          ? '#ccc'
+          ? "#ccc"
           : isSelected
-          ? chroma.contrast(color, 'white') > 2
-            ? 'white'
+          ? chroma.contrast(color, "white") > 2
+            ? "white"
             : '"black"'
           : "black",
-        cursor: isDisabled ? 'not-allowed' : 'default',
-  
-        ':active': {
-          ...styles[':active'],
-          backgroundColor: !isDisabled && (isSelected ? "black" : color.alpha(0.3).css()),
+        cursor: isDisabled ? "not-allowed" : "default",
+
+        ":active": {
+          ...styles[":active"],
+          backgroundColor:
+            !isDisabled && (isSelected ? "black" : color.alpha(0.3).css()),
         },
       };
     },
+
     multiValue: (styles, { data }) => {
       const color = chroma("black");
       return {
@@ -103,9 +105,9 @@ function Movies() {
     multiValueRemove: (styles, { data }) => ({
       ...styles,
       color: "black",
-      ':hover': {
+      ":hover": {
         backgroundColor: "black",
-        color: 'white',
+        color: "white",
       },
     }),
   };
@@ -131,7 +133,7 @@ function Movies() {
             options={options}
             onChange={(selectedOptions) => {
               setSelectedGenre(selectedOptions);
-              console.log(selectedOptions,"Selected genre options");
+              console.log(selectedOptions, "Selected genre options");
             }}
             styles={colourStyles}
           />
@@ -140,9 +142,9 @@ function Movies() {
           <div className="discover-secondary-title">Date</div>
           <div className="discover-date-menu">
             <DatePicker
-        selected={startDate}
-        onChange={date => setStartDate(date)}
-      />
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+            />
           </div>
         </div>
       </div>
