@@ -6,18 +6,18 @@ import { useSelector } from "react-redux";
 import chroma from "chroma-js";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import API from "../../api/api"
 
 function Movies() {
   const [startDate, setStartDate] = useState(new Date());
   const animatedComponents = makeAnimated();
-  const options = [];
+  const genreOptions = [];
   const genres = useSelector((state) => state.genres.genreList);
   if (genres.length > 1) {
     genres[0].map((genre) =>
-      options.push({ value: genre.id, label: genre.name })
+      genreOptions.push({ value: genre.id, label: genre.name })
     );
   }
-  const [selectedGenre, setSelectedGenre] = React.useState([]);
 
   const sortOptions = [
     { value: "popularity.desc", label: "Popularity Descending" },
@@ -27,6 +27,32 @@ function Movies() {
     { value: "primary_release_date.desc", label: "Release Date Descending" },
     { value: "primary_release_date.asc", label: "Release Date Ascending" },
   ];
+
+  const [selectedGenre, setSelectedGenre] = React.useState(genreOptions[0]);
+
+  const [selectedOption, setSelectedOption] = useState(sortOptions[0]);
+
+  const createMovieRequest = (sortSelection, genreSelection) => {
+    let genreRequests = ""
+    if (Array.isArray(genreSelection)) {
+      let genreArr = []
+      genreSelection.map((selection) => genreArr.push(selection.value))
+      genreRequests = genreArr.join(",")
+    } else if (genreSelection) {
+      genreRequests = genreSelection.value
+    }
+    console.log(genreRequests,"Genre ids to search for")
+    let movieParams = {
+      params: {
+        language: "en-US",
+        region: "US",
+        sort_by: sortSelection,
+        with_genres: genreRequests,
+        include_adult: false,
+      },
+    };
+    API.get("/discover/movie", movieParams).then(res => console.log(res.data.results,"Search results"))
+  };
 
   const selectStyle = {
     menu: (provided, state) => ({
@@ -120,7 +146,13 @@ function Movies() {
       <div className="discover-filter-container">
         <div className="discover-sort-container">
           <div className="discover-secondary-title">Sort By</div>
-          <Select styles={selectStyle} options={sortOptions} />
+          <Select
+            styles={selectStyle}
+            options={sortOptions}
+            defaultValue={sortOptions[0]}
+            value={selectedOption}
+            onChange={(option) => setSelectedOption(option.value)}
+          />
         </div>
         <div className="discover-genre-container">
           <div className="discover-secondary-title">Genre</div>
@@ -129,11 +161,11 @@ function Movies() {
             closeMenuOnSelect={false}
             components={animatedComponents}
             isMulti
+            defaultValue={selectedGenre}
             value={selectedGenre}
-            options={options}
+            options={genreOptions}
             onChange={(selectedOptions) => {
               setSelectedGenre(selectedOptions);
-              console.log(selectedOptions, "Selected genre options");
             }}
             styles={colourStyles}
           />
@@ -147,6 +179,11 @@ function Movies() {
             />
           </div>
         </div>
+        <button
+          onClick={() =>
+            createMovieRequest(selectedOption, selectedGenre)
+          }
+        >Search</button>
       </div>
       <div className="results-container">
         <div className="result-item">
