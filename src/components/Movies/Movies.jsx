@@ -9,12 +9,13 @@ import "../../styles/_datepicker.scss";
 import API from "../../api/api";
 
 function Movies() {
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
   const animatedComponents = makeAnimated();
   const genreOptions = [];
-  const genres = useSelector((state) => state.genres.genreList);
-  if (genres.length > 1) {
-    genres[0].map((genre) =>
+  const genres = useSelector((state) => state.genres);
+  if (!genres.movies.loading) {
+    genres.genreList[0].map((genre) =>
       genreOptions.push({ value: genre.id, label: genre.name })
     );
   }
@@ -41,12 +42,12 @@ function Movies() {
     } else if (genreSelection) {
       genreRequests = genreSelection.value;
     }
-    console.log(genreRequests, "Genre ids to search for");
+    console.log(genreRequests, "Genre ids to search for", sortSelection.value, "sort by selection");
     let movieParams = {
       params: {
         language: "en-US",
         region: "US",
-        sort_by: sortSelection,
+        sort_by: sortSelection.value,
         with_genres: genreRequests,
         include_adult: false,
       },
@@ -121,7 +122,7 @@ function Movies() {
             options={sortOptions}
             defaultValue={sortOptions[0]}
             value={selectedOption}
-            onChange={(option) => setSelectedOption(option.value)}
+            onChange={(option) => setSelectedOption(option)}
           />
         </div>
         <div className="discover-genre-container">
@@ -146,6 +147,20 @@ function Movies() {
             dateFormat="yyyy-MM-dd"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
+            placeholderText="From"
+          />
+          <DatePicker
+            className="date-picker"
+            dateFormat="yyyy-MM-dd"
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
+            placeholderText="To"
           />
           <div className="discover-date-menu"></div>
         </div>
