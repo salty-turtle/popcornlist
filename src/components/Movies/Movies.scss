@@ -5,13 +5,11 @@
   color: $primary-font-color;
   display: flex;
   flex-direction: column;
-  border: 1px solid $secondary-color;
 }
 
 .discover-title-container {
   display: flex;
   width: 100%;
-  background-color: blue;
   justify-content: center;
   margin-bottom: 1rem;
 
@@ -48,6 +46,38 @@
 .discover-input-container {
   display: flex;
   flex-direction: column;
+}
+
+.discover-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .discover-button {
+    font-family: $primary-font;
+    font-weight: 700;
+    font-size: 1.2rem;
+    outline: none;
+    cursor: pointer;
+    color: $secondary-font-color;
+    background-color: $secondary-color;
+    border: 0.0625rem /* 1px */ solid $secondary-color;
+    border-radius: 0.25rem; /* 4px */
+    padding: 0.4rem 1.2rem 0.4rem 1.2rem;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $primary-font-color;
+    }
+  }
+}
+
+.discover-hr {
+  width: 70%;
+  opacity: 0.5;
+  margin-top: 3rem;
+  border-radius: 50%;
 }
 
 .results-container {
