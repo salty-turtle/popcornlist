@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "./People.scss";
+import "./Discover.scss";
 import poster from "../../images/poster.svg";
 import Pagination from "../Pagination/Pagination";
 import API from "../../api/api";
 
-function People() {
+function DiscoverPeople() {
   const config = useSelector((state) => state.config);
 
   const [discoverPeople, setDiscoverPeople] = useState({ loading: true });
@@ -68,4 +68,4 @@ function People() {
   );
 }
 
-export default People;
+export default DiscoverPeople;

@@ -3,7 +3,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "./Movies.scss";
+import "./Discover.scss";
 import poster from "../../images/poster.svg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,19 +11,19 @@ import "../../styles/_datepicker.scss";
 import API from "../../api/api";
 import Pagination from "../Pagination/Pagination";
 
-function Movies() {
+function DiscoverShows() {
   const config = useSelector((state) => state.config);
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [discoverMovies, setDiscoverMovies] = useState({ loading: true });
+  const [discoverShows, setDiscoverShows] = useState({ loading: true });
   const [currentPage, setCurrentPage] = useState(1);
 
   const animatedComponents = makeAnimated();
   const genreOptions = [];
   const genres = useSelector((state) => state.genres);
-  if (!genres.movies.loading) {
-    genres.movies.genreList.map((genre) =>
+  if (!genres.shows.loading) {
+    genres.shows.genreList.map((genre) =>
       genreOptions.push({ value: genre.id, label: genre.name })
     );
   }
@@ -41,7 +41,7 @@ function Movies() {
   const [selectedOption, setSelectedOption] = useState(sortOptions[0]);
 
   useEffect(() => {
-    createMovieRequest(
+    createShowRequest(
       currentPage,
       selectedOption,
       selectedGenre,
@@ -50,15 +50,15 @@ function Movies() {
     );
   }, [currentPage]);
 
-  const createMovieRequest = (
+  const createShowRequest = (
     page,
     sortSelection,
     genreSelection,
     startDate,
     endDate
   ) => {
-    setDiscoverMovies({
-      ...discoverMovies,
+    setDiscoverShows({
+      ...discoverShows,
       loading: true,
     });
 
@@ -72,14 +72,7 @@ function Movies() {
       genreRequests = genreSelection.value;
     }
 
-    console.log(
-      genreRequests,
-      "Genre ids to search for",
-      sortSelection.value,
-      "sort by selection"
-    );
-
-    let movieParams = {
+    let showParams = {
       params: {
         page: page,
         language: "en-US",
@@ -87,18 +80,20 @@ function Movies() {
         sort_by: sortSelection.value,
         with_genres: genreRequests,
         include_adult: false,
-        "release_date.gte": startDate,
-        "release_date.lte": endDate,
+        "first_air_date.gte": startDate,
+        "first_air_date.lte": endDate,
       },
     };
 
-    API.get("/discover/movie", movieParams).then((res) =>
-      setDiscoverMovies({
-        ...discoverMovies,
+    API.get("/discover/tv", showParams).then((res) =>
+      setDiscoverShows({
+        ...discoverShows,
         ...res.data,
         loading: false,
       })
     );
+
+    console.log(showParams);
   };
 
   const selectStyle = {
@@ -153,7 +148,7 @@ function Movies() {
 
   function handleSearch() {
     setCurrentPage(1);
-    createMovieRequest(
+    createShowRequest(
       currentPage,
       selectedOption,
       selectedGenre,
@@ -166,12 +161,12 @@ function Movies() {
     setCurrentPage(pageNumber);
   }
 
-  return discoverMovies.loading ? (
+  return discoverShows.loading ? (
     <div></div>
   ) : (
     <div className="discover-container">
       <div className="discover-title-container">
-        <div className="discover-title">Discover Movies</div>
+        <div className="discover-title">Discover Shows</div>
       </div>
       <div className="discover-filter-container">
         <div className="discover-sort-container">
@@ -200,7 +195,6 @@ function Movies() {
           />
         </div>
         <div className="discover-date-container">
-          {/* <div className="discover-secondary-title">Date</div> */}
           <div className="discover-input-container">
             <div className="discover-secondary-title">Start Date:</div>
             <DatePicker
@@ -238,25 +232,25 @@ function Movies() {
       </div>
       <hr className="discover-hr" />
       <div className="results-container">
-        {discoverMovies.results.map((movie) => {
+        {discoverShows.results.map((show) => {
           return (
-            <Link to={`/movies/${movie.id}`} className="result-item">
-              {movie.poster_path ? (
+            <Link to={`/shows/${show.id}`} className="result-item">
+              {show.poster_path ? (
                 <img
-                  src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${movie.poster_path}`}
-                  className="result-img"
+                  src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${show.poster_path}`}
+                  className="search-img"
                 ></img>
               ) : (
                 <img src={poster} className="result-img-placeholder"></img>
               )}
-              <div className="result-item-title">{movie.title}</div>
+              <div className="result-item-title">{show.name}</div>
             </Link>
           );
         })}
       </div>
-      <Pagination items={discoverMovies} paginate={paginate} />
+      <Pagination items={discoverShows} paginate={paginate} />
     </div>
   );
 }
 
-export default Movies;
+export default DiscoverShows;
