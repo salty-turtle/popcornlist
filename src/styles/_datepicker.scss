@@ -103,10 +103,6 @@
   }
 }
 
-.react-datepicker__month--selecting-range .react-datepicker__day--in-range,
-.react-datepicker__month--selecting-range
-  .react-datepicker__month-text--in-range,
-.react-datepicker__month--selecting-range
-  .react-datepicker__quarter-text--in-range {
+.react-datepicker__month--selecting-range .react-datepicker__day--in-range {
   background-color: $secondary-color;
 }
