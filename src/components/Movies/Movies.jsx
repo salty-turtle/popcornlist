@@ -143,6 +143,7 @@ function Movies() {
           <div className="discover-secondary-title">Date</div>
           <DatePicker
             className="date-picker"
+            dateFormat="yyyy-MM-dd"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
           />
