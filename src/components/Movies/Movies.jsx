@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/_datepicker.scss";
 import API from "../../api/api";
-import { useEffect } from "react";
+import Pagination from "../Pagination/Pagination";
 
 function Movies() {
   const config = useSelector((state) => state.config);
@@ -17,6 +17,7 @@ function Movies() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [discoverMovies, setDiscoverMovies] = useState({ loading: true });
+  const [currentPage, setCurrentPage] = useState(1);
 
   const animatedComponents = makeAnimated();
   const genreOptions = [];
@@ -40,10 +41,17 @@ function Movies() {
   const [selectedOption, setSelectedOption] = useState(sortOptions[0]);
 
   useEffect(() => {
-    createMovieRequest(selectedOption, selectedGenre);
-  }, []);
+    createMovieRequest(
+      currentPage,
+      selectedOption,
+      selectedGenre,
+      startDate,
+      endDate
+    );
+  }, [currentPage]);
 
   const createMovieRequest = (
+    page,
     sortSelection,
     genreSelection,
     startDate,
@@ -73,6 +81,7 @@ function Movies() {
 
     let movieParams = {
       params: {
+        page: page,
         language: "en-US",
         region: "US",
         sort_by: sortSelection.value,
@@ -141,6 +150,10 @@ function Movies() {
       },
     }),
   };
+
+  function paginate(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
 
   return discoverMovies.loading ? (
     <div></div>
@@ -242,6 +255,7 @@ function Movies() {
           );
         })}
       </div>
+      <Pagination items={discoverMovies} paginate={paginate} />
     </div>
   );
 }
