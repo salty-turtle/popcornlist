@@ -148,6 +148,20 @@ function Movies() {
             dateFormat="yyyy-MM-dd"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
+            placeholderText="From"
+          />
+          <DatePicker
+            className="date-picker"
+            dateFormat="yyyy-MM-dd"
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
+            placeholderText="To"
           />
           <div className="discover-date-menu"></div>
         </div>
