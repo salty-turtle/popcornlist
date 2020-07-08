@@ -139,6 +139,7 @@ function DiscoverMovies() {
     multiValueLabel: (provided, state) => ({
       ...provided,
       color: "#303030",
+      fontWeight: "700",
     }),
     multiValueRemove: (provided, state) => ({
       ...provided,
@@ -152,14 +153,17 @@ function DiscoverMovies() {
   };
 
   function handleSearch() {
-    setCurrentPage(1);
-    createMovieRequest(
-      currentPage,
-      selectedOption,
-      selectedGenre,
-      startDate,
-      endDate
-    );
+    if (currentPage === 1) {
+      createMovieRequest(
+        currentPage,
+        selectedOption,
+        selectedGenre,
+        startDate,
+        endDate
+      );
+    } else {
+      setCurrentPage(1);
+    }
   }
 
   function paginate(pageNumber) {
@@ -200,7 +204,6 @@ function DiscoverMovies() {
           />
         </div>
         <div className="discover-date-container">
-          {/* <div className="discover-secondary-title">Date</div> */}
           <div className="discover-input-container">
             <div className="discover-secondary-title">Start Date:</div>
             <DatePicker
