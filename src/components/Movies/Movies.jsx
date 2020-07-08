@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./Movies.scss";
+import poster from "../../images/poster.svg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/_datepicker.scss";
 import API from "../../api/api";
+import { useEffect } from "react";
 
 function Movies() {
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
+  const config = useSelector((state) => state.config);
+
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [discoverMovies, setDiscoverMovies] = useState({ loading: true });
+
   const animatedComponents = makeAnimated();
   const genreOptions = [];
   const genres = useSelector((state) => state.genres);
@@ -30,11 +37,25 @@ function Movies() {
   ];
 
   const [selectedGenre, setSelectedGenre] = React.useState(genreOptions[0]);
-
   const [selectedOption, setSelectedOption] = useState(sortOptions[0]);
 
-  const createMovieRequest = (sortSelection, genreSelection) => {
+  useEffect(() => {
+    createMovieRequest(selectedOption, selectedGenre);
+  }, []);
+
+  const createMovieRequest = (
+    sortSelection,
+    genreSelection,
+    startDate,
+    endDate
+  ) => {
+    setDiscoverMovies({
+      ...discoverMovies,
+      loading: true,
+    });
+
     let genreRequests = "";
+
     if (Array.isArray(genreSelection)) {
       let genreArr = [];
       genreSelection.map((selection) => genreArr.push(selection.value));
@@ -42,12 +63,14 @@ function Movies() {
     } else if (genreSelection) {
       genreRequests = genreSelection.value;
     }
+
     console.log(
       genreRequests,
       "Genre ids to search for",
       sortSelection.value,
       "sort by selection"
     );
+
     let movieParams = {
       params: {
         language: "en-US",
@@ -55,10 +78,17 @@ function Movies() {
         sort_by: sortSelection.value,
         with_genres: genreRequests,
         include_adult: false,
+        "release_date.gte": startDate,
+        "release_date.lte": endDate,
       },
     };
+
     API.get("/discover/movie", movieParams).then((res) =>
-      console.log(res.data.results, "Search results")
+      setDiscoverMovies({
+        ...discoverMovies,
+        ...res.data,
+        loading: false,
+      })
     );
   };
 
@@ -106,15 +136,15 @@ function Movies() {
       color: "#303030",
       "&:hover": {
         opacity: "0.6",
-        // backgroundColor: "#f1e7e3",
-        // color: "#303030",
         backgroundColor: "#f1e7e3",
         color: "#db3636",
       },
     }),
   };
 
-  return (
+  return discoverMovies.loading ? (
+    <div></div>
+  ) : (
     <div className="discover-container">
       <div className="discover-title-container">
         <div className="discover-title">Discover Movies</div>
@@ -146,9 +176,9 @@ function Movies() {
           />
         </div>
         <div className="discover-date-container">
-          <div className="discover-secondary-title">Date</div>
+          {/* <div className="discover-secondary-title">Date</div> */}
           <div className="discover-input-container">
-            <div className="discover-input-title">Start Date:</div>
+            <div className="discover-secondary-title">Start Date:</div>
             <DatePicker
               className="date-picker"
               dateFormat="yyyy-MM-dd"
@@ -162,7 +192,7 @@ function Movies() {
           </div>
           <br />
           <div className="discover-input-container">
-            <div className="discover-input-title">End Date:</div>
+            <div className="discover-secondary-title">End Date:</div>
             <DatePicker
               className="date-picker"
               dateFormat="yyyy-MM-dd"
@@ -174,22 +204,18 @@ function Movies() {
               placeholderText="To"
             />
           </div>
-
-          <div className="discover-date-menu"></div>
         </div>
-        {/* <div className="discover-date-container">
-          <div className="discover-secondary-title">Date</div>
-          <div className="discover-date-menu">
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-            />
-          </div>
-        </div> */}
         <div className="discover-button-container">
           <button
             className="discover-button"
-            onClick={() => createMovieRequest(selectedOption, selectedGenre)}
+            onClick={() =>
+              createMovieRequest(
+                selectedOption,
+                selectedGenre,
+                startDate,
+                endDate
+              )
+            }
           >
             Search
           </button>
@@ -197,36 +223,24 @@ function Movies() {
       </div>
       <hr className="discover-hr" />
       <div className="results-container">
-        <div className="result-item">
+        {/* <div className="result-item">
           <div>[SEARCH RESULTS]</div>
-        </div>
-        <div className="result-item">
-          <div>[SEARCH RESULTS]</div>
-        </div>
-        <div className="result-item">
-          <div>[SEARCH RESULTS]</div>
-        </div>
-        <div className="result-item">
-          <div>[SEARCH RESULTS]</div>
-        </div>
-        <div className="result-item">
-          <div>[SEARCH RESULTS]</div>
-        </div>
-        <div className="result-item">
-          <div>[SEARCH RESULTS]</div>
-        </div>
-        <div className="result-item">
-          <div>[SEARCH RESULTS]</div>
-        </div>
-        <div className="result-item">
-          <div>[SEARCH RESULTS]</div>
-        </div>
-        <div className="result-item">
-          <div>[SEARCH RESULTS]</div>
-        </div>
-        <div className="result-item">
-          <div>[SEARCH RESULTS]</div>
-        </div>
+        </div> */}
+        {discoverMovies.results.map((movie) => {
+          return (
+            <Link to={`/movies/${movie.id}`} className="search-item">
+              {movie.poster_path ? (
+                <img
+                  src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${movie.poster_path}`}
+                  className="search-img"
+                ></img>
+              ) : (
+                <img src={poster} className="search-img-placeholder"></img>
+              )}
+              <div className="search-item-title">{movie.title}</div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
