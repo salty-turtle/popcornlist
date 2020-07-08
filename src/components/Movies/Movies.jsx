@@ -151,6 +151,17 @@ function Movies() {
     }),
   };
 
+  function handleSearch() {
+    setCurrentPage(1);
+    createMovieRequest(
+      currentPage,
+      selectedOption,
+      selectedGenre,
+      startDate,
+      endDate
+    );
+  }
+
   function paginate(pageNumber) {
     setCurrentPage(pageNumber);
   }
@@ -219,17 +230,7 @@ function Movies() {
           </div>
         </div>
         <div className="discover-button-container">
-          <button
-            className="discover-button"
-            onClick={() =>
-              createMovieRequest(
-                selectedOption,
-                selectedGenre,
-                startDate,
-                endDate
-              )
-            }
-          >
+          <button className="discover-button" onClick={() => handleSearch()}>
             Search
             <i className="fas fa-search"></i>
           </button>
@@ -239,16 +240,16 @@ function Movies() {
       <div className="results-container">
         {discoverMovies.results.map((movie) => {
           return (
-            <Link to={`/movies/${movie.id}`} className="search-item">
+            <Link to={`/movies/${movie.id}`} className="result-item">
               {movie.poster_path ? (
                 <img
                   src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${movie.poster_path}`}
-                  className="search-img"
+                  className="result-img"
                 ></img>
               ) : (
-                <img src={poster} className="search-img-placeholder"></img>
+                <img src={poster} className="result-img-placeholder"></img>
               )}
-              <div className="search-item-title">{movie.title}</div>
+              <div className="result-item-title">{movie.title}</div>
             </Link>
           );
         })}
