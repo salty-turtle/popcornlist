@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "./Movies.scss";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { useSelector } from "react-redux";
-import chroma from "chroma-js";
+import "./Movies.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import API from "../../api/api"
+import "../../styles/_datepicker.scss";
+import API from "../../api/api";
 
 function Movies() {
   const [startDate, setStartDate] = useState(new Date());
@@ -33,15 +33,15 @@ function Movies() {
   const [selectedOption, setSelectedOption] = useState(sortOptions[0]);
 
   const createMovieRequest = (sortSelection, genreSelection) => {
-    let genreRequests = ""
+    let genreRequests = "";
     if (Array.isArray(genreSelection)) {
-      let genreArr = []
-      genreSelection.map((selection) => genreArr.push(selection.value))
-      genreRequests = genreArr.join(",")
+      let genreArr = [];
+      genreSelection.map((selection) => genreArr.push(selection.value));
+      genreRequests = genreArr.join(",");
     } else if (genreSelection) {
-      genreRequests = genreSelection.value
+      genreRequests = genreSelection.value;
     }
-    console.log(genreRequests,"Genre ids to search for")
+    console.log(genreRequests, "Genre ids to search for");
     let movieParams = {
       params: {
         language: "en-US",
@@ -51,7 +51,9 @@ function Movies() {
         include_adult: false,
       },
     };
-    API.get("/discover/movie", movieParams).then(res => console.log(res.data.results,"Search results"))
+    API.get("/discover/movie", movieParams).then((res) =>
+      console.log(res.data.results, "Search results")
+    );
   };
 
   const selectStyle = {
@@ -85,55 +87,23 @@ function Movies() {
       color: "#f1e7e3",
       backgroundColor: "#303030",
     }),
-  };
-
-  const colourStyles = {
-    control: (styles) => ({ ...styles, backgroundColor: "white" }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-      const color = chroma("black");
-      return {
-        ...styles,
-        backgroundColor: isDisabled
-          ? null
-          : isSelected
-          ? "black"
-          : isFocused
-          ? color.alpha(0.1).css()
-          : null,
-        color: isDisabled
-          ? "#ccc"
-          : isSelected
-          ? chroma.contrast(color, "white") > 2
-            ? "white"
-            : '"black"'
-          : "black",
-        cursor: isDisabled ? "not-allowed" : "default",
-
-        ":active": {
-          ...styles[":active"],
-          backgroundColor:
-            !isDisabled && (isSelected ? "black" : color.alpha(0.3).css()),
-        },
-      };
-    },
-
-    multiValue: (styles, { data }) => {
-      const color = chroma("black");
-      return {
-        ...styles,
-        backgroundColor: color.alpha(0.1).css(),
-      };
-    },
-    multiValueLabel: (styles, { data }) => ({
-      ...styles,
-      color: "black",
+    multiValue: (provided, state) => ({
+      ...provided,
+      backgroundColor: "#db3636",
     }),
-    multiValueRemove: (styles, { data }) => ({
-      ...styles,
-      color: "black",
-      ":hover": {
-        backgroundColor: "black",
-        color: "white",
+    multiValueLabel: (provided, state) => ({
+      ...provided,
+      color: "#303030",
+    }),
+    multiValueRemove: (provided, state) => ({
+      ...provided,
+      color: "#303030",
+      "&:hover": {
+        opacity: "0.6",
+        // backgroundColor: "#f1e7e3",
+        // color: "#303030",
+        backgroundColor: "#f1e7e3",
+        color: "#db3636",
       },
     }),
   };
@@ -157,7 +127,7 @@ function Movies() {
         <div className="discover-genre-container">
           <div className="discover-secondary-title">Genre</div>
           <Select
-            className="genres-dropdown"
+            styles={selectStyle}
             closeMenuOnSelect={false}
             components={animatedComponents}
             isMulti
@@ -167,10 +137,19 @@ function Movies() {
             onChange={(selectedOptions) => {
               setSelectedGenre(selectedOptions);
             }}
-            styles={colourStyles}
           />
         </div>
         <div className="discover-date-container">
+          <div className="discover-secondary-title">Date</div>
+          <DatePicker
+            className="date-picker"
+            dateFormat="yyyy-MM-dd"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+          <div className="discover-date-menu"></div>
+        </div>
+        {/* <div className="discover-date-container">
           <div className="discover-secondary-title">Date</div>
           <div className="discover-date-menu">
             <DatePicker
@@ -178,12 +157,12 @@ function Movies() {
               onChange={(date) => setStartDate(date)}
             />
           </div>
-        </div>
+        </div> */}
         <button
-          onClick={() =>
-            createMovieRequest(selectedOption, selectedGenre)
-          }
-        >Search</button>
+          onClick={() => createMovieRequest(selectedOption, selectedGenre)}
+        >
+          Search
+        </button>
       </div>
       <div className="results-container">
         <div className="result-item">
