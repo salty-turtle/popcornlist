@@ -45,6 +45,11 @@
   width: 30%;
 }
 
+.discover-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .results-container {
   display: grid;
   justify-content: space-evenly;
