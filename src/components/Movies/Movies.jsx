@@ -160,6 +160,7 @@ function Movies() {
               placeholderText="From"
             />
           </div>
+          <br />
           <div className="discover-input-container">
             <div className="discover-input-title">End Date:</div>
             <DatePicker
@@ -185,12 +186,16 @@ function Movies() {
             />
           </div>
         </div> */}
-        <button
-          onClick={() => createMovieRequest(selectedOption, selectedGenre)}
-        >
-          Search
-        </button>
+        <div className="discover-button-container">
+          <button
+            className="discover-button"
+            onClick={() => createMovieRequest(selectedOption, selectedGenre)}
+          >
+            Search
+          </button>
+        </div>
       </div>
+      <hr className="discover-hr" />
       <div className="results-container">
         <div className="result-item">
           <div>[SEARCH RESULTS]</div>
