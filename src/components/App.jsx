@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NavBar from "./NavBar/NavBar.jsx";
 import Home from "./Home/Home.jsx";
-import Movies from "./Movies/Movies.jsx";
-import Shows from "./Shows/Shows.jsx";
-import People from "./People/People.jsx";
+import DiscoverMovies from "./Discover/DiscoverMovies.jsx";
+import DiscoverShows from "./Discover/DiscoverShows.jsx";
+import DiscoverPeople from "./Discover/DiscoverPeople.jsx";
 import MovieDetails from "./Details/MovieDetails.jsx";
 import ShowDetails from "./Details/ShowDetails.jsx";
 import PersonDetails from "./Details/PersonDetails.jsx";
@@ -48,19 +48,19 @@ function App(props) {
         >
           <section className="transition-routes">
             <Switch location={location}>
-              <Route exact path="/movies" component={Movies}></Route>
+              <Route exact path="/movies" component={DiscoverMovies}></Route>
               <Route
                 exact
                 path="/movies/:movieId"
                 component={MovieDetails}
               ></Route>
-              <Route exact path="/shows" component={Shows}></Route>
+              <Route exact path="/shows" component={DiscoverShows}></Route>
               <Route
                 exact
                 path="/shows/:showId"
                 component={ShowDetails}
               ></Route>
-              <Route exact path="/people" component={People}></Route>
+              <Route exact path="/people" component={DiscoverPeople}></Route>
               <Route
                 exact
                 path="/people/:personId"
