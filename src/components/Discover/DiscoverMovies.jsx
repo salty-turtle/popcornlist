@@ -139,6 +139,7 @@ function DiscoverMovies() {
     multiValueLabel: (provided, state) => ({
       ...provided,
       color: "#303030",
+      fontWeight: "700",
     }),
     multiValueRemove: (provided, state) => ({
       ...provided,
@@ -200,7 +201,6 @@ function DiscoverMovies() {
           />
         </div>
         <div className="discover-date-container">
-          {/* <div className="discover-secondary-title">Date</div> */}
           <div className="discover-input-container">
             <div className="discover-secondary-title">Start Date:</div>
             <DatePicker

@@ -92,8 +92,6 @@ function DiscoverShows() {
         loading: false,
       })
     );
-
-    console.log(showParams);
   };
 
   const selectStyle = {
@@ -134,6 +132,7 @@ function DiscoverShows() {
     multiValueLabel: (provided, state) => ({
       ...provided,
       color: "#303030",
+      fontWeight: "700",
     }),
     multiValueRemove: (provided, state) => ({
       ...provided,
