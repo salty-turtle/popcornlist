@@ -146,14 +146,17 @@ function DiscoverShows() {
   };
 
   function handleSearch() {
-    setCurrentPage(1);
-    createShowRequest(
-      currentPage,
-      selectedOption,
-      selectedGenre,
-      startDate,
-      endDate
-    );
+    if (currentPage === 1) {
+      createShowRequest(
+        currentPage,
+        selectedOption,
+        selectedGenre,
+        startDate,
+        endDate
+      );
+    } else {
+      setCurrentPage(1);
+    }
   }
 
   function paginate(pageNumber) {

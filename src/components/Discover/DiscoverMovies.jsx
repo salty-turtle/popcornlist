@@ -153,14 +153,17 @@ function DiscoverMovies() {
   };
 
   function handleSearch() {
-    setCurrentPage(1);
-    createMovieRequest(
-      currentPage,
-      selectedOption,
-      selectedGenre,
-      startDate,
-      endDate
-    );
+    if (currentPage === 1) {
+      createMovieRequest(
+        currentPage,
+        selectedOption,
+        selectedGenre,
+        startDate,
+        endDate
+      );
+    } else {
+      setCurrentPage(1);
+    }
   }
 
   function paginate(pageNumber) {
