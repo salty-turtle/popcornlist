@@ -1,8 +1,8 @@
 import * as types from "../actions/types";
 
 const initialState = {
-  movies: { loading: true },
-  shows: { loading: true },
+  movies: { genreList: [], loading: true },
+  shows: { genreList: [], loading: true },
   genreList: [],
 };
 
@@ -21,6 +21,7 @@ export default (state = initialState, action) => {
         ...state,
         movies: {
           ...state.movies,
+          genreList: action.payload.genres,
           loading: false,
         },
         genreList: [...state.genreList, action.payload.genres],
@@ -38,6 +39,7 @@ export default (state = initialState, action) => {
         ...state,
         shows: {
           ...state.shows,
+          genreList: action.payload.genres,
           loading: false,
         },
         genreList: [...state.genreList, action.payload.genres],
