@@ -14,7 +14,6 @@ function Movies() {
   const animatedComponents = makeAnimated();
   const genreOptions = [];
   const genres = useSelector((state) => state.genres);
-  console.log(genres)
   if (!genres.movies.loading) {
     genres.genreList[0].map((genre) =>
       genreOptions.push({ value: genre.id, label: genre.name })
