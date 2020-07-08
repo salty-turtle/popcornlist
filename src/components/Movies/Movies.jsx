@@ -231,14 +231,12 @@ function Movies() {
             }
           >
             Search
+            <i className="fas fa-search"></i>
           </button>
         </div>
       </div>
       <hr className="discover-hr" />
       <div className="results-container">
-        {/* <div className="result-item">
-          <div>[SEARCH RESULTS]</div>
-        </div> */}
         {discoverMovies.results.map((movie) => {
           return (
             <Link to={`/movies/${movie.id}`} className="search-item">

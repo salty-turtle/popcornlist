@@ -63,6 +63,10 @@
     padding: 0.4rem 1.2rem 0.4rem 1.2rem;
     transition: 0.3s;
 
+    i {
+      padding-left: 0.425rem;
+    }
+
     &:hover {
       background-color: $primary-color;
       color: $primary-font-color;
