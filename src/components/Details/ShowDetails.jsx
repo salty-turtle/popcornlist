@@ -19,7 +19,9 @@ function ShowDetails(props) {
   const show = useSelector((state) => state.show);
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
-  genres.genreList.forEach(item => item.map((genre) => genreList.set(genre.id, genre.name)));
+  genres.genreList.forEach((item) =>
+    item.map((genre) => genreList.set(genre.id, genre.name))
+  );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -166,18 +168,16 @@ function ShowDetails(props) {
               <Cast credits={show.credits} />
             </div>
             <div className="buttons-container">
-              <div className="buttons-wrapper">
-                {displayTrailer(show.videos, isModalOpen, setIsModalOpen)}
-                {displayImdb(show.imdb_id)}
-                {displayWebsite(show.homepage)}
-              </div>
+              {displayTrailer(show.videos, isModalOpen, setIsModalOpen)}
+              {displayImdb(show.imdb_id)}
+              {displayWebsite(show.homepage)}
             </div>
           </div>
         </div>
       </div>
+      <hr className="hr-recommended" />
       {show.recommendations.results.length > 0 ? (
         <>
-          <hr className="hr-recommended"/>
           <div className="carousel-container">
             <div className="carousel-header">
               <span className="carousel-title">Recommended</span>

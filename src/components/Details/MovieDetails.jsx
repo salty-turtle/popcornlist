@@ -19,7 +19,9 @@ function MovieDetails(props) {
   const movie = useSelector((state) => state.movie);
   const genres = useSelector((state) => state.genres);
   const genreList = new Map();
-  genres.genreList.forEach(item => item.map((genre) => genreList.set(genre.id, genre.name)));
+  genres.genreList.forEach((item) =>
+    item.map((genre) => genreList.set(genre.id, genre.name))
+  );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -137,7 +139,7 @@ function MovieDetails(props) {
   return movie.loading ? (
     <div></div>
   ) : (
-    <div>
+    <>
       <div className="item-wrapper">
         <div className="item-container">
           <div className="item-poster">
@@ -170,18 +172,16 @@ function MovieDetails(props) {
               <Cast credits={movie.credits} />
             </div>
             <div className="buttons-container">
-              <div className="buttons-wrapper">
-                {displayTrailer(movie.videos, isModalOpen, setIsModalOpen)}
-                {displayImdb(movie.imdb_id)}
-                {displayWebsite(movie.homepage)}
-              </div>
+              {displayTrailer(movie.videos, isModalOpen, setIsModalOpen)}
+              {displayImdb(movie.imdb_id)}
+              {displayWebsite(movie.homepage)}
             </div>
           </div>
         </div>
       </div>
+      <hr className="hr-recommended" />
       {movie.recommendations.results.length > 0 ? (
         <>
-          <hr className="hr-recommended" />
           <div className="carousel-container">
             <div className="carousel-header">
               <span className="carousel-title">Recommended</span>
@@ -205,7 +205,7 @@ function MovieDetails(props) {
           </div>
         </>
       ) : null}
-    </div>
+    </>
   );
 }
 export default MovieDetails;

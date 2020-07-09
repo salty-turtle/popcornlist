@@ -13,9 +13,6 @@ function Cast({ credits }) {
   useEffect(() => {
     var castSwiper = new Swiper(".cast-swiper", {
       breakpoints: {
-        320: {
-          slidesPerView: 1,
-        },
         // 480: {
         //   slidesPerView: 2,
         //   spaceBetween: 10,
@@ -24,17 +21,13 @@ function Cast({ credits }) {
         //   slidesPerView: 2,
         //   spaceBetween: 10,
         // },
-        900: {
-          slidesPerView: 2,
-          spaceBetween: 10,
-        },
-        1000: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-        1200: {
+        1: {
           slidesPerView: 4,
           spaceBetween: 20,
+        },
+        800: {
+          slidesPerView: 4,
+          spaceBetween: 60,
         },
         1400: {
           slidesPerView: 7,
