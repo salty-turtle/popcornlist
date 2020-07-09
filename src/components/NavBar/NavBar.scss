@@ -99,3 +99,97 @@
     font-size: 1.125rem; /* 18px */
   }
 }
+
+/* Hamburger styling */
+.hamburger-toggle-container {
+  display: none;
+}
+
+#hamburger-toggle {
+  display: none;
+}
+
+.hamburger-toggle-icon {
+  font-size: 2.3rem;
+  color: $secondary-color;
+  display: none;
+}
+
+@media only screen and (max-width: 1100px) {
+  .nav-logo,
+  .nav-padding {
+    display: none;
+  }
+
+  .nav-items {
+    padding: 0;
+    width: 100%;
+    .menu {
+      display: none;
+    }
+  }
+
+  .menu li {
+    margin: 0.5rem 0rem 0.5rem 0rem;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .hamburger-toggle-container {
+    display: block;
+  }
+
+  .hamburger-toggle-icon {
+    cursor: pointer;
+    display: flex;
+  }
+
+  #hamburger-toggle {
+    &:checked + .nav-container {
+      flex-direction: column;
+    }
+
+    &:checked + .nav-container > .nav-items > .menu {
+      transform: scale(1);
+      transition-duration: 2s;
+      opacity: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &:checked + .nav-container > .hamburger-toggle-container {
+      height: 100%;
+      width: 100%;
+    }
+
+    &:checked + .nav-container > .nav-search-container {
+      margin-top: 0.5rem;
+    }
+  }
+
+  .nav-search-container {
+    box-shadow: none;
+    border-radius: 1.5rem;
+    height: 2rem;
+    width: 22rem;
+    display: flex;
+    background-color: #2e2e2e;
+  }
+
+  .nav-search-form {
+    height: 2rem;
+    width: 22rem;
+  }
+
+  .nav-search-box {
+    font-size: 0.825rem;
+  }
+
+  .nav-search-btn > i {
+    font-size: 1rem;
+  }
+}

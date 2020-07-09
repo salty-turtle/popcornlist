@@ -19,9 +19,15 @@ function NavBar() {
 
   return (
     <div>
+      <input type="checkbox" id="hamburger-toggle" />
       <div className="nav-container">
+        <div className="hamburger-toggle-container">
+          <label for="hamburger-toggle">
+            <i className="fas fa-bars hamburger-toggle-icon"></i>
+          </label>
+        </div>
         <nav className="nav-items">
-          <ul>
+          <ul className="menu">
             <li>
               <div className="nav-logo">
                 <Link to="/">
