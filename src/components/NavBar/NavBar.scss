@@ -103,6 +103,7 @@
 /* Hamburger styling */
 .hamburger-toggle-container {
   display: none;
+  margin-right: 25px;
 }
 
 #hamburger-toggle {
@@ -174,15 +175,7 @@
     }
   }
 
-  .nav-search-container {
-    box-shadow: none;
-    border-radius: 1.5rem;
-    height: 2rem;
-    width: 22rem;
-    display: flex;
-    background-color: #2e2e2e;
-  }
-
+  .nav-search-container,
   .nav-search-form {
     height: 2rem;
     width: 22rem;
@@ -194,5 +187,13 @@
 
   .nav-search-btn > i {
     font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .nav-search-container,
+  .nav-search-form {
+    height: 2rem;
+    width: 16rem;
   }
 }
