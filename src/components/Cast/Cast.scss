@@ -9,3 +9,31 @@
   height: 100%;
   width: 100%;
 }
+
+@media only screen and (max-width: 1400px) {
+  .cast-swiper {
+    width: 800px;
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .cast-swiper {
+    width: 600px;
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .cast-swiper {
+    width: 350px;
+    height: 110px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .cast-swiper {
+    width: 260px;
+    height: 75px;
+  }
+}
