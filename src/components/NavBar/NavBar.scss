@@ -134,12 +134,17 @@
 
   .menu li {
     margin: 0.5rem 0rem 0.5rem 0rem;
+  }
+
+  .menu,
+  .hamburger-toggle-icon {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .hamburger-toggle-container {
@@ -165,7 +170,6 @@
     }
 
     &:checked + .nav-container > .hamburger-toggle-container {
-      height: 100%;
       width: 100%;
     }
 
@@ -174,15 +178,7 @@
     }
   }
 
-  .nav-search-container {
-    box-shadow: none;
-    border-radius: 1.5rem;
-    height: 2rem;
-    width: 22rem;
-    display: flex;
-    background-color: #2e2e2e;
-  }
-
+  .nav-search-container,
   .nav-search-form {
     height: 2rem;
     width: 22rem;
@@ -194,5 +190,17 @@
 
   .nav-search-btn > i {
     font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .hamburger-toggle-icon {
+    margin-right: 25px;
+  }
+
+  .nav-search-container,
+  .nav-search-form {
+    height: 2rem;
+    width: 16rem;
   }
 }
