@@ -103,7 +103,6 @@
 /* Hamburger styling */
 .hamburger-toggle-container {
   display: none;
-  margin-right: 25px;
 }
 
 #hamburger-toggle {
@@ -166,7 +165,6 @@
     }
 
     &:checked + .nav-container > .hamburger-toggle-container {
-      height: 100%;
       width: 100%;
     }
 
@@ -191,6 +189,9 @@
 }
 
 @media only screen and (max-width: 450px) {
+  .hamburger-toggle-icon {
+    margin-right: 25px;
+  }
   .nav-search-container,
   .nav-search-form {
     height: 2rem;
