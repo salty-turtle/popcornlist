@@ -134,12 +134,17 @@
 
   .menu li {
     margin: 0.5rem 0rem 0.5rem 0rem;
+  }
+
+  .menu,
+  .hamburger-toggle-icon {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .hamburger-toggle-container {
@@ -192,6 +197,7 @@
   .hamburger-toggle-icon {
     margin-right: 25px;
   }
+
   .nav-search-container,
   .nav-search-form {
     height: 2rem;
