@@ -44,9 +44,6 @@ function Search() {
     <div className="search-wrapper">
       <div className="search-title">Search by Category</div>
       <div className="search-buttons-container">
-        <div className="search-hr-container">
-          <hr className="search-hr" />
-        </div>
         <button
           className="search-button-1"
           onClick={() => setDisplay("movies")}
@@ -62,10 +59,8 @@ function Search() {
         >
           People<span className="total">{search.people.total_results}</span>
         </button>
-        <div className="search-hr-container">
-          <hr className="search-hr" />
-        </div>
       </div>
+      <hr className="search-hr" />
       {displaySearch()}
     </div>
   );
