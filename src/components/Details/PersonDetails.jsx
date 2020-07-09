@@ -121,10 +121,8 @@ function PersonDetails(props) {
             <div className="item-secondary-title">Biography</div>
             <div className="item-synopsis">{person.biography}</div>
             <div className="buttons-container">
-              <div className="buttons-wrapper">
-                {displayImdb(person.imdb_id)}
-                {displayWebsite(person.homepage)}
-              </div>
+              {displayImdb(person.imdb_id)}
+              {displayWebsite(person.homepage)}
             </div>
           </div>
         </div>
