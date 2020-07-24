@@ -72,13 +72,6 @@ function DiscoverMovies() {
       genreRequests = genreSelection.value;
     }
 
-    console.log(
-      genreRequests,
-      "Genre ids to search for",
-      sortSelection.value,
-      "sort by selection"
-    );
-
     let movieParams = {
       params: {
         page: page,
