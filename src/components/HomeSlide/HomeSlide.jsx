@@ -13,7 +13,6 @@ import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import "./HomeSlide.scss";
 import "../../styles/_carousel.scss";
-import Loader from "../Loader/Loader";
 import Rating from "react-rating";
 
 function HomeSlide(props) {
@@ -37,14 +36,14 @@ function HomeSlide(props) {
   }, []);
 
   useEffect(() => {
-    var swiper1 = new Swiper(".swiper1", {
+    var homeSwiper = new Swiper(".home-swiper", {
       loop: true,
       autoHeight: true,
       autoplay: {
         delay: 10000,
       },
       pagination: {
-        el: ".swiper-pagination1",
+        el: ".home-swiper-pagination",
         type: "progressbar",
       },
     });
@@ -54,7 +53,7 @@ function HomeSlide(props) {
     <div></div>
   ) : (
     <div>
-      <div className="swiper-container swiper1">
+      <div className="swiper-container home-swiper">
         <div className="swiper-wrapper">
           {movies.popular.results.slice(0, 5).map((movie) => {
             return (
@@ -98,7 +97,7 @@ function HomeSlide(props) {
             );
           })}
         </div>
-        <div className="swiper-pagination swiper-pagination1"></div>
+        <div className="swiper-pagination home-swiper-pagination"></div>
       </div>
     </div>
   );

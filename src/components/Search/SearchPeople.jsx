@@ -34,10 +34,15 @@ function SearchPeople(props) {
               {person.profile_path ? (
                 <img
                   src={`${config.images.secure_base_url}${config.images.profile_sizes[2]}${person.profile_path}`}
+                  alt=""
                   className="search-img"
                 ></img>
               ) : (
-                <img src={poster} className="search-img-placeholder"></img>
+                <img
+                  src={poster}
+                  alt=""
+                  className="search-img-placeholder"
+                ></img>
               )}
               <div className="search-item-title">{person.name}</div>
             </Link>

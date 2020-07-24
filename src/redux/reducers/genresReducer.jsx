@@ -8,7 +8,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "REQUEST_MOVIE_GENRES":
+    case types.REQUEST_MOVIE_GENRES:
       return {
         ...state,
         movies: {
@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
           loading: true,
         },
       };
-    case "REQUEST_MOVIE_GENRES_COMPLETE":
+    case types.REQUEST_MOVIE_GENRES_COMPLETE:
       return {
         ...state,
         movies: {
@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
         },
         genreList: [...state.genreList, action.payload.genres],
       };
-    case "REQUEST_SHOW_GENRES":
+    case types.REQUEST_SHOW_GENRES:
       return {
         ...state,
         shows: {
@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
           loading: true,
         },
       };
-    case "REQUEST_SHOW_GENRES_COMPLETE":
+    case types.REQUEST_SHOW_GENRES_COMPLETE:
       return {
         ...state,
         shows: {

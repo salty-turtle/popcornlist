@@ -145,6 +145,7 @@ function MovieDetails(props) {
           <div className="item-poster">
             <img
               src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${movie.poster_path}`}
+              alt=""
             ></img>
           </div>
           <div className="item-text-container">

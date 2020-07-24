@@ -1,12 +1,7 @@
 import React from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
 import "./Pagination.scss";
 
 function Pagination(props) {
-  const { searchQuery } = useParams();
-
-  const location = useLocation();
-
   function displayPreviousButton() {
     if (props.items.page > 1) {
       return (

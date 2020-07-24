@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   requestSearchMovies,
   requestSearchShows,
@@ -14,10 +14,8 @@ import SearchPeople from "./SearchPeople";
 function Search() {
   const { searchQuery } = useParams();
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const search = useSelector((state) => state.search);
-  const config = useSelector((state) => state.config);
 
   const [display, setDisplay] = useState("movies");
 

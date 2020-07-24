@@ -247,10 +247,15 @@ function DiscoverMovies() {
               {movie.poster_path ? (
                 <img
                   src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${movie.poster_path}`}
+                  alt=""
                   className="result-img"
                 ></img>
               ) : (
-                <img src={poster} className="result-img-placeholder"></img>
+                <img
+                  src={poster}
+                  alt=""
+                  className="result-img-placeholder"
+                ></img>
               )}
               <div className="result-item-title">{movie.title}</div>
             </Link>

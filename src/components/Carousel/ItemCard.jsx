@@ -7,11 +7,18 @@ function ItemCard(props) {
   return (
     <div className="swiper-slide card-slide">
       <Link to={`${props.url}${props.item.id}`}>
-        {props.item.poster_path ? (<img
-          className="card-img"
-          src={`${props.config.images.secure_base_url}${props.config.images.poster_sizes[1]}${props.item.poster_path}`}
-        />) : (
-          <img src={poster} className="card-img card-img-placeholder"></img>
+        {props.item.poster_path ? (
+          <img
+            className="card-img"
+            alt=""
+            src={`${props.config.images.secure_base_url}${props.config.images.poster_sizes[1]}${props.item.poster_path}`}
+          />
+        ) : (
+          <img
+            src={poster}
+            alt=""
+            className="card-img card-img-placeholder"
+          ></img>
         )}
       </Link>
       <div className="card-details-container">

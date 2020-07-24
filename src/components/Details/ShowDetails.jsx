@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { requestShow, requestShowCredits } from "../../redux/actions/index";
+import { requestShow } from "../../redux/actions/index";
 import Cast from "../Cast/Cast";
 import Rating from "react-rating";
 import "./Details.scss";
@@ -137,6 +137,7 @@ function ShowDetails(props) {
           <div className="item-poster">
             <img
               src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${show.poster_path}`}
+              alt=""
             ></img>
           </div>
           <div className="item-text-container">

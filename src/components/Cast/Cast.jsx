@@ -50,13 +50,14 @@ function Cast({ credits }) {
               {cast.profile_path ? (
                 <Link to={`/people/${cast.id}`}>
                   <img
-                    className="cast-card-img"
                     src={`${config.images.secure_base_url}${config.images.profile_sizes[1]}${cast.profile_path}`}
+                    alt=""
+                    className="cast-card-img"
                   />
                 </Link>
               ) : (
                 <Link to={`/people/${cast.id}`}>
-                  <img className="cast-card-img" src={placeholder} />
+                  <img src={placeholder} alt="" className="cast-card-img" />
                 </Link>
               )}
             </div>

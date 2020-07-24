@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ItemCard from "./ItemCard.jsx";
 import "./Carousel.scss";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
-import Loader from "../Loader/Loader";
 
 function UpcomingCarousel(props) {
   const movies = useSelector((state) => state.movies);
@@ -16,8 +15,9 @@ function UpcomingCarousel(props) {
     return selection ? movies : shows;
   };
   const genreList = new Map();
-  genres.genreList.forEach(item => item.map((genre) => genreList.set(genre.id, genre.name)));
-
+  genres.genreList.forEach((item) =>
+    item.map((genre) => genreList.set(genre.id, genre.name))
+  );
 
   useEffect(() => {
     var upcomingSwiper = new Swiper(".upcoming-swiper", {
