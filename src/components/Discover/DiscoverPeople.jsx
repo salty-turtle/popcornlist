@@ -53,10 +53,15 @@ function DiscoverPeople() {
               {person.profile_path ? (
                 <img
                   src={`${config.images.secure_base_url}${config.images.profile_sizes[2]}${person.profile_path}`}
+                  alt=""
                   className="result-img"
                 ></img>
               ) : (
-                <img src={poster} className="result-img-placeholder"></img>
+                <img
+                  src={poster}
+                  alt=""
+                  className="result-img-placeholder"
+                ></img>
               )}
               <div className="result-item-title">{person.name}</div>
             </Link>

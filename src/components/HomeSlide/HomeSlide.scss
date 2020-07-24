@@ -65,11 +65,12 @@
 }
 
 /* SWIPER STYLING */
-.swiper1 {
+.home-swiper {
   background-color: black;
   overflow: hidden;
 }
 
+/* MEDIA QUERIES */
 @media only screen and (max-width: 1600px) {
   .home-text-container {
     padding: 0rem 1.5rem;
@@ -77,32 +78,27 @@
 
   .home-title {
     font-weight: 700;
-    // font-size: 2.0625rem; /* 33px */
-    font-size: 1.625rem; /* 26px */
+    font-size: 1.625rem;
   }
 
   .home-genre {
-    // font-size: 1.1875rem; /* 19px */
-    font-size: 0.9375rem; /* 15px */
+    font-size: 0.9375rem;
   }
 
   .home-rating-container {
-    // font-size: 1.125rem; /* 18px */
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     .home-rating-text {
-      // font-size: 1.0625rem; /* 17px */
       font-size: 0.8125rem;
     }
   }
 
   .home-description {
-    // font-size: 1.1875rem; /* 19px */
-    font-size: 0.9375rem; /* 15px */
+    font-size: 0.9375rem;
   }
 }
 
 @media only screen and (max-width: 1100px) {
-  .swiper1 {
+  .home-swiper {
     display: none;
   }
 }

@@ -34,10 +34,15 @@ function SearchShows(props) {
               {show.poster_path ? (
                 <img
                   src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${show.poster_path}`}
+                  alt=""
                   className="search-img"
                 ></img>
               ) : (
-                <img src={poster} className="search-img-placeholder"></img>
+                <img
+                  src={poster}
+                  alt=""
+                  className="search-img-placeholder"
+                ></img>
               )}
               <div className="search-item-title">{show.name}</div>
             </Link>

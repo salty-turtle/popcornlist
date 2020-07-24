@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { requestPerson } from "../../redux/actions/index";
-import Rating from "react-rating";
 import "./Details.scss";
-import ItemCard from "../Carousel/ItemCard";
-import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 
 function PersonDetails(props) {
@@ -18,43 +15,6 @@ function PersonDetails(props) {
   useEffect(() => {
     dispatch(requestPerson(personId));
   }, []);
-
-  console.log(person);
-
-  // useEffect(() => {
-  //   var recommendedShowSwiper = new Swiper(".recommended-show-swiper", {
-  //     breakpoints: {
-  //       320: {
-  //         slidesPerView: 1,
-  //         spaceBetween: 20,
-  //       },
-  //       480: {
-  //         slidesPerView: 2,
-  //         spaceBetween: 20,
-  //       },
-  //       640: {
-  //         slidesPerView: 3,
-  //         spaceBetween: 40,
-  //       },
-  //       768: {
-  //         slidesPerView: 4,
-  //         spaceBetween: 70,
-  //       },
-  //       1024: {
-  //         slidesPerView: 5,
-  //         spaceBetween: 90,
-  //       },
-  //       1600: {
-  //         slidesPerView: 6,
-  //         spaceBetween: 110,
-  //       },
-  //     },
-  //     scrollbar: {
-  //       el: ".scrollbar-1",
-  //       draggable: true,
-  //     },
-  //   });
-  // });
 
   function displayInfo(birthLocation, birthday, deathday) {
     const result = [];
@@ -107,6 +67,7 @@ function PersonDetails(props) {
           <div className="item-poster">
             <img
               src={`${config.images.secure_base_url}${config.images.profile_sizes[2]}${person.profile_path}`}
+              alt=""
             ></img>
           </div>
           <div className="item-text-container">
@@ -127,27 +88,6 @@ function PersonDetails(props) {
           </div>
         </div>
       </div>
-      {/* <div className="carousel-container">
-        <div className="carousel-header">
-          <span className="carousel-title">Recommended</span>
-        </div>
-        <div className="carousel-wrapper">
-          <div className="swiper-container recommended-show-swiper">
-            <div className="swiper-wrapper">
-              {person.recommendations.results.map((item) => (
-                <ItemCard
-                  item={item}
-                  config={config}
-                  genreList={genreList}
-                  selection={false}
-                  url={"/shows/"}
-                />
-              ))}
-            </div>
-            <div className="swiper-scrollbar scrollbar-1"></div>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }

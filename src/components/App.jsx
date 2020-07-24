@@ -15,7 +15,6 @@ import {
   requestShowGenres,
 } from "../redux/actions/index";
 import { Switch, Route, useLocation } from "react-router-dom";
-import store from "../redux/store/index.jsx";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "../styles/_transition.scss";
 
@@ -30,8 +29,6 @@ function App(props) {
     dispatch(requestMovieGenres());
     dispatch(requestShowGenres());
   }, []);
-
-  // store.subscribe(() => console.log(store.getState()));
 
   return config.loading ? (
     <div>LOADING...</div>
