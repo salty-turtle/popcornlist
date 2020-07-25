@@ -241,7 +241,7 @@ function DiscoverShows() {
                 <img
                   src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${show.poster_path}`}
                   alt=""
-                  className="search-img"
+                  className="result-img"
                 ></img>
               ) : (
                 <img
