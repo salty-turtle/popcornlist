@@ -10,6 +10,7 @@ import "react-modal-video/scss/modal-video.scss";
 import ItemCard from "../Carousel/ItemCard";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
+import poster from "../../images/poster.svg";
 
 function ShowDetails(props) {
   const { showId } = useParams();
@@ -124,6 +125,8 @@ function ShowDetails(props) {
     }
   }
 
+  console.log(show);
+
   return show.loading ? (
     <div></div>
   ) : (
@@ -131,10 +134,14 @@ function ShowDetails(props) {
       <div className="item-wrapper">
         <div className="item-container">
           <div className="item-poster">
-            <img
-              src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${show.poster_path}`}
-              alt=""
-            ></img>
+            {show.profile_path ? (
+              <img
+                src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${show.poster_path}`}
+                alt=""
+              ></img>
+            ) : (
+              <img src={poster} alt="" className="item-placeholder"></img>
+            )}
           </div>
           <div className="item-text-container">
             <div className="item-title">{show.name}</div>
@@ -160,10 +167,16 @@ function ShowDetails(props) {
             </div>
             <div className="item-secondary-title">Synopsis</div>
             <div className="item-synopsis">{show.overview}</div>
-            <div className="item-secondary-title">Cast</div>
-            <div className="item-cast">
-              <Cast credits={show.credits} />
-            </div>
+            {show.credits.cast.length !== 0 ? (
+              <>
+                <div className="item-secondary-title">Cast</div>
+                <div className="item-cast">
+                  <Cast credits={show.credits} />
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
             <div className="buttons-container">
               {displayTrailer(show.videos, isModalOpen, setIsModalOpen)}
               {displayImdb(show.imdb_id)}

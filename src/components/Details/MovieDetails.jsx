@@ -10,6 +10,7 @@ import "react-modal-video/scss/modal-video.scss";
 import ItemCard from "../Carousel/ItemCard";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
+import poster from "../../images/poster.svg";
 
 function MovieDetails(props) {
   const { movieId } = useParams();
@@ -24,6 +25,8 @@ function MovieDetails(props) {
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  console.log(movie);
 
   useEffect(() => {
     dispatch(requestMovie(movieId));
@@ -139,10 +142,14 @@ function MovieDetails(props) {
       <div className="item-wrapper">
         <div className="item-container">
           <div className="item-poster">
-            <img
-              src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${movie.poster_path}`}
-              alt=""
-            ></img>
+            {movie.poster_path ? (
+              <img
+                src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${movie.poster_path}`}
+                alt=""
+              ></img>
+            ) : (
+              <img src={poster} alt="" className="item-placeholder"></img>
+            )}
           </div>
           <div className="item-text-container">
             <div className="item-title">{movie.title}</div>
@@ -164,10 +171,16 @@ function MovieDetails(props) {
             </div>
             <div className="item-secondary-title">Synopsis</div>
             <div className="item-synopsis">{movie.overview}</div>
-            <div className="item-secondary-title">Cast</div>
-            <div className="item-cast">
-              <Cast credits={movie.credits} />
-            </div>
+            {movie.credits.cast.length !== 0 ? (
+              <>
+                <div className="item-secondary-title">Cast</div>
+                <div className="item-cast">
+                  <Cast credits={movie.credits} />
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
             <div className="buttons-container">
               {displayTrailer(movie.videos, isModalOpen, setIsModalOpen)}
               {displayImdb(movie.imdb_id)}
