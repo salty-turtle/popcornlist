@@ -2,7 +2,6 @@
 
 .search-wrapper {
   position: relative;
-  margin: 0rem 4rem 0rem 4rem;
 }
 
 .search-title {
@@ -139,5 +138,23 @@
       width: 100%;
       margin: 0.5rem 0rem 0.5rem 0rem;
     }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .search-container {
+    display: grid;
+    justify-content: space-evenly;
+    column-gap: 1rem;
+    row-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 10rem));
+  }
+
+  .search-img {
+    height: auto;
+  }
+
+  .search-buttons-container {
+    margin: 0rem 2rem 2.4rem 2rem;
   }
 }
