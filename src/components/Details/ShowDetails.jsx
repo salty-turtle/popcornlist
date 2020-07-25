@@ -32,11 +32,7 @@ function ShowDetails(props) {
   useEffect(() => {
     var recommendedShowSwiper = new Swiper(".recommended-show-swiper", {
       breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        480: {
+        0: {
           slidesPerView: 2,
           spaceBetween: 20,
         },

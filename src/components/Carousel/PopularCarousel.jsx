@@ -22,11 +22,7 @@ function PopularCarousel(props) {
   useEffect(() => {
     var popularSwiper = new Swiper(".popular-swiper", {
       breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        480: {
+        0: {
           slidesPerView: 2,
           spaceBetween: 20,
         },
