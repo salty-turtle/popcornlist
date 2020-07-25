@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NavBar from "./NavBar/NavBar.jsx";
 import Home from "./Home/Home.jsx";
+import NotFound from "./NotFound/NotFound.jsx";
 import DiscoverMovies from "./Discover/DiscoverMovies.jsx";
 import DiscoverShows from "./Discover/DiscoverShows.jsx";
 import DiscoverPeople from "./Discover/DiscoverPeople.jsx";
@@ -69,6 +70,7 @@ function App(props) {
                 component={Search}
               ></Route>
               <Route exact path="/" component={Home}></Route>
+              <Route path="*" component={NotFound}></Route>
             </Switch>
           </section>
         </CSSTransition>

@@ -1,0 +1,22 @@
+@import "../../styles/variables";
+
+.notfound-container {
+  margin: 7rem 1rem 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 700;
+  font-size: 3rem;
+  font-family: $primary-font;
+  color: $primary-font-color;
+}
+
+.notfound-text {
+  text-align: center;
+}
+
+.notfound-image {
+  width: 100%;
+  margin-top: 3rem;
+  height: 21rem;
+}
