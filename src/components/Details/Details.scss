@@ -156,6 +156,12 @@
   }
 }
 
+.item-placeholder {
+  height: 43.8125rem;
+  box-sizing: border-box;
+  padding: 3rem;
+}
+
 /* Styling for buttons */
 @media only screen and (max-width: 550px) {
   .buttons-container {

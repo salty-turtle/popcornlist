@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestPerson } from "../../redux/actions/index";
 import "./Details.scss";
 import "swiper/css/swiper.min.css";
+import poster from "../../images/poster.svg";
 
 function PersonDetails(props) {
   const { personId } = useParams();
@@ -65,10 +66,14 @@ function PersonDetails(props) {
       <div className="item-wrapper">
         <div className="item-container">
           <div className="item-poster">
-            <img
-              src={`${config.images.secure_base_url}${config.images.profile_sizes[2]}${person.profile_path}`}
-              alt=""
-            ></img>
+            {person.profile_path ? (
+              <img
+                src={`${config.images.secure_base_url}${config.images.profile_sizes[2]}${person.profile_path}`}
+                alt=""
+              ></img>
+            ) : (
+              <img src={poster} alt="" className="item-placeholder"></img>
+            )}
           </div>
           <div className="item-text-container">
             <div className="item-title">{person.name}</div>
