@@ -72,11 +72,7 @@ function MovieDetails(props) {
       result.push("N/A Genre");
     }
 
-    if (language.length !== 0) {
-      result.push(language[0].name);
-    } else {
-      result.push("N/A Language");
-    }
+    result.push(language.toUpperCase());
 
     result.push(`${time} min.`);
 
@@ -155,7 +151,11 @@ function MovieDetails(props) {
             <div className="item-title">{movie.title}</div>
             <div className="item-tagline">{movie.tagline}</div>
             <div className="item-info">
-              {displayInfo(movie.genres, movie.spoken_languages, movie.runtime)}
+              {displayInfo(
+                movie.genres,
+                movie.original_language,
+                movie.runtime
+              )}
             </div>
             <div className="item-rating-container">
               <Rating

@@ -63,13 +63,16 @@ function ShowDetails(props) {
 
   function displayInfo(genres, language, time) {
     const result = [];
-    result.push(genres.map((genre) => genre.name).join(", "));
 
-    if (language) {
-      result.push(language[0].name);
+    if (genres.length !== 0) {
+      result.push(genres.map((genre) => genre.name).join(", "));
+    } else {
+      result.push("N/A Genre");
     }
 
-    result.push(`${time} min. per ep.`);
+    result.push(language.toUpperCase());
+
+    result.push(`${time} min.`);
 
     return result.join(" | ");
   }
@@ -134,7 +137,7 @@ function ShowDetails(props) {
       <div className="item-wrapper">
         <div className="item-container">
           <div className="item-poster">
-            {show.profile_path ? (
+            {show.poster_path ? (
               <img
                 src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${show.poster_path}`}
                 alt=""
@@ -149,7 +152,7 @@ function ShowDetails(props) {
             <div className="item-info">
               {displayInfo(
                 show.genres,
-                show.spoken_languages,
+                show.original_language,
                 show.episode_run_time
               )}
             </div>
