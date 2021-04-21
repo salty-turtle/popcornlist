@@ -3,6 +3,7 @@
 Popcorn List is a front-end web application created with ReactJS using [The Movie Database API](https://www.themoviedb.org/documentation/api). You can search and view movies, TV shows and actors/actresses using Popcorn List.
 
 ### [> View Live Demo Here <](http://popcornlist.herokuapp.com/)
+
 *If the page is stuck loading, please give it 10-15 seconds for Heroku to spin up the instance.*
 
 ## Getting Started
