@@ -117,6 +117,16 @@
   }
 }
 
+.overlay {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  z-index: 2;
+  // issue from max-width: 90% in body. need to move that over into a separate container class.
+  width: 110%;
+  margin-left: -10%;
+}
+
 @media only screen and (max-width: 1100px) {
   .hamburger-menu {
     display: flex;
