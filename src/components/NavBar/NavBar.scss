@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@import '../../styles/variables';
 
 /* Navbar Styling */
 .nav-container {
@@ -101,21 +101,29 @@
 }
 
 /* Hamburger styling */
-.hamburger-toggle-container {
+.hamburger-menu {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  text-align: inherit;
   display: none;
-}
-
-#hamburger-toggle {
-  display: none;
-}
-
-.hamburger-toggle-icon {
-  font-size: 2.3rem;
-  color: $secondary-color;
-  display: none;
+  i {
+    font-size: 2.3rem;
+    color: $secondary-color;
+  }
 }
 
 @media only screen and (max-width: 1100px) {
+  .hamburger-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .nav-logo {
     display: none;
   }
@@ -126,55 +134,28 @@
 
   .nav-items {
     padding: 0;
-    width: 100%;
+    position: fixed;
+    width: 90%;
+    background-color: $primary-color;
+    z-index: 2;
     .menu {
       display: none;
     }
-  }
-
-  .menu li {
-    margin: 0.5rem 0rem 0.5rem 0rem;
-  }
-
-  .menu,
-  .hamburger-toggle-icon {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .hamburger-toggle-container {
-    display: block;
-  }
-
-  .hamburger-toggle-icon {
-    cursor: pointer;
-    display: flex;
-  }
-
-  #hamburger-toggle {
-    &:checked + .nav-container {
-      flex-direction: column;
-    }
-
-    &:checked + .nav-container > .nav-items > .menu {
-      transform: scale(1);
-      transition-duration: 2s;
-      opacity: 1;
+    .menu-mobile {
       display: flex;
       flex-direction: column;
-    }
-
-    &:checked + .nav-container > .hamburger-toggle-container {
-      width: 100%;
-    }
-
-    &:checked + .nav-container > .nav-search-container {
-      margin-top: 0.5rem;
+      align-content: center;
+      justify-content: center;
+      .nav-item {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        a {
+          padding: 0;
+        }
+      }
+      .nav-item:last-of-type {
+        margin-bottom: 1rem;
+      }
     }
   }
 
