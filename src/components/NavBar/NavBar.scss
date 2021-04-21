@@ -119,7 +119,7 @@
 
 .overlay {
   position: fixed;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   z-index: 2;
   // issue due to max-width: 90% in body. need to move that over into a separate container class.
