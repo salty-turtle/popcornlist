@@ -22,9 +22,9 @@ REACT_APP_APIKEY=your_api_key
 ### Installing
 1. Clone the repository.
 
-1. Run `npm install` in the project's root directory.
+2. Run `npm install` in the project's root directory.
 
-1. To start the dev server, run the following command: `npm run dev`
+3. To start the dev server, run the following command: `npm run dev`
 
 ## Deployment
 To deploy the project, run `npm run build`
